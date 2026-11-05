@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
+import api from '../../lib/api';
 
 type Inquiry = {
   _id: string;
@@ -31,8 +31,8 @@ export default function AdminPanel() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const inqRes = await axios.get('http://localhost:5000/api/inquiries');
-        const srvRes = await axios.get('http://localhost:5000/api/services');
+        const inqRes = await api.get('/inquiries');
+        const srvRes = await api.get('/services');
         setInquiries(inqRes.data);
         setServices(srvRes.data);
       } catch (error) {
@@ -47,7 +47,7 @@ export default function AdminPanel() {
   const handleAddService = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/services', newService);
+      const res = await api.post('/services', newService);
       setServices([...services, res.data]);
       setNewService({ title: '', description: '', image: 'default.jpg' });
       alert('Service added successfully!');

@@ -1,23 +1,47 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50 top-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/">
-              <Image src="/images/logo.png" alt="DCW Solutions Logo" width={120} height={60} className="object-contain" />
-            </Link>
-          </div>
-          <div className="hidden md:flex space-x-8 items-center">
-            <Link href="/#services" className="text-gray-700 hover:text-[var(--brand-blue)] font-medium transition">Services</Link>
-            <Link href="/#contact" className="text-gray-700 hover:text-[var(--brand-blue)] font-medium transition">Contact</Link>
-            <Link href="/admin" className="text-white bg-[var(--brand-blue)] px-4 py-2 rounded-md font-semibold hover:bg-blue-900 transition">Admin Panel</Link>
-          </div>
+    <>
+      <div className="utility-bar">
+        <div className="wrap utility-bar__inner">
+          <a href="#estimate">Estimate landed cost</a>
+          <a href="#contact">Talk to a logistics specialist</a>
+          <a href="tel:+16729683390">(672) 968-3390</a>
+          <a href="mailto:info@dcwsolution.ca">info@dcwsolution.ca</a>
         </div>
       </div>
-    </nav>
+      <header className="site-header">
+        <div className="wrap site-header__inner">
+          <Link className="site-brand" href="/" aria-label="DCW Solutions home" onClick={closeMenu}>
+            <Image src="/images/logo.png" alt="DCW Solutions" width={126} height={54} priority />
+          </Link>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          >
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
+          <nav id="primary-navigation" className={`site-nav${menuOpen ? ' site-nav--open' : ''}`}>
+            <a href="#services" onClick={closeMenu}>Services</a>
+            <a href="#process" onClick={closeMenu}>How it works</a>
+            <a href="#estimate" onClick={closeMenu}>Cost estimator</a>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
+            <Link className="button" href="/admin" onClick={closeMenu}>Admin Panel</Link>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }
