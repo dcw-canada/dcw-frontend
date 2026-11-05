@@ -1,35 +1,41 @@
-import { CalendarDays, FileUp, MapPin, WalletCards } from 'lucide-react';
+import { CalendarDays, FileUp, MapPin, WalletCards } from "lucide-react";
 
 const services = [
   {
-    name: 'Customs Clearance',
+    name: "Courier Import Handling",
     description:
-      'We prepare your entry, classify your goods, account for duties and taxes, and get your shipment released by CBSA without surprises.',
-    tags: ['Commercial entries', 'CARM support', 'Duties and taxes'],
+      "End-to-end handling for international courier imports — from airline arrival and bonded transfer to clearance coordination and sorting for last-mile handover.",
+    tags: ["India & Pakistan origins", "API data feeds", "No volume maximum"],
   },
   {
-    name: 'Warehousing',
+    name: "Cargo Import Handling",
     description:
-      'Secure storage close to the port and airport, with receiving, pick and pack, cross-docking and inventory support.',
-    tags: ['Pallet storage', 'Pick and pack', 'Cross-docking'],
+      "Commercial cargo imports cleared and moved onward through YYZ and YVR, with deconsolidation and sorting for onward distribution.",
+    tags: ["YYZ & YVR", "Deconsolidation", "No min or max"],
   },
   {
-    name: 'Freight Forwarding',
+    name: "Customs Clearance Coordination",
     description:
-      'Ocean and air freight from anywhere in the world to Vancouver, booked, documented and tracked by one team.',
-    tags: ['Ocean FCL and LCL', 'Air freight', 'Consolidation'],
+      "Clearance coordinated through our customs brokerage partner for courier shipments, commercial cargo and e-commerce orders — typically 24–48 hours, subject to customs.",
+    tags: ["Courier & cargo", "E-commerce", "Restricted goods advice"],
   },
   {
-    name: 'Transportation & Distribution',
+    name: "Warehousing (Vancouver & Toronto)",
     description:
-      'Container drayage, LTL and full truckload across BC and Western Canada, and last-mile delivery to your customers.',
-    tags: ['Port drayage', 'LTL and FTL', 'Last mile'],
+      "Bonded (third-party) and non-bonded storage with labelling, repacking, sorting and palletizing. First 3 days free, then storage charges apply.",
+    tags: ["Bonded storage", "Pick & pack", "Vancouver & Toronto"],
   },
   {
-    name: 'Supply Chain Solutions',
+    name: "Last-Mile Delivery",
     description:
-      'We plan the route, coordinate suppliers, clear, store and deliver—so your import keeps moving from factory to customer.',
-    tags: ['Import planning', 'Landed-cost modelling', 'Vendor coordination'],
+      "Canada-wide last-mile delivery through UPS, with tracking numbers shared. Lower rates and customized solutions compared to booking direct.",
+    tags: ["UPS partner", "Canada-wide", "1–5 business days"],
+  },
+  {
+    name: "India → Canada Door-to-Door",
+    description:
+      "Door-to-door courier with pickup anywhere in India and delivery anywhere in Canada, subject to service availability and terms. Launching soon.",
+    tags: ["Pickup in India", "Delivery in Canada", "Competitive rates"],
   },
 ];
 
@@ -41,23 +47,23 @@ export default function ServicesSection() {
           <div className="quick-actions" aria-label="Quick actions">
             <a className="quick-action" href="#contact">
               <WalletCards aria-hidden="true" />
-              <strong>Ask about duty payments</strong>
-              <span>Get help with a DCW shipment</span>
+              <strong>Request a quote</strong>
+              <span>Pricing tailored to your shipment</span>
             </a>
             <a className="quick-action" href="#contact">
               <MapPin aria-hidden="true" />
-              <strong>Request a tracking update</strong>
-              <span>Ask our team where your goods are</span>
+              <strong>Track a shipment</strong>
+              <span>Ask our team for an update</span>
             </a>
             <a className="quick-action" href="#contact">
               <FileUp aria-hidden="true" />
-              <strong>Ask about sending documents</strong>
-              <span>Invoices, bills of lading, permits</span>
+              <strong>Become a shipping partner</strong>
+              <span>For international courier companies</span>
             </a>
             <a className="quick-action" href="#contact">
               <CalendarDays aria-hidden="true" />
               <strong>Book a call</strong>
-              <span>Talk to a logistics specialist</span>
+              <span>Talk to our operations team</span>
             </a>
           </div>
         </div>
@@ -68,9 +74,14 @@ export default function ServicesSection() {
           <div className="section-heading">
             <div>
               <h2>What we do</h2>
-              <p>Use one service, or let us run the whole import from port to door.</p>
+              <p>
+                Use one service, or let us coordinate the whole import from
+                arrival to delivery.
+              </p>
             </div>
-            <a className="button button--outline" href="#contact">Talk to our team</a>
+            <a className="button button--outline" href="#contact">
+              Talk to our team
+            </a>
           </div>
           <div className="service-list">
             {services.map((service) => (
@@ -79,10 +90,16 @@ export default function ServicesSection() {
                 <div>
                   <p>{service.description}</p>
                   <div className="service-row__tags">
-                    {service.tags.map((tag) => <span className="service-tag" key={tag}>{tag}</span>)}
+                    {service.tags.map((tag) => (
+                      <span className="service-tag" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <span className="service-row__link">Ask about this service <span aria-hidden="true">→</span></span>
+                <span className="service-row__link">
+                  Ask about this service <span aria-hidden="true">→</span>
+                </span>
               </a>
             ))}
           </div>

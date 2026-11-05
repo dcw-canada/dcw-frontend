@@ -1,19 +1,23 @@
 const steps = [
   {
-    title: 'Tell us about the shipment',
-    description: 'Send the invoice and arrival details. We confirm costs before anything moves.',
+    title: "Arrival notice received",
+    description:
+      "We receive the arrival notice from the airline and arrange transfer in bond to a sufferance warehouse.",
   },
   {
-    title: 'We clear it with CBSA',
-    description: 'Entry filed before arrival, duties and GST accounted, release sent to you.',
+    title: "Clearance coordinated",
+    description:
+      "Clearance is coordinated through our customs brokerage partner. Restricted goods are flagged to clients right away.",
   },
   {
-    title: 'We store or cross-dock it',
-    description: 'Received at our warehouse, counted, photographed and ready to ship.',
+    title: "Handled & sorted",
+    description:
+      "Shipments are counted, sorted and prepared for handover — with warehousing available in Vancouver and Toronto.",
   },
   {
-    title: 'We deliver it',
-    description: 'To your site, your stores or your customers, with proof of delivery.',
+    title: "Delivered",
+    description:
+      "Handed to our last-mile delivery partner (UPS) for Canada-wide delivery, with tracking shared.",
   },
 ];
 
@@ -23,8 +27,11 @@ export default function DeliveryServices() {
       <div className="wrap">
         <div className="section-heading">
           <div>
-            <h2>How an import moves with DCW</h2>
-            <p>Each step is handed to the next by the same team, so nothing waits in an inbox.</p>
+            <h2>How a courier import moves with DCW</h2>
+            <p>
+              Each step is coordinated by the same team, with one operational
+              point of contact.
+            </p>
           </div>
         </div>
         <div className="process-grid">
