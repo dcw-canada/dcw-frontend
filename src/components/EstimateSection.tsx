@@ -1,126 +1,206 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-const money = new Intl.NumberFormat('en-CA', {
-  style: 'currency',
-  currency: 'CAD',
+const money = new Intl.NumberFormat("en-CA", {
+  style: "currency",
+  currency: "CAD",
   maximumFractionDigits: 0,
 });
 
-const dutyOptions: { value: string; label: string; rate?: number }[] = [
-  { value: 'apparel', label: 'Apparel (often 18%)', rate: 18 },
-  { value: 'footwear', label: 'Footwear (often 18%)', rate: 18 },
-  { value: 'auto-parts', label: 'Auto parts (often 6%)', rate: 6 },
-  { value: 'electronics', label: 'Electronics and computers (often 0%)', rate: 0 },
-  { value: 'machinery', label: 'Machinery and tools (often 0%)', rate: 0 },
-  { value: 'custom', label: 'I know my duty rate' },
+const serviceOptions: { value: string; label: string; rate?: number }[] = [
+  { value: "courier", label: "Courier Import Handling", rate: 0 },
+  { value: "cargo", label: "Cargo Import Handling", rate: 0 },
+  { value: "customs", label: "Customs Clearance Coordination", rate: 0 },
+  { value: "warehousing", label: "Warehousing (Vancouver / Toronto)", rate: 0 },
+  { value: "last-mile", label: "Last-Mile Delivery (UPS)", rate: 0 },
+  { value: "india-canada", label: "India → Canada Door-to-Door", rate: 0 },
+  { value: "custom", label: "Multiple / Custom solution" },
+];
+
+const originOptions = [
+  "India",
+  "Pakistan",
+  "Sri Lanka",
+  "United States",
+  "United Kingdom",
+  "UAE",
+  "Other",
 ];
 
 export default function EstimateSection() {
-  const [value, setValue] = useState('25000');
-  const [freight, setFreight] = useState('2800');
-  const [pallets, setPallets] = useState('6');
-  const [weeks, setWeeks] = useState('4');
-  const [dutyChoice, setDutyChoice] = useState('apparel');
-  const [customDuty, setCustomDuty] = useState('8');
-  const [freeTrade, setFreeTrade] = useState(false);
+  const [declaredValue, setDeclaredValue] = useState("25000");
+  const [weight, setWeight] = useState("50");
+  const [pieces, setPieces] = useState("6");
+  const [storageWeeks, setStorageWeeks] = useState("2");
+  const [origin, setOrigin] = useState("India");
+  const [serviceChoice, setServiceChoice] = useState("courier");
+  const [dutyRate, setDutyRate] = useState("8");
 
   const estimate = useMemo(() => {
-    const goodsValue = Math.max(0, Number(value) || 0);
-    const shipmentFreight = Math.max(0, Number(freight) || 0);
-    const selectedDuty = dutyOptions.find((option) => option.value === dutyChoice);
-    const customRate = Math.min(100, Math.max(0, Number(customDuty) || 0));
-    const rate = freeTrade ? 0 : dutyChoice === 'custom' ? customRate : selectedDuty?.rate ?? 0;
-    const duty = goodsValue * rate / 100;
+    const goodsValue = Math.max(0, Number(declaredValue) || 0);
+    const shipmentWeight = Math.max(0, Number(weight) || 0);
+    const shipmentPieces = Math.max(0, Number(pieces) || 0);
+    const weeks = Math.max(0, Number(storageWeeks) || 0);
+    const rate = Math.min(100, Math.max(0, Number(dutyRate) || 0));
+    const duty = (goodsValue * rate) / 100;
     const gst = (goodsValue + duty) * 0.05;
     const brokerage = goodsValue > 0 ? 95 : 0;
-    const storage = Math.max(0, Number(pallets) || 0) * Math.max(0, Number(weeks) || 0) * 12;
+    const storage = shipmentPieces * weeks * 12;
+    const handling = shipmentWeight * 0.85; // indicative handling, not a quote
     const lines = [
-      { label: 'Freight', amount: shipmentFreight },
-      { label: `Duty (${rate}%)`, amount: duty },
-      { label: 'GST (5%)', amount: gst },
-      { label: 'Brokerage', amount: brokerage },
-      { label: 'Storage', amount: storage },
+      { label: `Duty (${rate}%) — estimate`, amount: duty },
+      { label: "GST (5%)", amount: gst },
+      { label: "Brokerage coordination", amount: brokerage },
+      { label: "Handling (indicative)", amount: handling },
+      { label: "Storage", amount: storage },
     ];
 
     return {
       lines,
       total: lines.reduce((sum, line) => sum + line.amount, 0),
-      percentage: goodsValue > 0 ? Math.round(lines.reduce((sum, line) => sum + line.amount, 0) / goodsValue * 100) : 0,
+      percentage:
+        goodsValue > 0
+          ? Math.round(
+              (lines.reduce((sum, line) => sum + line.amount, 0) / goodsValue) *
+                100,
+            )
+          : 0,
     };
-  }, [dutyChoice, customDuty, freeTrade, freight, pallets, value, weeks]);
+  }, [declaredValue, weight, pieces, storageWeeks, dutyRate]);
 
   return (
     <section id="estimate" className="section">
       <div className="wrap">
         <div className="section-heading">
           <div>
-            <h2>Estimate your landed cost</h2>
-            <p>Get a quick planning estimate for freight, duties, GST, brokerage and storage.</p>
+            <h2>Estimate your import costs</h2>
+            <p>
+              Get a quick planning estimate for duties, GST, brokerage
+              coordination, handling and storage.
+            </p>
           </div>
         </div>
         <div className="estimate-panel">
           <div className="estimate-panel__content">
             <h3>Shipment details</h3>
-            <p>Adjust the values to see an approximate total in Canadian dollars.</p>
+            <p>
+              Adjust the values to see an approximate total in Canadian dollars.
+            </p>
             <div className="estimate-field">
-              <label htmlFor="estimate-value">Value of goods (CAD)</label>
-              <input id="estimate-value" type="number" min="0" step="100" inputMode="decimal" value={value} onChange={(event) => setValue(event.target.value)} />
+              <label htmlFor="estimate-value">
+                Declared value of goods (CAD)
+              </label>
+              <input
+                id="estimate-value"
+                type="number"
+                min="0"
+                step="100"
+                inputMode="decimal"
+                value={declaredValue}
+                onChange={(event) => setDeclaredValue(event.target.value)}
+              />
             </div>
             <div className="estimate-grid">
               <div className="estimate-field">
                 <label htmlFor="estimate-origin">Country of origin</label>
-                <select id="estimate-origin" defaultValue="China">
-                  <option>China</option><option>United States</option><option>Mexico</option>
-                  <option>India</option><option>Vietnam</option><option>European Union</option><option>Other</option>
+                <select
+                  id="estimate-origin"
+                  value={origin}
+                  onChange={(event) => setOrigin(event.target.value)}
+                >
+                  {originOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
                 </select>
               </div>
               <div className="estimate-field">
-                <label htmlFor="estimate-category">Type of goods</label>
-                <select id="estimate-category" value={dutyChoice} onChange={(event) => setDutyChoice(event.target.value)}>
-                  {dutyOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                <label htmlFor="estimate-service">Service required</label>
+                <select
+                  id="estimate-service"
+                  value={serviceChoice}
+                  onChange={(event) => setServiceChoice(event.target.value)}
+                >
+                  {serviceOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </div>
-              {dutyChoice === 'custom' && (
-                <div className="estimate-field">
-                  <label htmlFor="estimate-duty">Duty rate (%)</label>
-                  <input id="estimate-duty" type="number" min="0" max="100" step="0.5" value={customDuty} onChange={(event) => setCustomDuty(event.target.value)} />
-                </div>
-              )}
               <div className="estimate-field">
-                <label htmlFor="estimate-freight">Freight to Vancouver (CAD)</label>
-                <input id="estimate-freight" type="number" min="0" step="50" value={freight} onChange={(event) => setFreight(event.target.value)} />
+                <label htmlFor="estimate-weight">Total weight (kg)</label>
+                <input
+                  id="estimate-weight"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={weight}
+                  onChange={(event) => setWeight(event.target.value)}
+                />
               </div>
               <div className="estimate-field">
-                <label htmlFor="estimate-pallets">Pallets to store</label>
-                <input id="estimate-pallets" type="number" min="0" value={pallets} onChange={(event) => setPallets(event.target.value)} />
+                <label htmlFor="estimate-pieces">Pieces / parcels</label>
+                <input
+                  id="estimate-pieces"
+                  type="number"
+                  min="0"
+                  value={pieces}
+                  onChange={(event) => setPieces(event.target.value)}
+                />
+              </div>
+              <div className="estimate-field">
+                <label htmlFor="estimate-duty">Duty rate (%)</label>
+                <input
+                  id="estimate-duty"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.5"
+                  value={dutyRate}
+                  onChange={(event) => setDutyRate(event.target.value)}
+                />
               </div>
               <div className="estimate-field">
                 <label htmlFor="estimate-weeks">Storage (weeks)</label>
-                <input id="estimate-weeks" type="number" min="0" value={weeks} onChange={(event) => setWeeks(event.target.value)} />
+                <input
+                  id="estimate-weeks"
+                  type="number"
+                  min="0"
+                  value={storageWeeks}
+                  onChange={(event) => setStorageWeeks(event.target.value)}
+                />
               </div>
-            </div>
-            <div className="estimate-field">
-              <label className="estimate-checkbox">
-                <input type="checkbox" checked={freeTrade} onChange={(event) => setFreeTrade(event.target.checked)} />
-                {' '}Goods qualify for free-trade treatment and I have proof of origin
-              </label>
             </div>
           </div>
           <aside className="estimate-total" aria-live="polite">
-            <span className="estimate-total__label">Estimated landed cost</span>
-            <strong className="estimate-total__amount">{money.format(estimate.total)}</strong>
-            {estimate.percentage > 0 && <span className="estimate-total__label">About {estimate.percentage}% on top of your goods&apos; value</span>}
+            <span className="estimate-total__label">
+              Estimated import costs
+            </span>
+            <strong className="estimate-total__amount">
+              {money.format(estimate.total)}
+            </strong>
+            {estimate.percentage > 0 && (
+              <span className="estimate-total__label">
+                About {estimate.percentage}% on top of your goods&apos; value
+              </span>
+            )}
             <ul className="estimate-breakdown">
               {estimate.lines.map((line) => (
-                <li key={line.label}><span>{line.label}</span><strong>{money.format(line.amount)}</strong></li>
+                <li key={line.label}>
+                  <span>{line.label}</span>
+                  <strong>{money.format(line.amount)}</strong>
+                </li>
               ))}
             </ul>
-            <a className="button" href="#contact">Turn this into a firm quote</a>
+            <a className="button" href="#contact">
+              Turn this into a firm quote
+            </a>
             <small>
-              Planning estimate only, not a quote. Duty depends on the exact HS code and origin.
-              Brokerage ($95) and storage ($12 per pallet/week) are sample rates and must be confirmed.
+              Planning estimate only, not a quote. Duty depends on the exact HS
+              code and origin. Brokerage, handling and storage figures are
+              indicative and must be confirmed. Rates are tailored to shipment
+              volumes and service requirements.
             </small>
           </aside>
         </div>

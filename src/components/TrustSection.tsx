@@ -1,23 +1,65 @@
-const industries = [
-  ['Retail & e-commerce', 'Import support for products moving into stores, fulfilment centres and customer orders.'],
-  ['Apparel & footwear', 'Coordinate freight, customs clearance, storage and distribution for seasonal goods.'],
-  ['Automotive & parts', 'Keep parts and components moving with clear shipment milestones and delivery planning.'],
-  ['Food & consumer goods', 'Manage import documentation, receiving and onward delivery with one logistics contact.'],
-  ['Manufacturing', 'Bring raw materials, equipment and components from port to your operation.'],
-  ['Growing importers', 'Add logistics capacity as your business expands into Canada and new markets.'],
+const audiences = [
+  [
+    "International courier companies",
+    "A dependable Canadian partner to handle inbound courier and e-commerce shipments, coordinate clearance, and arrange final delivery.",
+  ],
+  [
+    "Freight forwarders",
+    "Canadian handling, clearance coordination and delivery support for your inbound shipments.",
+  ],
+  [
+    "Local importers from India",
+    "Import support for businesses shipping goods from India into Canada.",
+  ],
+  [
+    "Canadian businesses & commercial importers",
+    "Cargo handling, clearance coordination, warehousing and delivery for commercial imports.",
+  ],
+  [
+    "E-commerce sellers & logistics providers",
+    "Recurring shipment volume support for e-commerce and consolidated courier imports.",
+  ],
+  [
+    "Individuals & families",
+    "Door-to-door courier services from India to Canada, with pickup anywhere in India.",
+  ],
 ];
 
 const reasons = [
-  ['One team from port to door', 'Clearance, storage and delivery are coordinated together, so your goods are not handed between companies.'],
-  ['Know the costs up front', 'We work to explain duties, taxes, brokerage and storage before your shipment moves.'],
-  ['Local to Vancouver ports', 'A Lower Mainland team can coordinate shipments through the Port of Vancouver and YVR.'],
-  ['A named point of contact', 'Work with a logistics specialist who understands your shipment and can help keep it moving.'],
+  [
+    "One operational point of contact",
+    "Shipment handling, customs clearance coordination, warehousing and final delivery are coordinated together — with clearer communication.",
+  ],
+  [
+    "Experience with time-sensitive courier imports",
+    "We understand courier import workflows and keep shipments moving efficiently through arrival, clearance and delivery.",
+  ],
+  [
+    "Close brokerage & delivery partner relationships",
+    "A close relationship with a customs brokerage and delivery partners such as UPS helps keep shipments moving.",
+  ],
+  [
+    "Practical, responsive support",
+    "Support tailored to each partner's shipment volumes and requirements, with competitive rates.",
+  ],
 ];
 
 const resources = [
-  ['IMPORT BASICS', 'A practical guide to importing into Canada', 'Understand the documents and key steps involved in bringing goods into Canada.'],
-  ['CUSTOMS', 'Duties, taxes and customs clearance', 'Learn what goes into a customs entry and how import costs are determined.'],
-  ['WAREHOUSING', 'Choosing a storage and distribution plan', 'Explore storage, cross-docking and delivery options for your inventory.'],
+  [
+    "COURIER IMPORTS",
+    "How courier imports move through Canada",
+    "Arrival notice, bonded transfer, clearance coordination, sorting and last-mile handover.",
+  ],
+  [
+    "CUSTOMS",
+    "Customs clearance coordination explained",
+    "What clearance coordination involves and what documentation is needed.",
+  ],
+  [
+    "WAREHOUSING",
+    "Warehousing in Vancouver and Toronto",
+    "Bonded and non-bonded storage, labelling, repacking, sorting and palletizing.",
+  ],
 ];
 
 export default function TrustSection() {
@@ -26,10 +68,12 @@ export default function TrustSection() {
       <section className="section section--paper">
         <div className="wrap">
           <div className="section-heading">
-            <div><h2>Who we work with</h2></div>
+            <div>
+              <h2>Who we work with</h2>
+            </div>
           </div>
           <div className="industry-grid">
-            {industries.map(([title, description]) => (
+            {audiences.map(([title, description]) => (
               <article className="industry-item" key={title}>
                 <h3>{title}</h3>
                 <p>{description}</p>
@@ -41,7 +85,7 @@ export default function TrustSection() {
 
       <section className="section">
         <div className="wrap">
-          <h2>Why importers choose DCW</h2>
+          <h2>Why partners choose DCW</h2>
           <div className="reasons-grid">
             {reasons.map(([title, description]) => (
               <article className="reason" key={title}>
@@ -58,18 +102,43 @@ export default function TrustSection() {
           <div>
             <h2>Where we work</h2>
             <p className="lead">
-              Based in the Lower Mainland, coordinating imports through the Port of Vancouver
-              and YVR, with delivery across British Columbia and Western Canada.
+              Warehousing in Vancouver and Toronto, with Canada-wide delivery
+              through our delivery partners. We also have partners in India,
+              Pakistan and Sri Lanka.
             </p>
             <ul className="coverage-list">
-              <li><i aria-hidden="true" /><span><strong>DCW warehouse</strong> · Lower Mainland</span></li>
-              <li><i aria-hidden="true" /><span><strong>Port and airport</strong> · Vancouver and YVR</span></li>
-              <li><i aria-hidden="true" /><span><strong>Delivery lanes</strong> · Lower Mainland and Western Canada</span></li>
+              <li>
+                <i aria-hidden="true" />
+                <span>
+                  <strong>Warehousing</strong> · Vancouver &amp; Toronto
+                </span>
+              </li>
+              <li>
+                <i aria-hidden="true" />
+                <span>
+                  <strong>Delivery</strong> · Canada-wide via UPS
+                </span>
+              </li>
+              <li>
+                <i aria-hidden="true" />
+                <span>
+                  <strong>International partners</strong> · India, Pakistan, Sri
+                  Lanka
+                </span>
+              </li>
             </ul>
           </div>
-          <div className="coverage-map" role="img" aria-label="Illustration showing DCW's warehouse near the Port of Vancouver and YVR">
-            <span className="coverage-map__label coverage-map__label--port">Port of Vancouver · YVR</span>
-            <span className="coverage-map__label coverage-map__label--warehouse">DCW warehouse</span>
+          <div
+            className="coverage-map"
+            role="img"
+            aria-label="Illustration showing DCW warehousing in Vancouver and Toronto with Canada-wide delivery"
+          >
+            <span className="coverage-map__label coverage-map__label--port">
+              Vancouver &amp; Toronto · Warehousing
+            </span>
+            <span className="coverage-map__label coverage-map__label--warehouse">
+              Canada-wide delivery
+            </span>
           </div>
         </div>
       </section>
@@ -77,8 +146,12 @@ export default function TrustSection() {
       <section className="section">
         <div className="wrap">
           <div className="section-heading">
-            <div><h2>Guides for importers</h2></div>
-            <a className="button button--outline" href="#contact">Ask a question</a>
+            <div>
+              <h2>Guides for shipping partners</h2>
+            </div>
+            <a className="button button--outline" href="#contact">
+              Ask a question
+            </a>
           </div>
           <div className="resource-grid">
             {resources.map(([kind, title, description]) => (
@@ -86,7 +159,9 @@ export default function TrustSection() {
                 <span className="resource-card__kind">{kind}</span>
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <strong>Ask our team <span aria-hidden="true">→</span></strong>
+                <strong>
+                  Ask our team <span aria-hidden="true">→</span>
+                </strong>
               </a>
             ))}
           </div>
