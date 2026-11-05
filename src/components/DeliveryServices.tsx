@@ -1,28 +1,41 @@
-import Image from 'next/image';
-import { Truck } from 'lucide-react';
+const steps = [
+  {
+    title: 'Tell us about the shipment',
+    description: 'Send the invoice and arrival details. We confirm costs before anything moves.',
+  },
+  {
+    title: 'We clear it with CBSA',
+    description: 'Entry filed before arrival, duties and GST accounted, release sent to you.',
+  },
+  {
+    title: 'We store or cross-dock it',
+    description: 'Received at our warehouse, counted, photographed and ready to ship.',
+  },
+  {
+    title: 'We deliver it',
+    description: 'To your site, your stores or your customers, with proof of delivery.',
+  },
+];
 
 export default function DeliveryServices() {
   return (
-    <section className="bg-gray-100 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
-        <div className="relative h-[400px] rounded-xl overflow-hidden shadow-lg">
-           <Image src="/images/loading-dock.jpg" alt="Delivery Service" fill className="object-cover" />
-        </div>
-        <div>
-          <h2 className="text-3xl font-bold text-[var(--brand-blue)] mb-6 flex items-center gap-2">
-            <Truck className="w-8 h-8" /> Seamless Delivery
-          </h2>
-          <p className="text-gray-600 text-lg mb-6">
-            We ensure your inventory is in safe hands from our warehouse to your final destination. Our fleet and team are equipped to handle your cargo with the utmost care.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
-              <Image src="/images/delivery-man.jpg" alt="Delivery Man" fill className="object-cover object-top" />
-            </div>
-            <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
-              <Image src="/images/delivery-crew.jpg" alt="Delivery Crew" fill className="object-cover object-center" />
-            </div>
+    <section id="process" className="section section--dark">
+      <div className="wrap">
+        <div className="section-heading">
+          <div>
+            <h2>How an import moves with DCW</h2>
+            <p>Each step is handed to the next by the same team, so nothing waits in an inbox.</p>
           </div>
+        </div>
+        <div className="process-grid">
+          {steps.map((step, index) => (
+            <article className="process-step" key={step.title}>
+              <div className="process-step__number">{index + 1}</div>
+              <div className="process-step__rule" />
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
