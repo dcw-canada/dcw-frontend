@@ -30,10 +30,11 @@ export default function AdminLogin() {
         <div className="flex justify-center mb-6">
           <Link href="/">
             <Image
-              src="/images/logo.svg"
-              alt="DCW Solutions"
-              width={180}
-              height={55}
+              src="/images/dcw-logo-transparent.png"
+              alt="DCW Solutions Inc."
+              width={190}
+              height={65}
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>
