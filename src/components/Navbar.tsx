@@ -28,10 +28,10 @@ export default function Navbar() {
             onClick={closeMenu}
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="DCW Solutions"
-              width={126}
-              height={54}
+              width={160}
+              height={50}
               priority
             />
           </Link>
@@ -60,9 +60,7 @@ export default function Navbar() {
             <a href="#contact" onClick={closeMenu}>
               Contact
             </a>
-            <Link className="button" href="/admin" onClick={closeMenu}>
-              Admin Panel
-            </Link>
+
           </nav>
         </div>
       </header>

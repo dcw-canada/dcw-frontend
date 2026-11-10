@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Send } from "lucide-react";
+import { toast } from "react-toastify";
 import api from "../lib/api";
 
 export default function ContactSection() {
@@ -24,6 +25,7 @@ export default function ContactSection() {
     try {
       await api.post("/contact", formData);
       setStatus("success");
+      toast.success("Thank you! Your inquiry has been sent to our dispatch team.");
       setFormData({
         name: "",
         company: "",
@@ -35,6 +37,7 @@ export default function ContactSection() {
     } catch (error) {
       console.error(error);
       setStatus("error");
+      toast.error("Failed to submit inquiry. Please check your connection or call us directly.");
     }
   };
 
@@ -109,7 +112,7 @@ export default function ContactSection() {
             </div>
           </div>
           <div>
-            <label htmlFor="contact-service">Service required</label>
+            <label htmlFor="contact-service">Primary service needed</label>
             <select
               id="contact-service"
               value={formData.service}
@@ -118,23 +121,19 @@ export default function ContactSection() {
               }
             >
               <option value="">Select a service</option>
-              <option value="last-mile">Last-Mile Delivery</option>
-              <option value="customs">Customs Clearance</option>
-              <option value="warehousing">
-                Warehousing (Vancouver &amp; Toronto)
-              </option>
-              <option value="courier">Courier Import Handling</option>
-              <option value="cargo">Cargo Import Handling</option>
-              <option value="india-canada">India → Canada Door-to-Door</option>
-              <option value="other">Other / Not sure</option>
+              <option value="customs">Customs clearance coordination</option>
+              <option value="warehousing">Warehousing &amp; fulfillment</option>
+              <option value="freight">Freight forwarding &amp; drayage</option>
+              <option value="delivery">Courier &amp; final-mile delivery</option>
+              <option value="all">Full end-to-end import package</option>
             </select>
           </div>
           <div>
             <label htmlFor="contact-message">Shipment details</label>
             <textarea
               id="contact-message"
-              rows={3}
-              required
+              rows={4}
+              placeholder="Origin, port of arrival, volume, special handling or timeline requirements..."
               value={formData.message}
               onChange={(event) =>
                 setFormData({ ...formData, message: event.target.value })
@@ -143,31 +142,22 @@ export default function ContactSection() {
           </div>
           <button
             type="submit"
-            className="button"
+            className="button button--full"
             disabled={status === "loading"}
           >
-            {status === "loading" ? (
-              "Sending..."
-            ) : (
-              <>
-                <Send size={18} aria-hidden="true" /> Request a quote
-              </>
-            )}
+            <Send size={16} />
+            {status === "loading" ? "Submitting..." : "Send shipment details"}
           </button>
           {status === "success" && (
-            <p
-              className="contact-form__status contact-form__status--success"
-              role="status"
-            >
-              Message sent successfully! We will contact you soon.
+            <p className="contact-form__message contact-form__message--success">
+              Inquiry sent. Our team will review your shipment details and reach
+              out within 1 business day.
             </p>
           )}
           {status === "error" && (
-            <p
-              className="contact-form__status contact-form__status--error"
-              role="alert"
-            >
-              Something went wrong. Please try again.
+            <p className="contact-form__message contact-form__message--error">
+              Could not submit your inquiry. Please try again or call our team
+              directly.
             </p>
           )}
         </form>
