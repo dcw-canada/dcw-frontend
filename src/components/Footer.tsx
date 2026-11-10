@@ -8,13 +8,15 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="mb-4">
-              <Image
-                src="/images/logo.svg"
-                alt="DCW Solutions Inc."
-                width={160}
-                height={50}
-                className="h-9 w-auto object-contain"
-              />
+              <div className="inline-block bg-white px-4 py-2.5 rounded-xl border border-[#d5dcdb]/60 shadow-sm">
+                <Image
+                  src="/images/dcw-logo-transparent.png"
+                  alt="DCW Solutions Inc."
+                  width={220}
+                  height={75}
+                  className="h-14 w-auto object-contain"
+                />
+              </div>
             </div>
             <p>
               Your trusted logistics partner. Connecting the world to Canada.

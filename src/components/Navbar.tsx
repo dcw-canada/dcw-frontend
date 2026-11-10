@@ -28,10 +28,11 @@ export default function Navbar() {
             onClick={closeMenu}
           >
             <Image
-              src="/images/logo.svg"
-              alt="DCW Solutions"
-              width={160}
-              height={50}
+              src="/images/dcw-logo-transparent.png"
+              alt="DCW Solutions Inc."
+              width={165}
+              height={56}
+              className="h-12 w-auto object-contain"
               priority
             />
           </Link>
