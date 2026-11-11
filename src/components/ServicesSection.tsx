@@ -1,4 +1,5 @@
-import { CalendarDays, FileUp, MapPin, WalletCards } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays, FileUp, MapPin, WalletCards, ArrowUpRight } from "lucide-react";
 
 const services = [
   {
@@ -45,26 +46,38 @@ export default function ServicesSection() {
       <section className="section--tight">
         <div className="wrap">
           <div className="quick-actions" aria-label="Quick actions">
-            <a className="quick-action" href="#contact">
-              <WalletCards aria-hidden="true" />
+            <Link className="quick-action group" href="/request-a-quote">
+              <div className="flex items-center justify-between">
+                <WalletCards aria-hidden="true" />
+                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
               <strong>Request a quote</strong>
               <span>Pricing tailored to your shipment</span>
-            </a>
-            <a className="quick-action" href="#contact">
-              <MapPin aria-hidden="true" />
+            </Link>
+            <Link className="quick-action group" href="/track-shipment">
+              <div className="flex items-center justify-between">
+                <MapPin aria-hidden="true" />
+                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
               <strong>Track a shipment</strong>
               <span>Ask our team for an update</span>
-            </a>
-            <a className="quick-action" href="#contact">
-              <FileUp aria-hidden="true" />
+            </Link>
+            <Link className="quick-action group" href="/become-a-shipping-partner">
+              <div className="flex items-center justify-between">
+                <FileUp aria-hidden="true" />
+                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
               <strong>Become a shipping partner</strong>
               <span>For international courier companies</span>
-            </a>
-            <a className="quick-action" href="#contact">
-              <CalendarDays aria-hidden="true" />
+            </Link>
+            <Link className="quick-action group" href="/book-a-call">
+              <div className="flex items-center justify-between">
+                <CalendarDays aria-hidden="true" />
+                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
               <strong>Book a call</strong>
               <span>Talk to our operations team</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

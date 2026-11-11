@@ -1,28 +1,56 @@
-const audiences = [
-  [
-    "International courier companies",
-    "A dependable Canadian partner to handle inbound courier and e-commerce shipments, coordinate clearance, and arrange final delivery.",
-  ],
-  [
-    "Freight forwarders",
-    "Canadian handling, clearance coordination and delivery support for your inbound shipments.",
-  ],
-  [
-    "Local importers from India",
-    "Import support for businesses shipping goods from India into Canada.",
-  ],
-  [
-    "Canadian businesses & commercial importers",
-    "Cargo handling, clearance coordination, warehousing and delivery for commercial imports.",
-  ],
-  [
-    "E-commerce sellers & logistics providers",
-    "Recurring shipment volume support for e-commerce and consolidated courier imports.",
-  ],
-  [
-    "Individuals & families",
-    "Door-to-door courier services from India to Canada, with pickup anywhere in India.",
-  ],
+import {
+  Globe2,
+  Ship,
+  Store,
+  Building2,
+  ShoppingBag,
+  Users2,
+  LucideIcon,
+} from "lucide-react";
+
+interface AudienceItem {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+const audiences: AudienceItem[] = [
+  {
+    title: "International courier companies",
+    description:
+      "A dependable Canadian partner to handle inbound courier and e-commerce shipments, coordinate clearance, and arrange final delivery.",
+    icon: Globe2,
+  },
+  {
+    title: "Freight forwarders",
+    description:
+      "Canadian handling, clearance coordination and delivery support for your inbound shipments.",
+    icon: Ship,
+  },
+  {
+    title: "Local importers from India",
+    description:
+      "Import support for businesses shipping goods from India into Canada.",
+    icon: Store,
+  },
+  {
+    title: "Canadian businesses & commercial importers",
+    description:
+      "Cargo handling, clearance coordination, warehousing and delivery for commercial imports.",
+    icon: Building2,
+  },
+  {
+    title: "E-commerce sellers & logistics providers",
+    description:
+      "Recurring shipment volume support for e-commerce and consolidated courier imports.",
+    icon: ShoppingBag,
+  },
+  {
+    title: "Individuals & families",
+    description:
+      "Door-to-door courier services from India to Canada, with pickup anywhere in India.",
+    icon: Users2,
+  },
 ];
 
 const reasons = [
@@ -70,11 +98,15 @@ export default function TrustSection() {
           <div className="section-heading">
             <div>
               <h2>Who we work with</h2>
+              <p>Specialized logistics solutions adapted to your shipment type and volume.</p>
             </div>
           </div>
           <div className="industry-grid">
-            {audiences.map(([title, description]) => (
-              <article className="industry-item" key={title}>
+            {audiences.map(({ title, description, icon: Icon }) => (
+              <article className="industry-item group" key={title}>
+                <div className="w-12 h-12 rounded-xl bg-[#0b2f3a]/5 text-[#f05a28] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#f05a28] group-hover:text-white">
+                  <Icon size={24} />
+                </div>
                 <h3>{title}</h3>
                 <p>{description}</p>
               </article>
