@@ -25,7 +25,9 @@ export default function ContactSection() {
     try {
       await api.post("/contact", formData);
       setStatus("success");
-      toast.success("Thank you! Your inquiry has been sent to our dispatch team.");
+      toast.success(
+        "Thank you! Your inquiry has been sent to our dispatch team.",
+      );
       setFormData({
         name: "",
         company: "",
@@ -37,7 +39,9 @@ export default function ContactSection() {
     } catch (error) {
       console.error(error);
       setStatus("error");
-      toast.error("Failed to submit inquiry. Please check your connection or call us directly.");
+      toast.error(
+        "Failed to submit inquiry. Please check your connection or call us directly.",
+      );
     }
   };
 
@@ -47,12 +51,14 @@ export default function ContactSection() {
         <div className="contact-section__copy">
           <h2>Have a shipment coming in? Let&apos;s get it moving.</h2>
           <p>
-            Tell us what you&apos;re importing and where it needs to go. We
-            support courier and cargo imports, customs clearance coordination,
-            warehousing in Vancouver and Toronto, and Canada-wide last-mile
-            delivery. Prefer to talk? Call{" "}
-            <a href="tel:+16729683390">(672) 968-3390</a> or{" "}
-            <a href="mailto:info@dcwsolution.ca">email our team</a>.
+            Tell us what you&apos;re importing and where it needs to go.
+            <br /> We support courier and cargo imports, customs clearance
+            coordination, warehousing in Vancouver and Toronto, and Canada-wide
+            last-mile delivery.
+            <br /> Prefer to talk? Call{" "}
+            <a href="tel:+16729683390">(672) 968-3390</a> <br />
+            <span>or email us at : </span>
+            <a href="mailto:info@dcwsolution.ca">info@dcwsolution.ca</a>.
           </p>
         </div>
 
@@ -124,7 +130,9 @@ export default function ContactSection() {
               <option value="customs">Customs clearance coordination</option>
               <option value="warehousing">Warehousing &amp; fulfillment</option>
               <option value="freight">Freight forwarding &amp; drayage</option>
-              <option value="delivery">Courier &amp; final-mile delivery</option>
+              <option value="delivery">
+                Courier &amp; final-mile delivery
+              </option>
               <option value="all">Full end-to-end import package</option>
             </select>
           </div>
