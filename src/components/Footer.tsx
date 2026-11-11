@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,7 +7,17 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-grid">
           <div>
-            <h3>DCW Solutions Inc.</h3>
+            <div className="mb-4">
+              <div className="inline-block bg-white px-4 py-2.5 rounded-xl border border-[#d5dcdb]/60 shadow-sm">
+                <Image
+                  src="/images/dcw-logo-transparent.png"
+                  alt="DCW Solutions Inc."
+                  width={220}
+                  height={75}
+                  className="h-14 w-auto object-contain"
+                />
+              </div>
+            </div>
             <p>
               Your trusted logistics partner. Connecting the world to Canada.
             </p>
@@ -50,6 +61,9 @@ export default function Footer() {
               <li>
                 <a href="#contact">Become a shipping partner</a>
               </li>
+              <li>
+                <Link href="/privacy-policy">Privacy policy</Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -74,7 +88,13 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} DCW Solutions Inc. All rights reserved.
           </span>
-          <span>Delivery. Clearance. Warehousing.</span>
+          <div className="footer-legal-links" style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <Link href="/privacy-policy" style={{ color: "inherit", textDecoration: "underline" }}>
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <span>Delivery. Clearance. Warehousing.</span>
+          </div>
         </div>
       </div>
     </footer>
