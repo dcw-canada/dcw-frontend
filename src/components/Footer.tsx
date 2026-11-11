@@ -6,6 +6,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="wrap">
         <div className="footer-grid">
+          {/* Brand Info */}
           <div>
             <div className="mb-4">
               <div className="inline-block bg-white px-4 py-2.5 rounded-xl border border-[#d5dcdb]/60 shadow-sm">
@@ -23,6 +24,8 @@ export default function Footer() {
             </p>
             <a href="mailto:info@dcwsolution.ca">info@dcwsolution.ca</a>
           </div>
+
+          {/* Services */}
           <div>
             <h3>Services</h3>
             <ul className="footer-links">
@@ -46,6 +49,8 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
+          {/* Quick Resources / Tools */}
           <div>
             <h3>Resources</h3>
             <ul className="footer-links">
@@ -56,16 +61,37 @@ export default function Footer() {
                 <a href="#process">How it works</a>
               </li>
               <li>
-                <a href="#contact">Request a quote</a>
+                <Link href="/request-a-quote">Request a quote</Link>
               </li>
               <li>
-                <a href="#contact">Become a shipping partner</a>
+                <Link href="/track-shipment">Track a shipment</Link>
+              </li>
+              <li>
+                <Link href="/become-a-shipping-partner">Become a shipping partner</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Information & Legal */}
+          <div>
+            <h3>Information</h3>
+            <ul className="footer-links">
+              <li>
+                <Link href="/about-us">About Us</Link>
+              </li>
+              <li>
+                <Link href="/faq">FAQ</Link>
               </li>
               <li>
                 <Link href="/privacy-policy">Privacy policy</Link>
               </li>
+              <li>
+                <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
+              </li>
             </ul>
           </div>
+
+          {/* Contact */}
           <div>
             <h3>Contact</h3>
             <ul className="footer-links">
@@ -79,18 +105,34 @@ export default function Footer() {
                 <a href="https://wa.me/16729683390">WhatsApp</a>
               </li>
               <li>
+                <Link href="/book-a-call">Book a call</Link>
+              </li>
+              <li>
                 <Link href="/admin">Admin panel</Link>
               </li>
             </ul>
           </div>
         </div>
+
         <div className="footer-legal">
           <span>
             © {new Date().getFullYear()} DCW Solutions Inc. All rights reserved.
           </span>
-          <div className="footer-legal-links" style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+          <div className="footer-legal-links" style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/about-us" style={{ color: "inherit", textDecoration: "underline" }}>
+              About Us
+            </Link>
+            <span>·</span>
+            <Link href="/faq" style={{ color: "inherit", textDecoration: "underline" }}>
+              FAQ
+            </Link>
+            <span>·</span>
             <Link href="/privacy-policy" style={{ color: "inherit", textDecoration: "underline" }}>
               Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/terms-and-conditions" style={{ color: "inherit", textDecoration: "underline" }}>
+              Terms &amp; Conditions
             </Link>
             <span>·</span>
             <span>Delivery. Clearance. Warehousing.</span>
