@@ -9,9 +9,19 @@ import {
   Settings,
   LogOut,
   ChevronRight,
+  FileText,
+  Handshake,
 } from "lucide-react";
 
-export type AdminTab = "dashboard" | "services" | "forms" | "offers" | "blogs" | "settings";
+export type AdminTab =
+  | "dashboard"
+  | "services"
+  | "forms"
+  | "quotes"
+  | "partners"
+  | "offers"
+  | "blogs"
+  | "settings";
 
 interface AdminSidebarProps {
   activeTab: AdminTab;
@@ -25,41 +35,18 @@ export default function AdminSidebar({
   onLogout,
 }: AdminSidebarProps) {
   const navItems = [
-    {
-      id: "dashboard" as AdminTab,
-      label: "Dashboard",
-      icon: LayoutDashboard,
-    },
-    {
-      id: "services" as AdminTab,
-      label: "Services",
-      icon: Boxes,
-    },
-    {
-      id: "forms" as AdminTab,
-      label: "Forms",
-      icon: ClipboardList,
-    },
-    {
-      id: "offers" as AdminTab,
-      label: "Offers",
-      icon: Tag,
-    },
-    {
-      id: "blogs" as AdminTab,
-      label: "Blogs",
-      icon: Newspaper,
-    },
-    {
-      id: "settings" as AdminTab,
-      label: "Settings",
-      icon: Settings,
-    },
+    { id: "dashboard" as AdminTab, label: "Dashboard", icon: LayoutDashboard },
+    { id: "services" as AdminTab, label: "Services", icon: Boxes },
+    { id: "forms" as AdminTab, label: "Forms", icon: ClipboardList },
+    { id: "quotes" as AdminTab, label: "Quotes", icon: FileText },
+    { id: "partners" as AdminTab, label: "Partners", icon: Handshake },
+    { id: "offers" as AdminTab, label: "Offers", icon: Tag },
+    { id: "blogs" as AdminTab, label: "Blogs", icon: Newspaper },
+    { id: "settings" as AdminTab, label: "Settings", icon: Settings },
   ];
 
   return (
     <aside className="w-72 bg-[#0b2f3a] text-white flex flex-col h-screen sticky top-0 shrink-0 border-r border-[#14434f] shadow-2xl select-none z-30">
-      {/* Brand & Logo Header */}
       <div className="p-6 border-b border-[#14434f]/80 flex items-center gap-3 bg-[#08242c]">
         <div className="w-10 h-10 rounded-xl bg-white p-2 flex items-center justify-center shadow-md shrink-0">
           <Image
@@ -70,10 +57,11 @@ export default function AdminSidebar({
             className="w-full h-full object-contain"
           />
         </div>
-        <h2 className="text-xl font-black text-white tracking-tight">DCW Admin</h2>
+        <h2 className="text-xl font-black text-white tracking-tight">
+          DCW Admin
+        </h2>
       </div>
 
-      {/* Navigation Menu */}
       <div className="flex-1 overflow-y-auto px-4 py-6">
         <div className="px-3 mb-2 text-[10px] font-black tracking-widest text-[#d5dcdb]/40 uppercase">
           Menu
@@ -96,7 +84,11 @@ export default function AdminSidebar({
                 <div className="flex items-center gap-3">
                   <Icon
                     size={18}
-                    className={isActive ? "text-white" : "text-[#ffd100] group-hover:scale-110 transition-transform"}
+                    className={
+                      isActive
+                        ? "text-white"
+                        : "text-[#ffd100] group-hover:scale-110 transition-transform"
+                    }
                   />
                   <span>{item.label}</span>
                 </div>
@@ -112,7 +104,6 @@ export default function AdminSidebar({
         </nav>
       </div>
 
-      {/* Footer / Logout */}
       <div className="p-4 border-t border-[#14434f]/80 bg-[#08242c]/90">
         <button
           onClick={onLogout}
