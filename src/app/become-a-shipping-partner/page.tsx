@@ -41,7 +41,9 @@ export default function ShippingPartnerPage() {
     additionalDetails: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const businessTypes = [
     {
@@ -81,30 +83,25 @@ export default function ShippingPartnerPage() {
     e.preventDefault();
     setStatus("loading");
 
-    const formattedMessage = `
---- B2B SHIPPING PARTNER APPLICATION ---
-Company: ${formData.companyName}
-Representative: ${formData.contactName}
-Partner Category: ${formData.businessType}
-Headquarters / Location: ${formData.headquartersCountry || "Not specified"}
-Monthly Volume Tier: ${formData.estimatedMonthlyVolume}
-Origin Trade Lanes: ${formData.originLanes || "Global"}
-Primary Canadian Service Needed: ${formData.primaryService}
-Operational Notes / Expectations: ${formData.additionalDetails || "None provided"}
-    `.trim();
-
     try {
-      await api.post("/contact", {
-        name: formData.contactName,
-        company: formData.companyName,
+      await api.post("/partners", {
+        businessType: formData.businessType,
+        estimatedMonthlyVolume: formData.estimatedMonthlyVolume,
+        headquartersCountry: formData.headquartersCountry,
+        originLanes: formData.originLanes,
+        primaryService: formData.primaryService,
+        additionalDetails: formData.additionalDetails,
+        companyName: formData.companyName,
+        contactName: formData.contactName,
         email: formData.email,
         phone: formData.phone,
-        service: `B2B Partnership (${formData.businessType})`,
-        message: formattedMessage,
       });
 
       setStatus("success");
-      toast.success("Partnership application received! Our commercial director will contact you within 1 business day.");
+      toast.success(
+        "Partnership application received! Our commercial director will contact you within 1 business day.",
+      );
+
       setFormData({
         companyName: "",
         contactName: "",
@@ -120,7 +117,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
     } catch (err) {
       console.error(err);
       setStatus("error");
-      toast.error("Could not submit inquiry. Please try again or reach out to info@dcwsolution.ca.");
+      toast.error(
+        "Could not submit inquiry. Please try again or reach out to info@dcwsolution.ca.",
+      );
     }
   };
 
@@ -154,15 +153,18 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
   const whoPartners = [
     {
       role: "International Courier Companies",
-      benefit: "Single destination agent in Canada providing bonded airport recovery, clearance, and swift courier handover.",
+      benefit:
+        "Single destination agent in Canada providing bonded airport recovery, clearance, and swift courier handover.",
     },
     {
       role: "Global Freight Forwarders",
-      benefit: "Reliable Canadian customs coordination, de-stuffing, cross-docking, and drayage to your client’s final door.",
+      benefit:
+        "Reliable Canadian customs coordination, de-stuffing, cross-docking, and drayage to your client’s final door.",
     },
     {
       role: "E-Commerce Logistics Integrators",
-      benefit: "Scalable volume handling for repeat cross-border shipments, parcels, and consumer returns.",
+      benefit:
+        "Scalable volume handling for repeat cross-border shipments, parcels, and consumer returns.",
     },
   ];
 
@@ -195,7 +197,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
               Become a DCW Shipping Partner
             </h1>
             <p className="text-[#d5dcdb] text-sm sm:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
-              Expand your reach into Canada. DCW Solutions Inc. serves as your trusted Canadian destination agent for air cargo recovery, customs clearance coordination, and UPS last-mile injection.
+              Expand your reach into Canada. DCW Solutions Inc. serves as your
+              trusted Canadian destination agent for air cargo recovery, customs
+              clearance coordination, and UPS last-mile injection.
             </p>
           </div>
         </section>
@@ -212,7 +216,8 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                 Your Operational Arm in Canada
               </h2>
               <p className="text-xs sm:text-sm text-[#51626a] mt-2">
-                We eliminate fragmented Canadian destination logistics with one accountable point of contact.
+                We eliminate fragmented Canadian destination logistics with one
+                accountable point of contact.
               </p>
             </div>
 
@@ -233,7 +238,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                           {p.badge}
                         </span>
                       </div>
-                      <h3 className="text-xl font-black text-[#0b2f3a] mt-2">{p.title}</h3>
+                      <h3 className="text-xl font-black text-[#0b2f3a] mt-2">
+                        {p.title}
+                      </h3>
                       <p className="text-xs sm:text-sm text-[#51626a] mt-2.5 leading-relaxed">
                         {p.desc}
                       </p>
@@ -254,7 +261,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                 Designed for Forward-Thinking Logistics Providers
               </h2>
               <p className="text-[#d5dcdb] text-sm sm:text-base mt-3 leading-relaxed max-w-3xl">
-                We collaborate with logistics enterprises worldwide who require a reliable Canadian partner with physical warehousing and direct courier linehaul access.
+                We collaborate with logistics enterprises worldwide who require
+                a reliable Canadian partner with physical warehousing and direct
+                courier linehaul access.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-full">
@@ -264,7 +273,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                     className="bg-white/10 p-6 sm:p-7 rounded-2xl border border-white/10 flex flex-col justify-between hover:bg-white/15 transition-colors"
                   >
                     <div>
-                      <div className="font-bold text-base text-[#ffd100] mb-2">{wp.role}</div>
+                      <div className="font-bold text-base text-[#ffd100] mb-2">
+                        {wp.role}
+                      </div>
                       <div className="text-xs sm:text-sm text-[#d5dcdb] leading-relaxed">
                         {wp.benefit}
                       </div>
@@ -275,9 +286,8 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
             </div>
           </div>
 
-          {/* Redesigned Partner Application Form: Modern, Inviting, Step-by-Step */}
+          {/* Application Form */}
           <div className="bg-white rounded-3xl border border-[#d5dcdb] shadow-xl overflow-hidden">
-            {/* Header banner */}
             <div className="bg-gradient-to-r from-[#0b2f3a] to-[#14434f] px-8 sm:px-12 py-7 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-black uppercase tracking-widest text-[#ffd100]">
@@ -294,7 +304,7 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 sm:p-14 space-y-12">
-              {/* STEP 1: Organization Type Tiles */}
+              {/* STEP 1 */}
               <div>
                 <div className="mb-4">
                   <div className="text-xs font-black uppercase tracking-wider text-[#f05a28]">
@@ -304,7 +314,8 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                     What Type of Organization Are You?
                   </h3>
                   <p className="text-xs text-[#51626a] mt-1">
-                    Select your business profile to match wholesale agency terms.
+                    Select your business profile to match wholesale agency
+                    terms.
                   </p>
                 </div>
 
@@ -316,7 +327,9 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                       <button
                         type="button"
                         key={t.id}
-                        onClick={() => setFormData({ ...formData, businessType: t.id })}
+                        onClick={() =>
+                          setFormData({ ...formData, businessType: t.id })
+                        }
                         className={`p-5 rounded-2xl border text-left transition-all flex flex-col justify-between relative group ${
                           isSelected
                             ? "bg-[#0b2f3a] text-white border-[#0b2f3a] shadow-lg shadow-[#0b2f3a]/20 scale-[1.02]"
@@ -361,7 +374,7 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                 </div>
               </div>
 
-              {/* STEP 2: Volume & Route Preferences */}
+              {/* STEP 2 */}
               <div className="pt-8 border-t border-[#d5dcdb]/80">
                 <div className="mb-6">
                   <div className="text-xs font-black uppercase tracking-wider text-[#f05a28]">
@@ -371,23 +384,29 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                     Estimated Inbound Volume &amp; Trade Lanes
                   </h3>
                   <p className="text-xs text-[#51626a] mt-1">
-                    Wholesale pricing tiers unlock progressively higher margin discounts based on volume.
+                    Wholesale pricing tiers unlock progressively higher margin
+                    discounts based on volume.
                   </p>
                 </div>
 
-                {/* Volume selector chips */}
                 <div className="mb-6">
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-3">
                     Expected Monthly Consignment Volume
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {volumeTiers.map((vt) => {
-                      const isSelected = formData.estimatedMonthlyVolume === vt.id;
+                      const isSelected =
+                        formData.estimatedMonthlyVolume === vt.id;
                       return (
                         <button
                           type="button"
                           key={vt.id}
-                          onClick={() => setFormData({ ...formData, estimatedMonthlyVolume: vt.id })}
+                          onClick={() =>
+                            setFormData({
+                              ...formData,
+                              estimatedMonthlyVolume: vt.id,
+                            })
+                          }
                           className={`p-4 rounded-xl border text-center transition-all ${
                             isSelected
                               ? "bg-[#0b2f3a] text-white border-[#0b2f3a] shadow-md font-bold"
@@ -395,7 +414,11 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                           }`}
                         >
                           <div className="text-base font-black">{vt.label}</div>
-                          <div className={`text-[11px] mt-0.5 ${isSelected ? "text-[#ffd100]" : "text-[#51626a]"}`}>
+                          <div
+                            className={`text-[11px] mt-0.5 ${
+                              isSelected ? "text-[#ffd100]" : "text-[#51626a]"
+                            }`}
+                          >
                             {vt.unit}
                           </div>
                         </button>
@@ -407,28 +430,40 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                      Headquarters / Origin Country <span className="text-[#f05a28]">*</span>
+                      Headquarters / Origin Country{" "}
+                      <span className="text-[#f05a28]">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. India, UAE, UK, Singapore"
                       value={formData.headquartersCountry}
-                      onChange={(e) => setFormData({ ...formData, headquartersCountry: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          headquartersCountry: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                      Key Origin Trade Lanes <span className="text-[#f05a28]">*</span>
+                      Key Origin Trade Lanes{" "}
+                      <span className="text-[#f05a28]">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. DEL / BOM / DXB to YVR / YYZ"
                       value={formData.originLanes}
-                      onChange={(e) => setFormData({ ...formData, originLanes: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          originLanes: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -439,32 +474,51 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                     </label>
                     <select
                       value={formData.primaryService}
-                      onChange={(e) => setFormData({ ...formData, primaryService: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          primaryService: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-white text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] transition"
                     >
-                      <option value="clearance-delivery">Customs Clearance + UPS Delivery</option>
-                      <option value="airport-recovery">Airport Terminal Recovery &amp; Deconsolidation</option>
-                      <option value="bonded-warehousing">Bonded &amp; Non-Bonded Storage (YVR/YYZ)</option>
-                      <option value="full-gateway">Full Canadian Gateway Representation</option>
+                      <option value="clearance-delivery">
+                        Customs Clearance + UPS Delivery
+                      </option>
+                      <option value="airport-recovery">
+                        Airport Terminal Recovery &amp; Deconsolidation
+                      </option>
+                      <option value="bonded-warehousing">
+                        Bonded &amp; Non-Bonded Storage (YVR/YYZ)
+                      </option>
+                      <option value="full-gateway">
+                        Full Canadian Gateway Representation
+                      </option>
                     </select>
                   </div>
                 </div>
 
                 <div className="mt-6">
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                    Operational Requirements, Flight Schedules or EDI Needs (Optional)
+                    Operational Requirements, Flight Schedules or EDI Needs
+                    (Optional)
                   </label>
                   <textarea
                     rows={3}
                     placeholder="Tell us about your flight frequencies, bag barcode formats, customs brokerage preferences, or specific Canadian destination cities..."
                     value={formData.additionalDetails}
-                    onChange={(e) => setFormData({ ...formData, additionalDetails: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        additionalDetails: e.target.value,
+                      })
+                    }
                     className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-medium text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                   />
                 </div>
               </div>
 
-              {/* STEP 3: Corporate Contact Details */}
+              {/* STEP 3 */}
               <div className="pt-8 border-t border-[#d5dcdb]/80">
                 <div className="mb-6">
                   <div className="text-xs font-black uppercase tracking-wider text-[#f05a28]">
@@ -474,7 +528,8 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                     Agency &amp; Partnership Representative
                   </h3>
                   <p className="text-xs text-[#51626a] mt-1">
-                    Our partnership director will schedule a call and issue official wholesale pricing schedules.
+                    Our partnership director will schedule a call and issue
+                    official wholesale pricing schedules.
                   </p>
                 </div>
 
@@ -488,21 +543,32 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                       required
                       placeholder="e.g. Express Air Cargo Ltd."
                       value={formData.companyName}
-                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          companyName: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                      Representative Name <span className="text-[#f05a28]">*</span>
+                      Representative Name{" "}
+                      <span className="text-[#f05a28]">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Rajesh Kumar"
                       value={formData.contactName}
-                      onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          contactName: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -516,32 +582,40 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                       required
                       placeholder="e.g. ops@expressair.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                      Direct Phone / WhatsApp <span className="text-[#f05a28]">*</span>
+                      Direct Phone / WhatsApp{" "}
+                      <span className="text-[#f05a28]">*</span>
                     </label>
                     <input
                       type="tel"
                       required
                       placeholder="e.g. +91 98000 00000"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Submit Action Bar */}
+              {/* Submit */}
               <div className="pt-8 border-t border-[#d5dcdb] flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="flex items-center gap-2.5 text-xs text-[#51626a]">
                   <CheckCircle2 size={18} className="text-[#1f8a5b] shrink-0" />
-                  <span>Wholesale B2B Agency Partnership Application. Reviewed within 1 business day.</span>
+                  <span>
+                    Wholesale B2B Agency Partnership Application. Reviewed
+                    within 1 business day.
+                  </span>
                 </div>
 
                 <button
@@ -550,19 +624,26 @@ Operational Notes / Expectations: ${formData.additionalDetails || "None provided
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
                 >
                   <Handshake size={18} />
-                  <span>{status === "loading" ? "Submitting Application..." : "Submit Partner Application"}</span>
+                  <span>
+                    {status === "loading"
+                      ? "Submitting Application..."
+                      : "Submit Partner Application"}
+                  </span>
                 </button>
               </div>
 
               {status === "success" && (
                 <div className="p-4 rounded-2xl bg-[#1f8a5b]/10 border border-[#1f8a5b]/20 text-[#1f8a5b] text-sm font-bold text-center">
-                  ✓ Partnership application received! Our commercial partnerships director will review your agency profile and contact you within 1 business day.
+                  ✓ Partnership application received! Our commercial
+                  partnerships director will review your agency profile and
+                  contact you within 1 business day.
                 </div>
               )}
 
               {status === "error" && (
                 <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-sm font-bold text-center">
-                  Could not submit your inquiry. Please try again or email us directly at info@dcwsolution.ca.
+                  Could not submit your inquiry. Please try again or email us
+                  directly at info@dcwsolution.ca.
                 </div>
               )}
             </form>
