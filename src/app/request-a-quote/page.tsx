@@ -36,10 +36,13 @@ export default function RequestQuotePage() {
     cargoType: "",
     weightKg: "",
     packageCount: "",
+    timeline: "",
     specialRequirements: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const modeOptions = [
     {
@@ -72,29 +75,27 @@ export default function RequestQuotePage() {
     e.preventDefault();
     setStatus("loading");
 
-    const formattedMessage = `
---- CUSTOM SHIPMENT QUOTE REQUEST ---
-Selected Mode: ${formData.shipmentMode.toUpperCase()}
-Origin Country/Port: ${formData.originCountry || "Not specified"}
-Destination (Canada): ${formData.destinationCity}
-Cargo / Commodity: ${formData.cargoType || "General Cargo"}
-Estimated Weight: ${formData.weightKg ? formData.weightKg + " kg" : "Unspecified"}
-Package / Pallet Count: ${formData.packageCount || "Unspecified"}
-Special Handling / Instructions: ${formData.specialRequirements || "None"}
-    `.trim();
-
     try {
-      await api.post("/contact", {
+      await api.post("/quotes", {
+        shipmentMode: formData.shipmentMode,
+        originCountry: formData.originCountry,
+        destinationCity: formData.destinationCity,
+        cargoType: formData.cargoType || "General Cargo",
+        weightKg: formData.weightKg,
+        packageCount: formData.packageCount,
+        timeline: formData.timeline,
+        specialRequirements: formData.specialRequirements,
         name: formData.name,
         company: formData.company,
         email: formData.email,
         phone: formData.phone,
-        service: `Quote Request (${formData.shipmentMode})`,
-        message: formattedMessage,
       });
 
       setStatus("success");
-      toast.success("Quote request submitted! Our pricing team will email your estimate within 1 business day.");
+      toast.success(
+        "Quote request submitted! Our pricing team will email your estimate within 1 business day.",
+      );
+
       setFormData({
         name: "",
         company: "",
@@ -106,12 +107,15 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
         cargoType: "",
         weightKg: "",
         packageCount: "",
+        timeline: "",
         specialRequirements: "",
       });
     } catch (err) {
       console.error(err);
       setStatus("error");
-      toast.error("Could not submit quote request. Please try again or call our team directly.");
+      toast.error(
+        "Could not submit quote request. Please try again or call our team directly.",
+      );
     }
   };
 
@@ -165,7 +169,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
               Request a Custom Shipment Quote
             </h1>
             <p className="text-[#d5dcdb] text-sm sm:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
-              Get an accurate, transparent landed-cost estimate. Select your freight mode and details below—we&apos;ll handle the customs, handling, and delivery.
+              Get an accurate, transparent landed-cost estimate. Select your
+              freight mode and details below—we&apos;ll handle the customs,
+              handling, and delivery.
             </p>
           </div>
         </section>
@@ -185,7 +191,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     <Icon size={22} className={b.color} />
                   </div>
                   <div>
-                    <h3 className="text-base font-black text-[#0b2f3a]">{b.title}</h3>
+                    <h3 className="text-base font-black text-[#0b2f3a]">
+                      {b.title}
+                    </h3>
                     <p className="text-xs text-[#51626a] mt-1 leading-relaxed">
                       {b.desc}
                     </p>
@@ -195,9 +203,8 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
             })}
           </div>
 
-          {/* Redesigned Clean App-Style Quote Form */}
+          {/* Quote Form */}
           <div className="bg-white rounded-3xl border border-[#d5dcdb] shadow-xl overflow-hidden">
-            {/* Form Top Strip */}
             <div className="bg-gradient-to-r from-[#0b2f3a] to-[#14434f] px-8 sm:px-12 py-7 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-black uppercase tracking-widest text-[#ffd100]">
@@ -214,7 +221,7 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
             </div>
 
             <form onSubmit={handleSubmit} className="p-8 sm:p-14 space-y-10">
-              {/* SECTION 1: Routing & Cargo Specifications */}
+              {/* SECTION 1 */}
               <div>
                 <div className="mb-6">
                   <div className="text-xs font-black uppercase tracking-wider text-[#f05a28]">
@@ -224,7 +231,8 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     Routing &amp; Cargo Specifications
                   </h3>
                   <p className="text-xs text-[#51626a] mt-1">
-                    Provide trade lanes, service category, and approximate cargo dimensions to calculate exact handling and tariffs.
+                    Provide trade lanes, service category, and approximate cargo
+                    dimensions to calculate exact handling and tariffs.
                   </p>
                 </div>
 
@@ -235,27 +243,48 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     </label>
                     <select
                       value={formData.shipmentMode}
-                      onChange={(e) => setFormData({ ...formData, shipmentMode: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          shipmentMode: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-white text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] transition"
                     >
-                      <option value="courier">Courier / Express Consolidation</option>
-                      <option value="air-cargo">Commercial Air Freight (YVR / YYZ)</option>
-                      <option value="ocean-freight">Ocean Container / LCL Drayage</option>
-                      <option value="india-canada">India → Canada Door-to-Door</option>
-                      <option value="warehousing">Warehousing &amp; Fulfillment</option>
+                      <option value="courier">
+                        Courier / Express Consolidation
+                      </option>
+                      <option value="air-cargo">
+                        Commercial Air Freight (YVR / YYZ)
+                      </option>
+                      <option value="ocean-freight">
+                        Ocean Container / LCL Drayage
+                      </option>
+                      <option value="india-canada">
+                        India → Canada Door-to-Door
+                      </option>
+                      <option value="warehousing">
+                        Warehousing &amp; Fulfillment
+                      </option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                      Origin Country / Port <span className="text-[#f05a28]">*</span>
+                      Origin Country / Port{" "}
+                      <span className="text-[#f05a28]">*</span>
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. India (Delhi / Mumbai)"
                       value={formData.originCountry}
-                      onChange={(e) => setFormData({ ...formData, originCountry: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          originCountry: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -266,14 +295,29 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     </label>
                     <select
                       value={formData.destinationCity}
-                      onChange={(e) => setFormData({ ...formData, destinationCity: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          destinationCity: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-white text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] transition"
                     >
-                      <option value="Vancouver (YVR Hub / BC)">Vancouver (YVR Hub / BC)</option>
-                      <option value="Toronto (YYZ Hub / ON)">Toronto (YYZ Hub / ON)</option>
-                      <option value="Calgary / Edmonton (AB)">Calgary / Edmonton (AB)</option>
-                      <option value="Montreal (YUL / QC)">Montreal (YUL / QC)</option>
-                      <option value="Other Canada-wide Postal Code">Other Canada-wide Postal Code</option>
+                      <option value="Vancouver (YVR Hub / BC)">
+                        Vancouver (YVR Hub / BC)
+                      </option>
+                      <option value="Toronto (YYZ Hub / ON)">
+                        Toronto (YYZ Hub / ON)
+                      </option>
+                      <option value="Calgary / Edmonton (AB)">
+                        Calgary / Edmonton (AB)
+                      </option>
+                      <option value="Montreal (YUL / QC)">
+                        Montreal (YUL / QC)
+                      </option>
+                      <option value="Other Canada-wide Postal Code">
+                        Other Canada-wide Postal Code
+                      </option>
                     </select>
                   </div>
 
@@ -285,7 +329,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       type="text"
                       placeholder="e.g. Apparel, Auto Parts, Electronics"
                       value={formData.cargoType}
-                      onChange={(e) => setFormData({ ...formData, cargoType: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, cargoType: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -300,7 +346,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       type="text"
                       placeholder="e.g. 350 kg"
                       value={formData.weightKg}
-                      onChange={(e) => setFormData({ ...formData, weightKg: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, weightKg: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -313,7 +361,12 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       type="text"
                       placeholder="e.g. 15 cartons or 2 skids"
                       value={formData.packageCount}
-                      onChange={(e) => setFormData({ ...formData, packageCount: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          packageCount: e.target.value,
+                        })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -325,6 +378,10 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     <input
                       type="text"
                       placeholder="e.g. Within 2 weeks / Immediate"
+                      value={formData.timeline}
+                      onChange={(e) =>
+                        setFormData({ ...formData, timeline: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -332,19 +389,25 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
 
                 <div className="mt-6">
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#14434f] mb-2">
-                    Special Handling, Customs Brokerage, or Additional Notes (Optional)
+                    Special Handling, Customs Brokerage, or Additional Notes
+                    (Optional)
                   </label>
                   <textarea
                     rows={3}
                     placeholder="Mention any flight details, bonded warehouse requirements, temperature controls, or CBSA customs clearance questions..."
                     value={formData.specialRequirements}
-                    onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        specialRequirements: e.target.value,
+                      })
+                    }
                     className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-medium text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                   />
                 </div>
               </div>
 
-              {/* SECTION 2: Contact & Quotation Details */}
+              {/* SECTION 2 */}
               <div className="pt-8 border-t border-[#d5dcdb]/80">
                 <div className="mb-6">
                   <div className="text-xs font-black uppercase tracking-wider text-[#f05a28]">
@@ -354,7 +417,8 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                     Where Should We Send Your Quote?
                   </h3>
                   <p className="text-xs text-[#51626a] mt-1">
-                    Your quotation will be prepared by our logistics desk and delivered straight to your email.
+                    Your quotation will be prepared by our logistics desk and
+                    delivered straight to your email.
                   </p>
                 </div>
 
@@ -368,7 +432,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       required
                       placeholder="e.g. David Miller"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -381,7 +447,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       type="text"
                       placeholder="e.g. Apex Global Trade"
                       value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, company: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -395,7 +463,9 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       required
                       placeholder="e.g. david@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
@@ -409,18 +479,23 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                       required
                       placeholder="e.g. +1 (604) 000-0000"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                       className="w-full px-4 py-3.5 rounded-xl border border-[#d5dcdb] bg-[#eef1f0]/40 text-sm font-semibold text-[#0b2f3a] focus:outline-none focus:ring-2 focus:ring-[#f05a28] focus:bg-white transition"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Submit Action Bar */}
+              {/* Submit */}
               <div className="pt-8 border-t border-[#d5dcdb] flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="flex items-center gap-2.5 text-xs text-[#51626a]">
                   <ShieldCheck size={18} className="text-[#1f8a5b] shrink-0" />
-                  <span>No obligation quotation. Handled in strict confidence under Canadian privacy laws.</span>
+                  <span>
+                    No obligation quotation. Handled in strict confidence under
+                    Canadian privacy laws.
+                  </span>
                 </div>
 
                 <button
@@ -429,25 +504,32 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
                 >
                   <Send size={18} />
-                  <span>{status === "loading" ? "Submitting Request..." : "Request Official Quote"}</span>
+                  <span>
+                    {status === "loading"
+                      ? "Submitting Request..."
+                      : "Request Official Quote"}
+                  </span>
                 </button>
               </div>
 
               {status === "success" && (
                 <div className="p-4 rounded-2xl bg-[#1f8a5b]/10 border border-[#1f8a5b]/20 text-[#1f8a5b] text-sm font-bold text-center">
-                  ✓ Quote request received! A commercial logistics specialist will review your details and send your pricing within 1 business day.
+                  ✓ Quote request received! A commercial logistics specialist
+                  will review your details and send your pricing within 1
+                  business day.
                 </div>
               )}
 
               {status === "error" && (
                 <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-sm font-bold text-center">
-                  Could not submit your request. Please try again or call our operations desk directly at (672) 968-3390.
+                  Could not submit your request. Please try again or call our
+                  operations desk directly at (672) 968-3390.
                 </div>
               )}
             </form>
           </div>
 
-          {/* Quick Support Strip */}
+          {/* Support Strip */}
           <div className="bg-[#0b2f3a] text-white rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#ffd100]">
@@ -457,7 +539,8 @@ Special Handling / Instructions: ${formData.specialRequirements || "None"}
                 Need immediate rate verification before air freight departure?
               </h3>
               <p className="text-[#d5dcdb] text-xs sm:text-sm mt-1">
-                Speak directly with our Vancouver or Toronto dispatch coordinators.
+                Speak directly with our Vancouver or Toronto dispatch
+                coordinators.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 shrink-0">
