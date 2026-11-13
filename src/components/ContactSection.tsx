@@ -5,15 +5,18 @@ import { Send } from "lucide-react";
 import { toast } from "react-toastify";
 import api from "../lib/api";
 
+const EMPTY_FORM = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+  _gotcha: "",
+};
+
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ ...EMPTY_FORM });
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -23,25 +26,34 @@ export default function ContactSection() {
     setStatus("loading");
 
     try {
-      await api.post("/contact", formData);
+      // Honeypot – silently succeed for bots
+      if (formData._gotcha) {
+        setStatus("success");
+        return;
+      }
+
+      await api.post("/contact", {
+        name: formData.name.trim(),
+        company: formData.company.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        service: formData.service,
+        message: formData.message.trim(),
+      });
+
       setStatus("success");
       toast.success(
         "Thank you! Your inquiry has been sent to our dispatch team.",
       );
-      setFormData({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      });
-    } catch (error) {
+      setFormData({ ...EMPTY_FORM });
+    } catch (error: any) {
       console.error(error);
       setStatus("error");
-      toast.error(
-        "Failed to submit inquiry. Please check your connection or call us directly.",
-      );
+      const msg =
+        error?.response?.data?.error ||
+        error?.response?.data?.message ||
+        "Failed to submit inquiry. Please check your connection or call us directly.";
+      toast.error(msg);
     }
   };
 
@@ -63,6 +75,20 @@ export default function ContactSection() {
         </div>
 
         <form onSubmit={handleSubmit} className="contact-form">
+          {/* Honeypot — hidden from users, catches bots */}
+          <input
+            type="text"
+            name="_gotcha"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData._gotcha}
+            onChange={(e) =>
+              setFormData({ ...formData, _gotcha: e.target.value })
+            }
+            style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+            aria-hidden="true"
+          />
+
           <div className="contact-form__row">
             <div>
               <label htmlFor="contact-name">Name</label>

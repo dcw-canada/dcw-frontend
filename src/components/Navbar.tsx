@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -21,12 +20,7 @@ export default function Navbar() {
       </div>
       <header className="site-header">
         <div className="wrap site-header__inner">
-          <Link
-            className="site-brand"
-            href="/"
-            aria-label="DCW Solutions home"
-            onClick={closeMenu}
-          >
+          <Link className="site-brand" href="/" onClick={closeMenu}>
             <Image
               src="/images/dcw-logo-transparent.png"
               alt="DCW Solutions Inc."
@@ -39,8 +33,6 @@ export default function Navbar() {
           <button
             type="button"
             className="menu-toggle"
-            aria-expanded={menuOpen}
-            aria-controls="primary-navigation"
             onClick={() => setMenuOpen((isOpen) => !isOpen)}
           >
             {menuOpen ? "Close" : "Menu"}
@@ -55,13 +47,23 @@ export default function Navbar() {
             <a href="#process" onClick={closeMenu}>
               How it works
             </a>
-            <a href="#estimate" onClick={closeMenu}>
-              Cost estimator
-            </a>
+            <Link
+              href="/get-quote"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] px-4 py-2 rounded-lg"
+            >
+              Get Quote
+            </Link>
             <a href="#contact" onClick={closeMenu}>
               Contact
             </a>
-
+            <Link
+              href="/book-shipment"
+              onClick={closeMenu}
+              className="bg-[#f05a28] text-white px-5 py-2.5 rounded-xl ml-2 font-bold shadow-sm"
+            >
+              Book Shipment
+            </Link>
           </nav>
         </div>
       </header>
