@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AdminSidebar, { AdminTab } from "../../components/AdminSidebar";
 import QuotesTable from "../../components/QuotesTable";
 import PartnersTable from "../../components/PartnersTable";
+import ContactInquiriesTable from "../../components/ContactInquiriesTable";
 import {
   LayoutDashboard,
   Boxes,
@@ -142,39 +143,28 @@ export default function AdminPage() {
               </div>
             )}
 
-            {/* FORMS */}
+            {/* FORMS – Contact Inquiries */}
             {activeTab === "forms" && (
               <div className="space-y-6">
                 <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] shadow-sm">
-                  <div className="flex items-center justify-between pb-6 border-b border-[#d5dcdb]">
+                  <div className="flex items-center justify-between pb-6 border-b border-[#d5dcdb] mb-6">
                     <div className="flex items-center gap-3">
                       <div className="p-3 bg-[#0b2f3a] text-white rounded-xl shadow-sm">
                         <ClipboardList size={24} />
                       </div>
                       <div>
                         <h2 className="text-2xl font-black text-[#0b2f3a]">
-                          Forms
+                          Contact Inquiries
                         </h2>
                         <p className="text-xs text-[#51626a] mt-0.5">
-                          Form submissions, contact inquiries, and quote
-                          requests
+                          Shipment inquiries submitted from the public contact
+                          form
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="py-20 flex flex-col items-center justify-center text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-[#eef1f0] text-[#51626a] flex items-center justify-center mb-4 border border-[#d5dcdb]">
-                      <ClipboardList size={30} />
-                    </div>
-                    <h3 className="text-lg font-bold text-[#0b2f3a]">
-                      Form Submissions & Records
-                    </h3>
-                    <p className="text-sm text-[#51626a] mt-1 max-w-md">
-                      Submissions from contact forms, cost estimator inquiries,
-                      and customer feedback will be managed here.
-                    </p>
-                  </div>
+                  <ContactInquiriesTable />
                 </div>
               </div>
             )}
