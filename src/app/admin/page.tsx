@@ -6,6 +6,8 @@ import AdminSidebar, { AdminTab } from "../../components/AdminSidebar";
 import QuotesTable from "../../components/QuotesTable";
 import PartnersTable from "../../components/PartnersTable";
 import ContactInquiriesTable from "../../components/ContactInquiriesTable";
+import RateSheetUploader from "../../components/RateSheetUploader";
+import BookingsTable from "../../components/BookingsTable"; // <-- Added Import
 import {
   LayoutDashboard,
   Boxes,
@@ -17,6 +19,8 @@ import {
   Settings,
   Plus,
   FolderOpen,
+  FileSpreadsheet,
+  Package, // <-- Added Icon
 } from "lucide-react";
 
 export default function AdminPage() {
@@ -191,6 +195,29 @@ export default function AdminPage() {
               </div>
             )}
 
+            {/* BOOKINGS (NEW) */}
+            {activeTab === "bookings" && (
+              <div className="space-y-6">
+                <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] shadow-sm">
+                  <div className="flex items-center gap-3 pb-6 border-b border-[#d5dcdb] mb-6">
+                    <div className="p-3 bg-[#0b2f3a] text-white rounded-xl shadow-sm">
+                      <Package size={24} />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-[#0b2f3a]">
+                        Shipment Bookings
+                      </h2>
+                      <p className="text-xs text-[#51626a] mt-0.5">
+                        All India to Canada shipments booked via the public
+                        portal
+                      </p>
+                    </div>
+                  </div>
+                  <BookingsTable />
+                </div>
+              </div>
+            )}
+
             {/* PARTNERS */}
             {activeTab === "partners" && (
               <div className="space-y-6">
@@ -253,6 +280,29 @@ export default function AdminPage() {
                       customized freight deals.
                     </p>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* RATE SHEET */}
+            {activeTab === "rates" && (
+              <div className="space-y-6">
+                <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] shadow-sm">
+                  <div className="flex items-center gap-3 pb-6 border-b border-[#d5dcdb] mb-6">
+                    <div className="p-3 bg-[#0b2f3a] text-white rounded-xl shadow-sm">
+                      <FileSpreadsheet size={24} />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-black text-[#0b2f3a]">
+                        Rate Sheet
+                      </h2>
+                      <p className="text-xs text-[#51626a] mt-0.5">
+                        Upload the Excel rate sheet — old data is replaced
+                        automatically
+                      </p>
+                    </div>
+                  </div>
+                  <RateSheetUploader />
                 </div>
               </div>
             )}

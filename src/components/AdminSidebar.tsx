@@ -11,6 +11,8 @@ import {
   ChevronRight,
   FileText,
   Handshake,
+  FileSpreadsheet,
+  Package, // <-- Added
 } from "lucide-react";
 
 export type AdminTab =
@@ -20,6 +22,8 @@ export type AdminTab =
   | "quotes"
   | "partners"
   | "offers"
+  | "rates"
+  | "bookings" // <-- Added
   | "blogs"
   | "settings";
 
@@ -39,8 +43,10 @@ export default function AdminSidebar({
     { id: "services" as AdminTab, label: "Services", icon: Boxes },
     { id: "forms" as AdminTab, label: "Forms", icon: ClipboardList },
     { id: "quotes" as AdminTab, label: "Quotes", icon: FileText },
+    { id: "bookings" as AdminTab, label: "Bookings", icon: Package }, // <-- Added
     { id: "partners" as AdminTab, label: "Partners", icon: Handshake },
     { id: "offers" as AdminTab, label: "Offers", icon: Tag },
+    { id: "rates" as AdminTab, label: "Rate Sheet", icon: FileSpreadsheet },
     { id: "blogs" as AdminTab, label: "Blogs", icon: Newspaper },
     { id: "settings" as AdminTab, label: "Settings", icon: Settings },
   ];
