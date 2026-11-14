@@ -69,6 +69,9 @@ export default function Footer() {
               <li>
                 <Link href="/become-a-shipping-partner">Become a shipping partner</Link>
               </li>
+              <li>
+                <Link href="/blog">Blog &amp; Guides</Link>
+              </li>
             </ul>
           </div>
 

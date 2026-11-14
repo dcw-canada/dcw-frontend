@@ -54,6 +54,13 @@ export default function Navbar() {
             >
               Get Quote
             </Link>
+            <Link
+              href="/blog"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] px-4 py-2 rounded-lg"
+            >
+              Blog
+            </Link>
             <a href="#contact" onClick={closeMenu}>
               Contact
             </a>
