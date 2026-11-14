@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { CalendarDays, FileUp, MapPin, WalletCards, ArrowUpRight } from "lucide-react";
+import {
+  Calculator,
+  PackageSearch,
+  Handshake,
+  PhoneCall,
+  ArrowUpRight,
+} from "lucide-react";
 
 const services = [
   {
@@ -48,35 +54,62 @@ export default function ServicesSection() {
           <div className="quick-actions" aria-label="Quick actions">
             <Link className="quick-action group" href="/request-a-quote">
               <div className="flex items-center justify-between">
-                <WalletCards aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                <div className="quick-action__icon">
+                  <Calculator size={24} aria-hidden="true" />
+                </div>
+                <div className="quick-action__arrow">
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </div>
               </div>
-              <strong>Request a quote</strong>
-              <span>Pricing tailored to your shipment</span>
+              <div className="quick-action__content">
+                <strong>Request a quote</strong>
+                <span>Pricing tailored to your shipment</span>
+              </div>
             </Link>
+
             <Link className="quick-action group" href="/track-shipment">
               <div className="flex items-center justify-between">
-                <MapPin aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                <div className="quick-action__icon">
+                  <PackageSearch size={24} aria-hidden="true" />
+                </div>
+                <div className="quick-action__arrow">
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </div>
               </div>
-              <strong>Track a shipment</strong>
-              <span>Ask our team for an update</span>
+              <div className="quick-action__content">
+                <strong>Track a shipment</strong>
+                <span>Ask our team for an update</span>
+              </div>
             </Link>
+
             <Link className="quick-action group" href="/become-a-shipping-partner">
               <div className="flex items-center justify-between">
-                <FileUp aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                <div className="quick-action__icon">
+                  <Handshake size={24} aria-hidden="true" />
+                </div>
+                <div className="quick-action__arrow">
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </div>
               </div>
-              <strong>Become a shipping partner</strong>
-              <span>For international courier companies</span>
+              <div className="quick-action__content">
+                <strong>Become a shipping partner</strong>
+                <span>For international courier companies</span>
+              </div>
             </Link>
+
             <Link className="quick-action group" href="/book-a-call">
               <div className="flex items-center justify-between">
-                <CalendarDays aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                <div className="quick-action__icon">
+                  <PhoneCall size={24} aria-hidden="true" />
+                </div>
+                <div className="quick-action__arrow">
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </div>
               </div>
-              <strong>Book a call</strong>
-              <span>Talk to our operations team</span>
+              <div className="quick-action__content">
+                <strong>Book a call</strong>
+                <span>Talk to our operations team</span>
+              </div>
             </Link>
           </div>
         </div>
