@@ -22,7 +22,7 @@ export default function Footer() {
             <p>
               Your trusted logistics partner. Connecting the world to Canada.
             </p>
-            <a href="mailto:info@dcwsolution.ca">info@dcwsolution.ca</a>
+            <a href="mailto:info@dcwsolution.ca" className="text-[#ffd100] hover:text-white transition-colors duration-200 font-medium">info@dcwsolution.ca</a>
           </div>
 
           {/* Services */}

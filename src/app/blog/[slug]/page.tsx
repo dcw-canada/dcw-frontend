@@ -504,14 +504,14 @@ export default function SingleBlogPostPage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-xs font-bold text-[#51626a] hover:text-[#f05a28] transition-colors"
+              className="group inline-flex items-center gap-2 text-xs font-bold text-[#51626a] hover:text-[#f05a28] transition-all duration-200 hover:-translate-x-0.5"
             >
-              <ArrowLeft size={14} /> Back to all articles
+              <ArrowLeft size={14} className="transition-transform duration-200 group-hover:-translate-x-1" /> Back to all articles
             </Link>
 
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#51626a] hover:text-[#0b2f3a] bg-[#eef1f0] hover:bg-[#d5dcdb] px-3 py-1.5 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#51626a] hover:text-[#0b2f3a] bg-[#eef1f0] hover:bg-[#d5dcdb] px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
             >
               {copied ? (
                 <>
@@ -616,13 +616,13 @@ export default function SingleBlogPostPage({ params }: PageProps) {
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
               <Link
                 href="/get-quote"
-                className="bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs md:text-sm font-bold px-6 py-3 rounded-xl transition shadow-md text-center"
+                className="bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs md:text-sm font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 text-center"
               >
                 Get Quote
               </Link>
               <Link
                 href="/book-shipment"
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs md:text-sm font-bold px-6 py-3 rounded-xl transition text-center"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs md:text-sm font-bold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center shadow-sm"
               >
                 Book Shipment
               </Link>
@@ -638,9 +638,9 @@ export default function SingleBlogPostPage({ params }: PageProps) {
                 </h3>
                 <Link
                   href="/blog"
-                  className="text-xs font-bold text-[#f05a28] hover:underline flex items-center gap-1"
+                  className="group text-xs font-bold text-[#f05a28] hover:underline flex items-center gap-1 transition-colors"
                 >
-                  View all <ArrowRight size={13} />
+                  View all <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>
 
@@ -649,13 +649,13 @@ export default function SingleBlogPostPage({ params }: PageProps) {
                   <Link
                     key={rel.slug}
                     href={`/blog/${rel.slug}`}
-                    className="bg-white rounded-2xl border border-[#d5dcdb] p-5 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
+                    className="bg-white rounded-2xl border border-[#d5dcdb] p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between"
                   >
                     <div className="space-y-2">
                       <span className="text-xs font-bold text-[#f05a28]">
                         {rel.tag}
                       </span>
-                      <h4 className="text-sm font-bold text-[#0b2f3a] group-hover:text-[#f05a28] transition-colors line-clamp-2 leading-snug">
+                      <h4 className="text-sm font-bold text-[#0b2f3a] group-hover:text-[#f05a28] transition-colors duration-200 line-clamp-2 leading-snug">
                         {rel.title}
                       </h4>
                       <p className="text-xs text-[#51626a] line-clamp-2">
@@ -664,7 +664,7 @@ export default function SingleBlogPostPage({ params }: PageProps) {
                     </div>
                     <div className="pt-4 flex items-center justify-between text-[11px] text-[#51626a] font-medium">
                       <span>{rel.readTime || "5 min"}</span>
-                      <span className="text-[#f05a28] font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                      <span className="text-[#f05a28] font-bold group-hover:translate-x-1.5 transition-transform duration-200 inline-flex items-center gap-1">
                         Read <ArrowRight size={11} />
                       </span>
                     </div>

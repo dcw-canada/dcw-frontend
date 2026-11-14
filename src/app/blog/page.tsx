@@ -97,10 +97,10 @@ export default function BlogPage(): React.ReactElement {
                     key={cat.id}
                     onClick={() => setFilter(cat.id)}
                     type="button"
-                    className={`px-4 py-2 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm ${
+                    className={`px-4 py-2 rounded-full text-xs md:text-sm font-bold transition-all duration-200 ease-out active:scale-95 shadow-sm ${
                       isActive
-                        ? "bg-[#0b2f3a] text-white shadow-[#0b2f3a]/20 scale-105"
-                        : "bg-white text-[#51626a] hover:text-[#0b2f3a] hover:border-[#f05a28] border border-[#d5dcdb]"
+                        ? "bg-[#0b2f3a] text-white shadow-[#0b2f3a]/25 scale-105"
+                        : "bg-white text-[#51626a] hover:text-[#0b2f3a] hover:border-[#f05a28] border border-[#d5dcdb] hover:-translate-y-0.5"
                     }`}
                   >
                     {cat.label}
@@ -160,9 +160,9 @@ export default function BlogPage(): React.ReactElement {
                   <div className="pt-2">
                     <Link
                       href={`/blog/${featuredPost.slug}`}
-                      className="inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs md:text-sm font-bold px-5 py-3 rounded-xl transition shadow-md group-hover:translate-x-1"
+                      className="inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs md:text-sm font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0"
                     >
-                      Read Full Article <ArrowRight size={16} />
+                      Read Full Article <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                   </div>
                 </div>
@@ -231,21 +231,21 @@ export default function BlogPage(): React.ReactElement {
                 {filteredPosts.map((post) => (
                   <article
                     key={post._id || post.id || post.slug}
-                    className="bg-white rounded-2xl border border-[#d5dcdb] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1"
+                    className="bg-white rounded-2xl border border-[#d5dcdb] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1.5"
                   >
                     <Link href={`/blog/${post.slug}`} className="block relative overflow-hidden">
-                      <div className="h-48 w-full bg-gradient-to-br from-[#0b2f3a] to-[#14434f] flex items-center justify-center text-white">
+                      <div className="h-48 w-full bg-gradient-to-br from-[#0b2f3a] to-[#14434f] flex items-center justify-center text-white overflow-hidden">
                         {post.previewImage ? (
                           <img
                             src={post.previewImage}
                             alt={post.previewImageAlt || post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                           />
                         ) : post.bannerImage ? (
                           <img
                             src={post.bannerImage}
                             alt={post.bannerImageAlt || post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                           />
                         ) : (
                           <div className="text-5xl group-hover:scale-110 transition-transform duration-300">
@@ -253,7 +253,7 @@ export default function BlogPage(): React.ReactElement {
                           </div>
                         )}
                       </div>
-                      <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#0b2f3a] text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                      <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#0b2f3a] text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md transition-transform duration-200 group-hover:scale-105">
                         {post.tag}
                       </span>
                     </Link>
@@ -261,7 +261,7 @@ export default function BlogPage(): React.ReactElement {
                     <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2">
                         <Link href={`/blog/${post.slug}`}>
-                          <h4 className="text-lg font-bold text-[#0b2f3a] group-hover:text-[#f05a28] transition-colors line-clamp-2 leading-snug">
+                          <h4 className="text-lg font-bold text-[#0b2f3a] group-hover:text-[#f05a28] transition-colors duration-200 line-clamp-2 leading-snug">
                             {post.title}
                           </h4>
                         </Link>
@@ -272,7 +272,7 @@ export default function BlogPage(): React.ReactElement {
 
                       <div className="pt-4 border-t border-[#eef1f0] flex items-center justify-between text-xs text-[#51626a]">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-[#0b2f3a] text-[#ffd100] flex items-center justify-center font-bold text-[10px]">
+                          <div className="w-6 h-6 rounded-full bg-[#0b2f3a] text-[#ffd100] flex items-center justify-center font-bold text-[10px] transition-transform duration-200 group-hover:scale-110">
                             {post.author?.avatarInitials || "DCW"}
                           </div>
                           <span className="font-semibold text-[#0b2f3a] text-[11px] truncate max-w-[120px]">
@@ -281,7 +281,7 @@ export default function BlogPage(): React.ReactElement {
                         </div>
                         <div className="flex items-center gap-1 font-bold text-[#f05a28]">
                           <span>{post.readTime || "5 min"}</span>
-                          <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight size={13} className="group-hover:translate-x-1.5 transition-transform duration-200" />
                         </div>
                       </div>
                     </div>

@@ -39,35 +39,49 @@ export default function Navbar() {
           </button>
           <nav
             id="primary-navigation"
-            className={`site-nav${menuOpen ? " site-nav--open" : ""}`}
+            className={`site-nav transition-all duration-300 ease-in-out${
+              menuOpen ? " site-nav--open opacity-100 translate-y-0" : ""
+            }`}
           >
-            <a href="#services" onClick={closeMenu}>
+            <a
+              href="#services"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-4 py-2 rounded-lg"
+            >
               Services
             </a>
-            <a href="#process" onClick={closeMenu}>
+            <a
+              href="#process"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-4 py-2 rounded-lg"
+            >
               How it works
             </a>
             <Link
               href="/get-quote"
               onClick={closeMenu}
-              className="font-bold text-[#0b2f3a] px-4 py-2 rounded-lg"
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-4 py-2 rounded-lg"
             >
               Get Quote
             </Link>
             <Link
               href="/blog"
               onClick={closeMenu}
-              className="font-bold text-[#0b2f3a] px-4 py-2 rounded-lg"
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-4 py-2 rounded-lg"
             >
               Blog
             </Link>
-            <a href="#contact" onClick={closeMenu}>
+            <a
+              href="#contact"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-4 py-2 rounded-lg"
+            >
               Contact
             </a>
             <Link
               href="/book-shipment"
               onClick={closeMenu}
-              className="bg-[#f05a28] text-white px-5 py-2.5 rounded-xl ml-2 font-bold shadow-sm"
+              className="bg-[#f05a28] hover:bg-[#c2410c] text-white px-5 py-2.5 rounded-xl ml-2 font-bold shadow-sm hover:shadow-md hover:shadow-orange-500/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 inline-block text-center"
             >
               Book Shipment
             </Link>

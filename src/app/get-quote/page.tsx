@@ -72,7 +72,7 @@ export default function GetQuotePage() {
       <section className="relative bg-[#0b2f3a] overflow-hidden min-h-[200px] flex items-center py-12 px-6">
         <div className="max-w-7xl w-full mx-auto flex flex-col relative z-10 gap-3">
           <div className="flex items-center gap-2 text-[12px] font-semibold text-white/50">
-            <a href="/" className="hover:text-white">
+            <a href="/" className="hover:text-white transition-colors duration-200">
               Home
             </a>
             <span className="text-white/30">/</span>
@@ -109,7 +109,7 @@ export default function GetQuotePage() {
                   <select
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    className="w-full bg-white text-[#0b2f3a] text-sm font-medium rounded-xl pl-10 pr-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#f05a28] appearance-none border border-[#d5dcdb] cursor-pointer"
+                    className="w-full bg-white text-[#0b2f3a] text-sm font-medium rounded-xl pl-10 pr-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] appearance-none border border-[#d5dcdb] hover:border-[#b0bcba] cursor-pointer transition-all duration-200"
                   >
                     <option value="">Select State</option>
                     {INDIAN_STATES.map((s) => (
@@ -141,13 +141,13 @@ export default function GetQuotePage() {
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder="e.g. 5.5"
-                    className="w-full bg-white text-[#0b2f3a] text-sm font-medium rounded-xl pl-10 pr-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#f05a28] border border-[#d5dcdb]"
+                    className="w-full bg-white text-[#0b2f3a] text-sm font-medium rounded-xl pl-10 pr-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] border border-[#d5dcdb] hover:border-[#b0bcba] transition-all duration-200"
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 py-3 text-xs font-semibold flex items-center gap-2">
+                <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 py-3 text-xs font-semibold flex items-center gap-2 animate-in fade-in duration-200">
                   <AlertCircle size={16} /> {error}
                 </div>
               )}
@@ -155,7 +155,7 @@ export default function GetQuotePage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-[#f05a28] hover:bg-[#c2410c] disabled:opacity-60 text-white font-bold text-sm py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 mt-2"
+                className="group bg-[#f05a28] hover:bg-[#c2410c] disabled:opacity-60 text-white font-bold text-sm py-4 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2 mt-2"
               >
                 {loading ? (
                   <>
@@ -164,7 +164,7 @@ export default function GetQuotePage() {
                   </>
                 ) : (
                   <>
-                    Calculate Rate <ArrowUpRight size={18} />
+                    Calculate Rate <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                   </>
                 )}
               </button>
@@ -208,13 +208,13 @@ export default function GetQuotePage() {
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <div className="bg-[#eef1f0] p-4 rounded-xl">
+                    <div className="bg-[#eef1f0] p-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5">
                       <p className="text-[10px] text-[#51626a] uppercase font-bold mb-1">
                         Origin Zone
                       </p>
                       <p className="font-bold text-[#0b2f3a]">{result.zone}</p>
                     </div>
-                    <div className="bg-[#eef1f0] p-4 rounded-xl">
+                    <div className="bg-[#eef1f0] p-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5">
                       <p className="text-[10px] text-[#51626a] uppercase font-bold mb-1">
                         Weight Slab
                       </p>
@@ -222,7 +222,7 @@ export default function GetQuotePage() {
                         {result.slabLabel}
                       </p>
                     </div>
-                    <div className="bg-[#eef1f0] p-4 rounded-xl">
+                    <div className="bg-[#eef1f0] p-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5">
                       <p className="text-[10px] text-[#51626a] uppercase font-bold mb-1">
                         Rate / KG
                       </p>
@@ -230,7 +230,7 @@ export default function GetQuotePage() {
                         {formatCAD(result.pricePerKg)}
                       </p>
                     </div>
-                    <div className="bg-[#eef1f0] p-4 rounded-xl">
+                    <div className="bg-[#eef1f0] p-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5">
                       <p className="text-[10px] text-[#51626a] uppercase font-bold mb-1">
                         Transit Time
                       </p>
@@ -254,9 +254,9 @@ export default function GetQuotePage() {
                     </div>
                     <a
                       href="/book-shipment"
-                      className="shrink-0 bg-[#f05a28] hover:bg-[#c2410c] text-white font-black text-sm py-3.5 px-8 rounded-xl transition-all flex items-center gap-2 shadow-md w-full md:w-auto justify-center"
+                      className="group shrink-0 bg-[#f05a28] hover:bg-[#c2410c] text-white font-black text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 shadow-md hover:shadow-orange-500/25 w-full md:w-auto justify-center"
                     >
-                      Book Shipment <ArrowUpRight size={18} />
+                      Book Shipment <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                     </a>
                   </div>
                 </div>

@@ -49,7 +49,7 @@ export default function ServicesSection() {
             <Link className="quick-action group" href="/request-a-quote">
               <div className="flex items-center justify-between">
                 <WalletCards aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
               </div>
               <strong>Request a quote</strong>
               <span>Pricing tailored to your shipment</span>
@@ -57,7 +57,7 @@ export default function ServicesSection() {
             <Link className="quick-action group" href="/track-shipment">
               <div className="flex items-center justify-between">
                 <MapPin aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
               </div>
               <strong>Track a shipment</strong>
               <span>Ask our team for an update</span>
@@ -65,7 +65,7 @@ export default function ServicesSection() {
             <Link className="quick-action group" href="/become-a-shipping-partner">
               <div className="flex items-center justify-between">
                 <FileUp aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
               </div>
               <strong>Become a shipping partner</strong>
               <span>For international courier companies</span>
@@ -73,7 +73,7 @@ export default function ServicesSection() {
             <Link className="quick-action group" href="/book-a-call">
               <div className="flex items-center justify-between">
                 <CalendarDays aria-hidden="true" />
-                <ArrowUpRight size={16} className="text-[#51626a] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight size={16} className="text-[#f05a28] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
               </div>
               <strong>Book a call</strong>
               <span>Talk to our operations team</span>
@@ -98,7 +98,7 @@ export default function ServicesSection() {
           </div>
           <div className="service-list">
             {services.map((service) => (
-              <a className="service-row" href="#contact" key={service.name}>
+              <a className="service-row group" href="#contact" key={service.name}>
                 <h3>{service.name}</h3>
                 <div>
                   <p>{service.description}</p>
@@ -110,8 +110,8 @@ export default function ServicesSection() {
                     ))}
                   </div>
                 </div>
-                <span className="service-row__link">
-                  Ask about this service <span aria-hidden="true">→</span>
+                <span className="service-row__link inline-flex items-center gap-1 group-hover:text-[#f05a28] transition-colors">
+                  Ask about this service <span aria-hidden="true" className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </span>
               </a>
             ))}

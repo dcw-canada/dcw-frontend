@@ -887,7 +887,7 @@ export default function BlogManager() {
         {!isFormOpen && (
           <button
             onClick={handleOpenNewForm}
-            className="bg-[#f05a28] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#c2410c] transition-all shadow-md flex items-center gap-2"
+            className="bg-[#f05a28] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#c2410c] transition-all duration-200 shadow-md hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
           >
             <Plus size={16} />
             Create Blog
@@ -2215,7 +2215,7 @@ export default function BlogManager() {
             <button
               type="submit"
               disabled={submitting}
-              className="bg-[#f05a28] text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-[#c2410c] transition-all flex items-center gap-2 disabled:opacity-50 shadow-md"
+              className="bg-[#f05a28] text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-[#c2410c] transition-all duration-200 flex items-center gap-2 disabled:opacity-50 shadow-md hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0"
             >
               {submitting ? (
                 <>
@@ -2309,7 +2309,7 @@ export default function BlogManager() {
                       <td className="px-6 py-4 text-right space-x-2">
                         <button
                           onClick={() => handleOpenEditForm(blog)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors inline-flex items-center justify-center"
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-150 inline-flex items-center justify-center hover:scale-110 active:scale-95"
                           title="Edit post"
                         >
                           <Pencil size={16} />
@@ -2318,7 +2318,7 @@ export default function BlogManager() {
                           onClick={() =>
                             handleDelete((blog._id || blog.id) as string)
                           }
-                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors inline-flex items-center justify-center"
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-all duration-150 inline-flex items-center justify-center hover:scale-110 active:scale-95"
                           title="Delete post"
                         >
                           <Trash2 size={16} />

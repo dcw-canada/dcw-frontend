@@ -65,12 +65,12 @@ export default function FAQPage() {
               return (
                 <div
                   key={faq.q}
-                  className="bg-white rounded-2xl border border-[#d5dcdb] overflow-hidden shadow-sm transition-all"
+                  className="bg-white rounded-2xl border border-[#d5dcdb] hover:border-[#b0bcba] overflow-hidden shadow-sm hover:shadow-md transition-all duration-200"
                 >
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none transition-colors duration-150 hover:bg-[#fafafa]"
                   >
                     <span className="text-base sm:text-lg font-bold text-[#0b2f3a] pr-4">
                       {faq.q}
@@ -83,7 +83,7 @@ export default function FAQPage() {
                     />
                   </button>
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-0 text-sm sm:text-base text-[#51626a] leading-relaxed border-t border-[#d5dcdb]/40 mt-1">
+                    <div className="px-6 pb-6 pt-0 text-sm sm:text-base text-[#51626a] leading-relaxed border-t border-[#d5dcdb]/40 mt-1 animate-in fade-in duration-200">
                       <p className="pt-4">{faq.a}</p>
                     </div>
                   )}
@@ -101,13 +101,13 @@ export default function FAQPage() {
             <div className="flex gap-3 shrink-0">
               <Link
                 href="/book-a-call"
-                className="bg-[#0b2f3a] hover:bg-[#14434f] text-white px-5 py-2.5 rounded-xl font-bold text-xs transition shadow-sm flex items-center gap-2"
+                className="bg-[#0b2f3a] hover:bg-[#14434f] text-white px-5 py-2.5 rounded-xl font-bold text-xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md flex items-center gap-2"
               >
                 <Phone size={14} /> Book a Call
               </Link>
               <Link
                 href="/request-a-quote"
-                className="bg-[#f05a28] hover:bg-[#c2410c] text-white px-5 py-2.5 rounded-xl font-bold text-xs transition shadow-sm flex items-center gap-2"
+                className="bg-[#f05a28] hover:bg-[#c2410c] text-white px-5 py-2.5 rounded-xl font-bold text-xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-orange-500/25 flex items-center gap-2"
               >
                 <MessageSquare size={14} /> Ask Team
               </Link>

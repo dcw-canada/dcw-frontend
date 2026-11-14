@@ -42,13 +42,26 @@ svg {
 
 a {
   color: inherit;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-button,
+button {
+  font: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 input,
 select,
 textarea {
   font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(240, 90, 40, 0.14);
 }
 
 :focus-visible {
@@ -147,31 +160,52 @@ h3 {
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .button:hover {
   background: var(--signal-ink);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px -2px rgba(240, 90, 40, 0.3);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(240, 90, 40, 0.2);
 }
 
 .button--outline {
   background: transparent;
   color: var(--ink);
   box-shadow: inset 0 0 0 1.5px var(--ink);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .button--outline:hover {
   background: var(--ink);
   color: #fff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px -2px rgba(11, 47, 58, 0.2);
+}
+
+.button--outline:active {
+  transform: translateY(0);
 }
 
 .button--light {
   background: #fff;
   color: var(--ink);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .button--light:hover {
   background: var(--fog);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.08);
+}
+
+.button--light:active {
+  transform: translateY(0);
 }
 
 .muted {
@@ -193,10 +227,12 @@ h3 {
 
 .utility-bar a {
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .utility-bar a:hover {
   color: #fff;
+  opacity: 0.95;
 }
 
 .site-header {
@@ -219,6 +255,12 @@ h3 {
   display: inline-flex;
   align-items: center;
   flex: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.site-brand:hover {
+  opacity: 0.92;
+  transform: scale(0.99);
 }
 
 .site-brand img {
@@ -239,10 +281,12 @@ h3 {
   padding: 10px 12px;
   font-size: 0.95rem;
   text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-nav a:hover {
   background: var(--fog);
+  color: var(--signal);
 }
 
 .menu-toggle {
@@ -253,6 +297,14 @@ h3 {
   background: #fff;
   color: var(--ink);
   font-weight: 650;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-toggle:hover {
+  background: var(--fog);
+  border-color: var(--signal);
+  color: var(--signal);
 }
 
 /* hero styles replaced with Tailwind & inline CSS */
@@ -265,6 +317,12 @@ h3 {
   padding: 24px;
   background: var(--paper);
   box-shadow: 0 30px 60px -30px rgba(11, 47, 58, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shipment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 36px 70px -30px rgba(11, 47, 58, 0.52);
 }
 
 .shipment-card::before {
@@ -396,6 +454,11 @@ h3 {
 .capability-strip__item {
   padding: 20px;
   border-left: 1px solid var(--rule);
+  transition: background-color 0.2s ease;
+}
+
+.capability-strip__item:hover {
+  background: #fbfdfc;
 }
 
 .capability-strip__item:first-child {
@@ -429,6 +492,7 @@ h3 {
   border-left: 1px solid var(--rule);
   padding: 22px;
   text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quick-action:first-child {
@@ -437,6 +501,8 @@ h3 {
 
 .quick-action:hover {
   background: #f7f9f8;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -10px rgba(11, 47, 58, 0.12);
 }
 
 .quick-action svg {
@@ -444,6 +510,11 @@ h3 {
   height: 25px;
   margin-bottom: 5px;
   color: var(--signal);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-action:hover svg {
+  transform: scale(1.08) translateY(-1px);
 }
 
 .quick-action strong {
@@ -465,13 +536,26 @@ h3 {
   align-items: start;
   gap: 32px;
   border-bottom: 1px solid var(--rule);
-  padding: 26px 0;
+  padding: 26px 12px;
+  border-radius: 12px;
   text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-row:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px -8px rgba(11, 47, 58, 0.08);
 }
 
 .service-row h3 {
   margin: 0;
   font-size: 1.35rem;
+  transition: color 0.2s ease;
+}
+
+.service-row:hover h3 {
+  color: var(--signal-ink);
 }
 
 .service-row p {
@@ -493,16 +577,30 @@ h3 {
   background: var(--paper);
   color: var(--slate);
   font-size: 0.76rem;
+  transition: all 0.2s ease;
+}
+
+.service-tag:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+  background: #fff;
+  transform: translateY(-1px);
 }
 
 .service-row__link {
   color: var(--signal-ink);
   font-weight: 700;
   white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
-.service-row:hover h3 {
-  color: var(--signal-ink);
+.service-row__link span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.service-row:hover .service-row__link span {
+  transform: translateX(4px);
 }
 
 .process-grid {
@@ -650,6 +748,13 @@ h3 {
   border-bottom: 1px solid var(--rule);
   padding: 24px;
   background: var(--paper);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.industry-item:hover {
+  background: #fafcfb;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -10px rgba(11, 47, 58, 0.1);
 }
 
 .industry-item h3 {
@@ -788,10 +893,22 @@ h3 {
   padding: 22px;
   background: var(--paper);
   text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .resource-card:hover {
-  border-color: var(--ink);
+  border-color: var(--signal);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -10px rgba(11, 47, 58, 0.12);
+}
+
+.resource-card strong span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.resource-card:hover strong span {
+  transform: translateX(4px);
 }
 
 .resource-card__kind {
@@ -927,11 +1044,13 @@ h3 {
 
 .footer-links a {
   text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .footer-links a:hover {
   color: #fff;
-  text-decoration: underline;
+  transform: translateX(4px);
 }
 
 .footer-legal {
