@@ -6,7 +6,7 @@ export default function Hero() {
       <section
         className="relative overflow-hidden py-24 sm:py-32 bg-cover bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/hero-banner.webp')",
+          backgroundImage: "url('/images/banner-website@2x.png')",
           backgroundPosition: "center right",
         }}
       >
