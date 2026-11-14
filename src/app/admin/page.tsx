@@ -8,6 +8,7 @@ import PartnersTable from "../../components/PartnersTable";
 import ContactInquiriesTable from "../../components/ContactInquiriesTable";
 import RateSheetUploader from "../../components/RateSheetUploader";
 import BookingsTable from "../../components/BookingsTable"; // <-- Added Import
+import BlogManager from "../../components/BlogManager";
 import {
   LayoutDashboard,
   Boxes,
@@ -311,41 +312,7 @@ export default function AdminPage() {
             {activeTab === "blogs" && (
               <div className="space-y-6">
                 <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] shadow-sm">
-                  <div className="flex items-center justify-between pb-6 border-b border-[#d5dcdb]">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-[#0b2f3a] text-white rounded-xl shadow-sm">
-                        <Newspaper size={24} />
-                      </div>
-                      <div>
-                        <h2 className="text-2xl font-black text-[#0b2f3a]">
-                          Blogs
-                        </h2>
-                        <p className="text-xs text-[#51626a] mt-0.5">
-                          Manage articles, shipping updates, and industry
-                          insights
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      className="bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2"
-                    >
-                      <Plus size={15} /> Write New Article
-                    </button>
-                  </div>
-
-                  <div className="py-20 flex flex-col items-center justify-center text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-[#eef1f0] text-[#51626a] flex items-center justify-center mb-4 border border-[#d5dcdb]">
-                      <Newspaper size={30} />
-                    </div>
-                    <h3 className="text-lg font-bold text-[#0b2f3a]">
-                      Blog Posts & Articles
-                    </h3>
-                    <p className="text-sm text-[#51626a] mt-1 max-w-md">
-                      Draft, publish, and curate blog posts or logistics market
-                      updates for your customers.
-                    </p>
-                  </div>
+                  <BlogManager />
                 </div>
               </div>
             )}

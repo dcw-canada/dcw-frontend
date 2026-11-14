@@ -41,21 +41,21 @@ export default function Hero() {
 
             <div className="flex flex-wrap items-center gap-4 mt-10 mb-7">
               <a
-                className="inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg hover:shadow-orange-500/20"
+                className="group inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0"
                 href="#contact"
               >
                 <span>Request a quote</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
               <a
-                className="inline-flex items-center bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all"
+                className="inline-flex items-center bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md"
                 href="#services"
               >
                 Explore services
               </a>
             </div>
 
-            <div className="inline-flex mt-10 items-center gap-2.5 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10 text-white text-xs sm:text-sm">
+            <div className="inline-flex mt-10 items-center gap-2.5 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10 text-white text-xs sm:text-sm transition-all duration-300 hover:bg-black/45">
               <ShieldCheck size={18} className="text-[#ffd100] shrink-0" />
               <span className="text-[#eef1f0]">
                 Competitive rates backed by dependable service, direct tracking,

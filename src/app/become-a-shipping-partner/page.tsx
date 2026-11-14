@@ -227,11 +227,11 @@ export default function ShippingPartnerPage() {
                 return (
                   <div
                     key={p.title}
-                    className="bg-white p-8 rounded-3xl border border-[#d5dcdb] shadow-sm flex flex-col justify-between"
+                    className="group bg-white p-8 rounded-3xl border border-[#d5dcdb] hover:border-[#b0bcba] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-[#0b2f3a] text-[#ffd100] flex items-center justify-center shadow-sm">
+                        <div className="w-12 h-12 rounded-2xl bg-[#0b2f3a] text-[#ffd100] group-hover:scale-105 transition-transform duration-200 flex items-center justify-center shadow-sm">
                           <Icon size={22} />
                         </div>
                         <span className="text-[11px] font-bold uppercase tracking-wider text-[#f05a28] bg-[#f05a28]/10 px-2.5 py-1 rounded-md">
@@ -270,7 +270,7 @@ export default function ShippingPartnerPage() {
                 {whoPartners.map((wp) => (
                   <div
                     key={wp.role}
-                    className="bg-white/10 p-6 sm:p-7 rounded-2xl border border-white/10 flex flex-col justify-between hover:bg-white/15 transition-colors"
+                    className="bg-white/10 p-6 sm:p-7 rounded-2xl border border-white/10 flex flex-col justify-between hover:bg-white/15 hover:-translate-y-0.5 transition-all duration-200"
                   >
                     <div>
                       <div className="font-bold text-base text-[#ffd100] mb-2">
@@ -621,7 +621,7 @@ export default function ShippingPartnerPage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
                 >
                   <Handshake size={18} />
                   <span>

@@ -104,7 +104,7 @@ export default function TrustSection() {
           <div className="industry-grid">
             {audiences.map(({ title, description, icon: Icon }) => (
               <article className="industry-item group" key={title}>
-                <div className="w-12 h-12 rounded-xl bg-[#0b2f3a]/5 text-[#f05a28] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#f05a28] group-hover:text-white">
+                <div className="w-12 h-12 rounded-xl bg-[#0b2f3a]/5 text-[#f05a28] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[#f05a28] group-hover:text-white group-hover:scale-110">
                   <Icon size={24} />
                 </div>
                 <h3>{title}</h3>
@@ -187,12 +187,12 @@ export default function TrustSection() {
           </div>
           <div className="resource-grid">
             {resources.map(([kind, title, description]) => (
-              <a className="resource-card" href="#contact" key={title}>
+              <a className="resource-card group" href="#contact" key={title}>
                 <span className="resource-card__kind">{kind}</span>
-                <h3>{title}</h3>
+                <h3 className="group-hover:text-[#f05a28] transition-colors duration-200">{title}</h3>
                 <p>{description}</p>
-                <strong>
-                  Ask our team <span aria-hidden="true">→</span>
+                <strong className="inline-flex items-center gap-1 group-hover:text-[#f05a28] transition-colors duration-200">
+                  Ask our team <span aria-hidden="true" className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </strong>
               </a>
             ))}

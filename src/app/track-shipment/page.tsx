@@ -90,7 +90,7 @@ export default function TrackShipmentPage() {
             <div className="mt-8 max-w-2xl mx-auto">
               <form
                 onSubmit={handleSearch}
-                className="bg-white p-2.5 rounded-2xl shadow-2xl border border-white/20 flex flex-col sm:flex-row gap-2"
+                className="bg-white p-2.5 rounded-2xl shadow-2xl border border-white/20 flex flex-col sm:flex-row gap-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-[#f05a28]/40"
               >
                 <div className="relative flex-1">
                   <Search
@@ -103,15 +103,15 @@ export default function TrackShipmentPage() {
                     placeholder="Enter DCW Ref (e.g. DCW-482193) or AWB / UPS #"
                     value={trackingNumber}
                     onChange={(e) => setTrackingNumber(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3.5 rounded-xl text-[#0b2f3a] text-sm sm:text-base font-semibold focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
+                    className="w-full pl-12 pr-4 py-3.5 rounded-xl text-[#0b2f3a] text-sm sm:text-base font-semibold focus:outline-none transition-all duration-200"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-[#f05a28] hover:bg-[#c2410c] text-white px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-md flex items-center justify-center gap-2"
+                  className="group bg-[#f05a28] hover:bg-[#c2410c] text-white px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2"
                 >
                   <span>Track Status</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </button>
               </form>
               <p className="text-[12px] text-[#d5dcdb]/80 mt-2 text-center">
@@ -157,14 +157,14 @@ export default function TrackShipmentPage() {
                   <div className="flex flex-wrap gap-3 pt-2">
                     <a
                       href={`mailto:info@dcwsolution.ca?subject=Shipment Milestone Request: ${trackingNumber}`}
-                      className="inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs font-bold px-5 py-3 rounded-xl transition shadow-md"
+                      className="group inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs font-bold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25"
                     >
                       <Mail size={15} />
                       <span>Email Dispatch for Tracking Link</span>
                     </a>
                     <a
                       href="tel:+16729683390"
-                      className="inline-flex items-center gap-2 bg-[#0b2f3a] hover:bg-[#14434f] text-white text-xs font-bold px-5 py-3 rounded-xl transition shadow-md"
+                      className="group inline-flex items-center gap-2 bg-[#0b2f3a] hover:bg-[#14434f] text-white text-xs font-bold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md"
                     >
                       <Phone size={15} />
                       <span>Direct Dispatch: (672) 968-3390</span>
@@ -211,14 +211,14 @@ export default function TrackShipmentPage() {
                 return (
                   <div
                     key={s.title}
-                    className="bg-white p-6 rounded-2xl border border-[#d5dcdb] shadow-sm relative flex flex-col justify-between"
+                    className="group bg-white p-6 rounded-2xl border border-[#d5dcdb] hover:border-[#b0bcba] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 relative flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#0b2f3a] text-[#ffd100] flex items-center justify-center font-bold shadow-sm">
+                        <div className="w-11 h-11 rounded-xl bg-[#0b2f3a] text-[#ffd100] group-hover:scale-105 transition-transform duration-200 flex items-center justify-center font-bold shadow-sm">
                           <Icon size={20} />
                         </div>
-                        <span className="text-xl font-black text-[#d5dcdb]">
+                        <span className="text-xl font-black text-[#d5dcdb] group-hover:text-[#b0bcba] transition-colors duration-200">
                           0{idx + 1}
                         </span>
                       </div>
@@ -235,7 +235,7 @@ export default function TrackShipmentPage() {
 
           {/* Direct Assistance Support Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-[#d5dcdb] shadow-sm flex flex-col justify-between">
+            <div className="group bg-white p-8 rounded-3xl border border-[#d5dcdb] hover:border-[#b0bcba] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#f05a28]">
                   Courier Consolidation Bags
@@ -250,15 +250,15 @@ export default function TrackShipmentPage() {
               <div className="mt-6 pt-4 border-t border-[#d5dcdb]">
                 <a
                   href="mailto:info@dcwsolution.ca"
-                  className="font-bold text-xs text-[#f05a28] hover:text-[#c2410c] flex items-center gap-1.5"
+                  className="font-bold text-xs text-[#f05a28] group-hover:text-[#c2410c] flex items-center gap-1.5 transition-colors duration-200"
                 >
                   <span>Email B2B Operations Support</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-[#d5dcdb] shadow-sm flex flex-col justify-between">
+            <div className="group bg-white p-8 rounded-3xl border border-[#d5dcdb] hover:border-[#b0bcba] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#1f8a5b]">
                   Commercial Freight
@@ -273,10 +273,10 @@ export default function TrackShipmentPage() {
               <div className="mt-6 pt-4 border-t border-[#d5dcdb]">
                 <Link
                   href="/book-a-call"
-                  className="font-bold text-xs text-[#1f8a5b] hover:underline flex items-center gap-1.5"
+                  className="font-bold text-xs text-[#1f8a5b] group-hover:text-[#166b46] flex items-center gap-1.5 transition-colors duration-200"
                 >
                   <span>Book a Customs Call</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
               </div>
             </div>
