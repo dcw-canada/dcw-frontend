@@ -95,15 +95,18 @@ export default function TrustSection() {
     <>
       <section className="section section--paper">
         <div className="wrap">
-          <div className="section-heading">
+          <div className="section-heading reveal">
             <div>
               <h2>Who we work with</h2>
               <p>Specialized logistics solutions adapted to your shipment type and volume.</p>
             </div>
           </div>
           <div className="industry-grid">
-            {audiences.map(({ title, description, icon: Icon }) => (
-              <article className="industry-item group" key={title}>
+            {audiences.map(({ title, description, icon: Icon }, index) => (
+              <article
+                className={`industry-item group reveal delay-${Math.min(500, (index + 1) * 100)}`}
+                key={title}
+              >
                 <div className="w-12 h-12 rounded-xl bg-[#0b2f3a]/5 text-[#f05a28] flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-[#f05a28] group-hover:text-white group-hover:scale-110">
                   <Icon size={24} />
                 </div>
@@ -117,10 +120,13 @@ export default function TrustSection() {
 
       <section className="section">
         <div className="wrap">
-          <h2>Why partners choose DCW</h2>
+          <h2 className="reveal">Why partners choose DCW</h2>
           <div className="reasons-grid">
-            {reasons.map(([title, description]) => (
-              <article className="reason" key={title}>
+            {reasons.map(([title, description], index) => (
+              <article
+                className={`reason reveal delay-${Math.min(500, (index + 1) * 100)}`}
+                key={title}
+              >
                 <h3>{title}</h3>
                 <p>{description}</p>
               </article>
@@ -131,7 +137,7 @@ export default function TrustSection() {
 
       <section className="section section--paper">
         <div className="wrap coverage-layout">
-          <div>
+          <div className="reveal-left">
             <h2>Where we work</h2>
             <p className="lead">
               Warehousing in Vancouver and Toronto, with Canada-wide delivery
@@ -161,7 +167,7 @@ export default function TrustSection() {
             </ul>
           </div>
           <div
-            className="coverage-map"
+            className="coverage-map reveal-right"
             role="img"
             aria-label="Illustration showing DCW warehousing in Vancouver and Toronto with Canada-wide delivery"
           >

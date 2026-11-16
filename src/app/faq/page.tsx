@@ -46,7 +46,7 @@ export default function FAQPage() {
 
       <main className="section section--paper">
         <div className="wrap max-w-4xl py-10">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12 reveal">
             <span className="text-xs font-bold uppercase tracking-widest text-[#f05a28] bg-[#f05a28]/10 px-3 py-1 rounded-full">
               Frequently Asked Questions
             </span>
@@ -65,7 +65,7 @@ export default function FAQPage() {
               return (
                 <div
                   key={faq.q}
-                  className="bg-white rounded-2xl border border-[#d5dcdb] hover:border-[#b0bcba] overflow-hidden shadow-sm hover:shadow-md transition-all duration-200"
+                  className={`bg-white rounded-2xl border border-[#d5dcdb] hover:border-[#b0bcba] overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 reveal delay-${Math.min(500, (index + 1) * 50)}`}
                 >
                   <button
                     type="button"
