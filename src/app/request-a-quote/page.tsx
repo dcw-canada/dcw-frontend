@@ -501,7 +501,7 @@ export default function RequestQuotePage() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#f05a28] hover:bg-[#c2410c] text-white px-10 py-4 rounded-xl font-black text-sm sm:text-base transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-xl hover:shadow-orange-500/25 disabled:opacity-50"
                 >
                   <Send size={18} />
                   <span>

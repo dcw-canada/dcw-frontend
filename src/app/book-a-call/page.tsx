@@ -28,7 +28,7 @@ export default function BookCallPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {/* Direct Phone / Immediate Call */}
-            <div className="bg-[#0b2f3a] text-white p-8 rounded-2xl shadow-lg flex flex-col justify-between">
+            <div className="bg-[#0b2f3a] text-white p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-white/10 text-[#ffd100] flex items-center justify-center mb-6">
                   <Phone size={24} />
@@ -45,7 +45,7 @@ export default function BookCallPage() {
               <div className="mt-8 pt-6 border-t border-white/10">
                 <a
                   href="tel:+16729683390"
-                  className="block text-center w-full bg-[#f05a28] hover:bg-[#c2410c] text-white py-3.5 rounded-xl font-bold text-base transition shadow-md"
+                  className="block text-center w-full bg-[#f05a28] hover:bg-[#c2410c] text-white py-3.5 rounded-xl font-bold text-base transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25"
                 >
                   (672) 968-3390
                 </a>
@@ -56,7 +56,7 @@ export default function BookCallPage() {
             </div>
 
             {/* WhatsApp & Email Booking */}
-            <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] shadow-sm flex flex-col justify-between">
+            <div className="bg-white p-8 rounded-2xl border border-[#d5dcdb] hover:border-[#b0bcba] shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#eef1f0] text-[#0b2f3a] flex items-center justify-center mb-6">
                   <Calendar size={24} />
@@ -89,13 +89,13 @@ export default function BookCallPage() {
                   href="https://wa.me/16729683390"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center bg-[#1f8a5b] hover:bg-[#166643] text-white py-3 rounded-xl font-bold text-xs transition"
+                  className="flex-1 text-center bg-[#1f8a5b] hover:bg-[#166643] text-white py-3 rounded-xl font-bold text-xs transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md"
                 >
                   WhatsApp Us
                 </a>
                 <a
                   href="mailto:info@dcwsolution.ca?subject=Requesting a Call with DCW Solutions"
-                  className="flex-1 text-center bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] py-3 rounded-xl font-bold text-xs border border-[#d5dcdb] transition"
+                  className="flex-1 text-center bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] py-3 rounded-xl font-bold text-xs border border-[#d5dcdb] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Email Booking
                 </a>

@@ -169,7 +169,7 @@ export default function BookShipmentPage() {
   };
 
   const inp =
-    "w-full bg-[#f8f9fa] text-[#0b2f3a] text-sm font-medium rounded-xl px-4 py-3.5 focus:outline-none border border-[#d5dcdb] placeholder:text-[#51626a] focus:border-[#f05a28] focus:ring-2 focus:ring-[#f05a28]/10 transition-all";
+    "w-full bg-[#f8f9fa] text-[#0b2f3a] text-sm font-medium rounded-xl px-4 py-3.5 focus:outline-none border border-[#d5dcdb] placeholder:text-[#51626a] focus:border-[#f05a28] focus:ring-2 focus:ring-[#f05a28]/10 hover:border-[#b0bcba] transition-all duration-200";
   const lbl =
     "block text-xs font-bold text-[#51626a] uppercase tracking-wider mb-2";
 
@@ -359,9 +359,9 @@ export default function BookShipmentPage() {
                   setError("");
                   setStep(2);
                 }}
-                className="bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all shadow-md flex items-center gap-2"
+                className="group bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center gap-2"
               >
-                Next: Delivery Details <ArrowRight className="w-4 h-4" />
+                Next: Delivery Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
           </div>
@@ -470,9 +470,9 @@ export default function BookShipmentPage() {
             <div className="flex justify-between items-center pt-6 mt-6 border-t border-[#d5dcdb]">
               <button
                 onClick={() => setStep(1)}
-                className="bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all flex items-center gap-2"
+                className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
               </button>
               <button
                 onClick={() => {
@@ -488,9 +488,9 @@ export default function BookShipmentPage() {
                   setError("");
                   setStep(3);
                 }}
-                className="bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all shadow-md flex items-center gap-2"
+                className="group bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center gap-2"
               >
-                Next: Packages <ArrowRight className="w-4 h-4" />
+                Next: Packages <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
           </div>
@@ -590,7 +590,7 @@ export default function BookShipmentPage() {
             </div>
             <button
               onClick={addBox}
-              className="mt-4 text-xs font-bold text-[#f05a28] bg-[#f05a28]/10 hover:bg-[#f05a28]/20 px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5"
+              className="mt-4 text-xs font-bold text-[#f05a28] bg-[#f05a28]/10 hover:bg-[#f05a28]/20 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-1.5"
             >
               <Plus className="w-4 h-4" /> Add Another Box
             </button>
@@ -607,14 +607,14 @@ export default function BookShipmentPage() {
             <div className="flex justify-between items-center pt-6 mt-8 border-t border-[#d5dcdb]">
               <button
                 onClick={() => setStep(2)}
-                className="bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all flex items-center gap-2"
+                className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
               </button>
               <button
                 onClick={handleCalculateRate}
                 disabled={loading || chargeableWeight <= 0}
-                className="bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+                className="group bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
                   <>
@@ -622,7 +622,7 @@ export default function BookShipmentPage() {
                   </>
                 ) : (
                   <>
-                    Calculate Rate <ArrowRight className="w-4 h-4" />
+                    Calculate Rate <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                   </>
                 )}
               </button>
@@ -701,14 +701,14 @@ export default function BookShipmentPage() {
             <div className="flex justify-between items-center pt-6 border-t border-[#d5dcdb]">
               <button
                 onClick={() => setStep(3)}
-                className="bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all flex items-center gap-2"
+                className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
               </button>
               <button
                 onClick={handleConfirmBooking}
                 disabled={loading}
-                className="bg-[#1f8a5b] hover:bg-[#166b46] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all shadow-md flex items-center gap-2"
+                className="group bg-[#1f8a5b] hover:bg-[#166b46] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-green-600/25 flex items-center gap-2"
               >
                 {loading ? (
                   <>
@@ -716,7 +716,7 @@ export default function BookShipmentPage() {
                   </>
                 ) : (
                   <>
-                    Confirm Booking <CheckCircle2 className="w-4 h-4" />
+                    Confirm Booking <CheckCircle2 className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   </>
                 )}
               </button>
@@ -747,7 +747,7 @@ export default function BookShipmentPage() {
             <div className="flex justify-center gap-4">
               <Link
                 href="/"
-                className="bg-[#0b2f3a] hover:bg-[#14434f] text-white font-bold py-3.5 px-8 rounded-xl transition-all"
+                className="bg-[#0b2f3a] hover:bg-[#14434f] text-white font-bold py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md"
               >
                 Back to Home
               </Link>

@@ -81,27 +81,29 @@ export default function AdminSidebar({
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 type="button"
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-sm transition-all duration-150 group text-left ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 group text-left ${
                   isActive
-                    ? "bg-[#f05a28] text-white shadow-lg shadow-[#f05a28]/20 font-semibold"
-                    : "text-[#d5dcdb] hover:bg-[#14434f] hover:text-white"
+                    ? "bg-[#f05a28] text-white shadow-lg shadow-[#f05a28]/20 font-semibold translate-x-1"
+                    : "text-[#d5dcdb] hover:bg-[#14434f] hover:text-white hover:translate-x-1"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <Icon
                     size={18}
-                    className={
+                    className={`transition-transform duration-200 ${
                       isActive
-                        ? "text-white"
-                        : "text-[#ffd100] group-hover:scale-110 transition-transform"
-                    }
+                        ? "text-white scale-105"
+                        : "text-[#ffd100] group-hover:scale-110"
+                    }`}
                   />
                   <span>{item.label}</span>
                 </div>
                 <ChevronRight
                   size={14}
-                  className={`opacity-0 group-hover:opacity-100 transition-opacity ${
-                    isActive ? "opacity-100" : ""
+                  className={`transition-all duration-200 ${
+                    isActive
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
                   }`}
                 />
               </button>
@@ -114,7 +116,7 @@ export default function AdminSidebar({
         <button
           onClick={onLogout}
           type="button"
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-red-500/30 text-red-300 hover:text-white hover:bg-red-600 hover:border-red-600 font-semibold text-xs tracking-wide transition-all shadow-sm"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-red-500/30 text-red-300 hover:text-white hover:bg-red-600 hover:border-red-600 font-semibold text-xs tracking-wide transition-all duration-200 shadow-sm hover:shadow-red-600/20 active:scale-[0.99]"
         >
           <LogOut size={15} />
           <span>Terminate Session (Logout)</span>

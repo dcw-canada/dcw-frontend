@@ -176,10 +176,10 @@ export default function ContactSection() {
           </div>
           <button
             type="submit"
-            className="button button--full"
+            className="button button--full group"
             disabled={status === "loading"}
           >
-            <Send size={16} />
+            <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
             {status === "loading" ? "Submitting..." : "Send shipment details"}
           </button>
           {status === "success" && (
