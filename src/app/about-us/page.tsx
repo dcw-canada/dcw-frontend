@@ -77,7 +77,7 @@ export default function AboutUsPage() {
       <main className="section section--paper">
         <div className="wrap max-w-5xl py-8">
           {/* Header & Introduction */}
-          <div className="mb-14 text-center max-w-3xl mx-auto">
+          <div className="mb-14 text-center max-w-3xl mx-auto reveal">
             <span className="text-xs font-bold uppercase tracking-widest text-[#f05a28] bg-[#f05a28]/10 px-3 py-1 rounded-full">
               About DCW Solutions Inc.
             </span>
@@ -90,7 +90,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* Growth & Milestones Stat Callout */}
-          <div className="bg-[#0b2f3a] text-white rounded-3xl p-8 sm:p-10 mb-16 shadow-xl relative overflow-hidden">
+          <div className="bg-[#0b2f3a] text-white rounded-3xl p-8 sm:p-10 mb-16 shadow-xl relative overflow-hidden reveal-scale">
             <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 bg-[radial-gradient(#ffd100_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               <div className="md:col-span-2">

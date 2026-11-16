@@ -64,11 +64,11 @@ export default function Navbar() {
         <div className="wrap site-header__inner" ref={dropdownRef}>
           <Link className="site-brand" href="/" onClick={closeMenu}>
             <Image
-              src="/images/dcw-logo-transparent.png"
+              src="/images/dcw-logo-exact.png"
               alt="DCW Solutions Inc."
-              width={165}
-              height={56}
-              className="h-12 w-auto object-contain"
+              width={1024}
+              height={423}
+              className="h-16 sm:h-20 w-auto object-contain"
               priority
             />
           </Link>

@@ -25,7 +25,7 @@ export default function DeliveryServices() {
   return (
     <section id="process" className="section section--dark">
       <div className="wrap">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <div>
             <h2>How a courier import moves with DCW</h2>
             <p>
@@ -36,7 +36,10 @@ export default function DeliveryServices() {
         </div>
         <div className="process-grid">
           {steps.map((step, index) => (
-            <article className="process-step" key={step.title}>
+            <article
+              className={`process-step reveal delay-${(index + 1) * 100}`}
+              key={step.title}
+            >
               <div className="process-step__number">{index + 1}</div>
               <div className="process-step__rule" />
               <h3>{step.title}</h3>

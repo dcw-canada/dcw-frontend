@@ -1,6 +1,7 @@
 import './globals.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollObserver from '../components/ScrollObserver';
 
 export const metadata = {
   title: 'DCW Solutions | Delivery. Clearance. Warehousing.',
@@ -20,6 +21,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <ScrollObserver />
         {children}
         <ToastContainer
           position="top-right"
