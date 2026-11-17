@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <DeliveryServices />
-      <EstimateSection />
+      {/* <EstimateSection /> */}
       <TrustSection />
       <ContactSection />
       <Footer />
