@@ -72,7 +72,7 @@ export default function EstimateSection() {
   return (
     <section id="estimate" className="section">
       <div className="wrap">
-        <div className="section-heading">
+        <div className="section-heading reveal">
           <div>
             <h2>Estimate your import costs</h2>
             <p>
@@ -81,7 +81,7 @@ export default function EstimateSection() {
             </p>
           </div>
         </div>
-        <div className="estimate-panel">
+        <div className="estimate-panel reveal-scale">
           <div className="estimate-panel__content">
             <h3>Shipment details</h3>
             <p>

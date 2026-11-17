@@ -60,7 +60,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="contact-section">
       <div className="wrap contact-section__inner">
-        <div className="contact-section__copy">
+        <div className="contact-section__copy reveal-left">
           <h2>Have a shipment coming in? Let&apos;s get it moving.</h2>
           <p>
             Tell us what you&apos;re importing and where it needs to go.
@@ -74,7 +74,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="contact-form">
+        <form onSubmit={handleSubmit} className="contact-form reveal-right">
           {/* Honeypot — hidden from users, catches bots */}
           <input
             type="text"

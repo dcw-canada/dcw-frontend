@@ -52,7 +52,7 @@ export default function ServicesSection() {
       <section className="section--tight">
         <div className="wrap">
           <div className="quick-actions" aria-label="Quick actions">
-            <Link className="quick-action group" href="/request-a-quote">
+            <Link className="quick-action group reveal delay-100" href="/request-a-quote">
               <div className="flex items-center justify-between">
                 <div className="quick-action__icon">
                   <Calculator size={24} aria-hidden="true" />
@@ -67,7 +67,7 @@ export default function ServicesSection() {
               </div>
             </Link>
 
-            <Link className="quick-action group" href="/track-shipment">
+            <Link className="quick-action group reveal delay-200" href="/track-shipment">
               <div className="flex items-center justify-between">
                 <div className="quick-action__icon">
                   <PackageSearch size={24} aria-hidden="true" />
@@ -82,7 +82,7 @@ export default function ServicesSection() {
               </div>
             </Link>
 
-            <Link className="quick-action group" href="/become-a-shipping-partner">
+            <Link className="quick-action group reveal delay-300" href="/become-a-shipping-partner">
               <div className="flex items-center justify-between">
                 <div className="quick-action__icon">
                   <Handshake size={24} aria-hidden="true" />
@@ -97,7 +97,7 @@ export default function ServicesSection() {
               </div>
             </Link>
 
-            <Link className="quick-action group" href="/book-a-call">
+            <Link className="quick-action group reveal delay-400" href="/book-a-call">
               <div className="flex items-center justify-between">
                 <div className="quick-action__icon">
                   <PhoneCall size={24} aria-hidden="true" />
@@ -117,7 +117,7 @@ export default function ServicesSection() {
 
       <section id="services" className="section">
         <div className="wrap">
-          <div className="section-heading">
+          <div className="section-heading reveal">
             <div>
               <h2>What we do</h2>
               <p>
@@ -130,8 +130,12 @@ export default function ServicesSection() {
             </a>
           </div>
           <div className="service-list">
-            {services.map((service) => (
-              <a className="service-row group" href="#contact" key={service.name}>
+            {services.map((service, index) => (
+              <a
+                className={`service-row group reveal delay-${Math.min(500, (index + 1) * 100)}`}
+                href="#contact"
+                key={service.name}
+              >
                 <h3>{service.name}</h3>
                 <div>
                   <p>{service.description}</p>
