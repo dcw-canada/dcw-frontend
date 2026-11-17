@@ -14,8 +14,10 @@ import {
   Loader2,
   Plus,
   Trash2,
+  Download,
 } from "lucide-react";
 import api from "@/lib/api";
+import { jsPDF } from "jspdf";
 
 const INDIAN_STATES = [
   { value: "PB", label: "Punjab" },
@@ -166,6 +168,412 @@ export default function BookShipmentPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDownloadPdf = () => {
+    const pdf = new jsPDF({ unit: "mm", format: "a4" });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 14;
+    const contentWidth = pageWidth - margin * 2;
+    let cursorY = 0;
+
+    // ---- Brand palette ----
+    const NAVY: [number, number, number] = [11, 47, 58]; // #0b2f3a
+    const ORANGE: [number, number, number] = [240, 90, 40]; // #f05a28
+    const GREEN: [number, number, number] = [31, 138, 91]; // #1f8a5b
+    const GOLD: [number, number, number] = [255, 209, 0]; // #ffd100
+    const GRAY: [number, number, number] = [81, 98, 106]; // #51626a
+    const LIGHT: [number, number, number] = [238, 241, 240]; // #eef1f0
+    const BORDER: [number, number, number] = [213, 220, 219]; // #d5dcdb
+    const WHITE: [number, number, number] = [255, 255, 255];
+
+    // ---- Helpers ----
+    const setFill = (c: [number, number, number]) =>
+      pdf.setFillColor(c[0], c[1], c[2]);
+    const setDraw = (c: [number, number, number]) =>
+      pdf.setDrawColor(c[0], c[1], c[2]);
+    const setTxt = (c: [number, number, number]) =>
+      pdf.setTextColor(c[0], c[1], c[2]);
+
+    const drawHeader = () => {
+      // Navy band
+      setFill(NAVY);
+      pdf.rect(0, 0, pageWidth, 38, "F");
+      // Orange accent stripe
+      setFill(ORANGE);
+      pdf.rect(0, 38, pageWidth, 2, "F");
+
+      // Brand mark
+      setFill(ORANGE);
+      pdf.roundedRect(margin, 10, 12, 12, 2, 2, "F");
+      setTxt(WHITE);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text("S", margin + 4, 18);
+
+      // Title
+      setTxt(WHITE);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(18);
+      pdf.text("Shipment Booking Summary", margin + 18, 18);
+
+      // Subtitle
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(9);
+      setTxt([170, 190, 195]);
+      pdf.text("India  →  Canada  |  International Courier", margin + 18, 24);
+
+      // AWB pill (right side)
+      const awbText = String(bookingSuccess?.awbNo || "N/A");
+      pdf.setFontSize(8);
+      pdf.setFont("helvetica", "normal");
+      const awbLabelW = pdf.getTextWidth("AWB NO.");
+      pdf.setFontSize(11);
+      pdf.setFont("helvetica", "bold");
+      const awbValW = pdf.getTextWidth(awbText);
+      const pillW = Math.max(awbLabelW, awbValW) + 12;
+      const pillX = pageWidth - margin - pillW;
+      setFill(GOLD);
+      pdf.roundedRect(pillX, 10, pillW, 12, 2, 2, "F");
+      setTxt(NAVY);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(6.5);
+      pdf.text("AWB NO.", pillX + pillW / 2, 14.5, { align: "center" });
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(10);
+      pdf.text(awbText, pillX + pillW / 2, 19.5, { align: "center" });
+
+      cursorY = 48;
+    };
+
+    const ensureSpace = (h: number) => {
+      if (cursorY + h > pageHeight - 20) {
+        drawFooter();
+        pdf.addPage();
+        drawHeader();
+      }
+    };
+
+    const drawFooter = () => {
+      const y = pageHeight - 12;
+      setDraw(BORDER);
+      pdf.setLineWidth(0.3);
+      pdf.line(margin, y - 4, pageWidth - margin, y - 4);
+      setTxt(GRAY);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7.5);
+      pdf.text("Thank you for shipping with us.", margin, y);
+      pdf.text(
+        `Generated ${new Date().toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        })}`,
+        pageWidth - margin,
+        y,
+        { align: "right" },
+      );
+    };
+
+    const sectionTitle = (
+      title: string,
+      accent: [number, number, number] = ORANGE,
+    ) => {
+      ensureSpace(14);
+      // accent bar
+      setFill(accent);
+      pdf.roundedRect(margin, cursorY - 1, 2.2, 8, 1, 1, "F");
+      setTxt(NAVY);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text(title.toUpperCase(), margin + 6, cursorY + 5);
+      setDraw(BORDER);
+      pdf.setLineWidth(0.2);
+      pdf.line(margin + 6, cursorY + 8, pageWidth - margin, cursorY + 8);
+      cursorY += 13;
+    };
+
+    const infoCard = (
+      x: number,
+      y: number,
+      w: number,
+      h: number,
+      title: string,
+      lines: string[],
+      accent: [number, number, number],
+    ) => {
+      // card background
+      setFill(LIGHT);
+      pdf.roundedRect(x, y, w, h, 2.5, 2.5, "F");
+      // accent left edge
+      setFill(accent);
+      pdf.roundedRect(x, y, 2.2, h, 1, 1, "F");
+      // title
+      setTxt(accent);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(8);
+      pdf.text(title.toUpperCase(), x + 6, y + 6);
+      // lines
+      setTxt(NAVY);
+      let ly = y + 12;
+      lines.forEach((line, i) => {
+        pdf.setFont("helvetica", i === 0 ? "bold" : "normal");
+        pdf.setFontSize(i === 0 ? 9.5 : 8.5);
+        if (i > 0) setTxt(GRAY);
+        const wrapped = pdf.splitTextToSize(line, w - 12);
+        wrapped.forEach((wl: string) => {
+          pdf.text(wl, x + 6, ly);
+          ly += i === 0 ? 5 : 4;
+        });
+        if (i === 0) ly += 0.5;
+      });
+    };
+
+    // ================= BUILD =================
+    drawHeader();
+
+    // ---- Address cards side by side ----
+    const cardGap = 6;
+    const cardW = (contentWidth - cardGap) / 2;
+    const shipperLines = [
+      shipper.shipperName || "—",
+      shipper.shipperPhone || "",
+      [
+        shipper.shipperAddress,
+        shipper.shipperCity,
+        INDIAN_STATES.find((s) => s.value === shipper.shipperState)?.label ||
+          shipper.shipperState,
+        shipper.shipperPincode,
+      ]
+        .filter(Boolean)
+        .join(", ") || "—",
+    ].filter(Boolean);
+
+    const receiverLines = [
+      receiver.receiverName || "—",
+      receiver.receiverPhone || "",
+      [
+        receiver.receiverAddress,
+        receiver.receiverCity,
+        receiver.receiverState,
+        receiver.receiverZipcode,
+        receiver.receiverCountry,
+      ]
+        .filter(Boolean)
+        .join(", ") || "—",
+    ].filter(Boolean);
+
+    const cardH = 34;
+    infoCard(
+      margin,
+      cursorY,
+      cardW,
+      cardH,
+      "Pickup — India",
+      shipperLines,
+      ORANGE,
+    );
+    infoCard(
+      margin + cardW + cardGap,
+      cursorY,
+      cardW,
+      cardH,
+      "Delivery — Canada",
+      receiverLines,
+      NAVY,
+    );
+    cursorY += cardH + 10;
+
+    // ---- Packages ----
+    sectionTitle("Packages");
+    boxes.forEach((box, index) => {
+      ensureSpace(24);
+      const rowH = 20;
+      // row bg
+      setFill(LIGHT);
+      pdf.roundedRect(margin, cursorY, contentWidth, rowH, 2, 2, "F");
+      // box number circle
+      setFill(NAVY);
+      pdf.circle(margin + 8, cursorY + rowH / 2, 4, "F");
+      setTxt(WHITE);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(8);
+      pdf.text(String(index + 1), margin + 8, cursorY + rowH / 2 + 1.2, {
+        align: "center",
+      });
+
+      // data columns
+      const col1 = margin + 16;
+      const col2 = margin + 70;
+      const col3 = margin + 115;
+
+      // Weight
+      setTxt(GRAY);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7);
+      pdf.text("WEIGHT", col1, cursorY + 7);
+      setTxt(NAVY);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9.5);
+      pdf.text(`${box.weightKg} kg`, col1, cursorY + 13);
+
+      // Dimensions
+      setTxt(GRAY);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7);
+      pdf.text("DIMENSIONS (L×W×H)", col2, cursorY + 7);
+      setTxt(NAVY);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9.5);
+      pdf.text(
+        `${box.lengthCm} × ${box.widthCm} × ${box.heightCm} cm`,
+        col2,
+        cursorY + 13,
+      );
+
+      // Description
+      setTxt(GRAY);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7);
+      pdf.text("PRODUCT DESCRIPTION", col3, cursorY + 7);
+      setTxt(NAVY);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      const desc = box.productDescription || "—";
+      const descLines = pdf.splitTextToSize(
+        desc,
+        pageWidth - margin - col3 - 2,
+      );
+      pdf.text(descLines[0] || "—", col3, cursorY + 13);
+
+      // HSN small under description if present
+      if (box.hsnCode) {
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(7.5);
+        setTxt(GRAY);
+        pdf.text(`HSN: ${box.hsnCode}`, col3, cursorY + 17.5);
+      }
+
+      cursorY += rowH + 4;
+    });
+
+    // ---- Customs ----
+    cursorY += 2;
+    sectionTitle("Customs Declaration", GREEN);
+    ensureSpace(12);
+    setFill(LIGHT);
+    pdf.roundedRect(margin, cursorY, contentWidth, 12, 2, 2, "F");
+    setTxt(GRAY);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(7);
+    pdf.text("CONTENT DESCRIPTION", margin + 5, cursorY + 4.5);
+    setTxt(NAVY);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(9.5);
+    pdf.text(contentDescription || "—", margin + 5, cursorY + 9.5);
+    cursorY += 18;
+
+    // ---- Rate breakdown (dark card) ----
+    if (rateResult) {
+      sectionTitle("Rate Breakdown");
+      ensureSpace(52);
+
+      const rateH = 46;
+      setFill(NAVY);
+      pdf.roundedRect(margin, cursorY, contentWidth, rateH, 3, 3, "F");
+
+      // left: metrics
+      const lx = margin + 8;
+      const rows = [
+        ["Chargeable Weight", `${chargeableWeight} KG`],
+        ["Zone", String(rateResult.zone)],
+        ["Rate per KG", `CA$ ${rateResult.pricePerKg}`],
+      ];
+      setTxt([170, 190, 195]);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7);
+      pdf.text("SHIPMENT METRICS", lx, cursorY + 7);
+      let ry = cursorY + 14;
+      rows.forEach(([label, val]) => {
+        setTxt([190, 205, 210]);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(8.5);
+        pdf.text(label, lx, ry);
+        setTxt(WHITE);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(8.5);
+        pdf.text(val, lx + 55, ry);
+        ry += 6;
+      });
+
+      // divider
+      setDraw([40, 80, 90]);
+      pdf.setLineWidth(0.3);
+      pdf.line(
+        margin + contentWidth / 2,
+        cursorY + 8,
+        margin + contentWidth / 2,
+        cursorY + rateH - 8,
+      );
+
+      // right: total
+      const rx = margin + contentWidth / 2 + 8;
+      setTxt([170, 190, 195]);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7);
+      pdf.text("TOTAL AMOUNT", rx, cursorY + 7);
+      setTxt(GOLD);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(22);
+      pdf.text(
+        `CA$ ${Number(rateResult.totalPrice).toFixed(2)}`,
+        rx,
+        cursorY + 20,
+      );
+      setTxt([170, 190, 195]);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(7.5);
+      pdf.text("All applicable charges included", rx, cursorY + 27);
+
+      // small gold badge
+      setFill(GREEN);
+      pdf.roundedRect(rx, cursorY + 31, 30, 7, 1.5, 1.5, "F");
+      setTxt(WHITE);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(7);
+      pdf.text("CONFIRMED", rx + 15, cursorY + 35.5, { align: "center" });
+
+      cursorY += rateH + 8;
+    }
+
+    // ---- Closing note ----
+    ensureSpace(16);
+    setFill(LIGHT);
+    pdf.roundedRect(margin, cursorY, contentWidth, 14, 2, 2, "F");
+    setFill(GREEN);
+    pdf.circle(margin + 7, cursorY + 7, 2, "F");
+    setTxt(NAVY);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(8.5);
+    pdf.text("What's next?", margin + 12, cursorY + 5.5);
+    setTxt(GRAY);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(8);
+    pdf.text(
+      "Our team will contact you shortly to schedule pickup. Keep this document for your records.",
+      margin + 12,
+      cursorY + 10.5,
+    );
+    cursorY += 18;
+
+    drawFooter();
+
+    const awbNo = String(bookingSuccess?.awbNo || "details").replace(
+      /[^a-z0-9_-]/gi,
+      "-",
+    );
+    pdf.save(`shipment-booking-${awbNo}.pdf`);
   };
 
   const inp =
@@ -361,7 +769,8 @@ export default function BookShipmentPage() {
                 }}
                 className="group bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center gap-2"
               >
-                Next: Delivery Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                Next: Delivery Details{" "}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
           </div>
@@ -472,7 +881,8 @@ export default function BookShipmentPage() {
                 onClick={() => setStep(1)}
                 className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />{" "}
+                Back
               </button>
               <button
                 onClick={() => {
@@ -490,7 +900,8 @@ export default function BookShipmentPage() {
                 }}
                 className="group bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-orange-500/25 flex items-center gap-2"
               >
-                Next: Packages <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                Next: Packages{" "}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
           </div>
@@ -609,7 +1020,8 @@ export default function BookShipmentPage() {
                 onClick={() => setStep(2)}
                 className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />{" "}
+                Back
               </button>
               <button
                 onClick={handleCalculateRate}
@@ -622,7 +1034,8 @@ export default function BookShipmentPage() {
                   </>
                 ) : (
                   <>
-                    Calculate Rate <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                    Calculate Rate{" "}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                   </>
                 )}
               </button>
@@ -703,7 +1116,8 @@ export default function BookShipmentPage() {
                 onClick={() => setStep(3)}
                 className="group bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-sm py-3 px-6 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" /> Back
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />{" "}
+                Back
               </button>
               <button
                 onClick={handleConfirmBooking}
@@ -716,7 +1130,8 @@ export default function BookShipmentPage() {
                   </>
                 ) : (
                   <>
-                    Confirm Booking <CheckCircle2 className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                    Confirm Booking{" "}
+                    <CheckCircle2 className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   </>
                 )}
               </button>
@@ -751,6 +1166,13 @@ export default function BookShipmentPage() {
               >
                 Back to Home
               </Link>
+              <button
+                onClick={handleDownloadPdf}
+                className="bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md inline-flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download PDF
+              </button>
             </div>
           </div>
         )}

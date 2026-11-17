@@ -582,7 +582,7 @@ h3 {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.service-row:hover {
+.service-row:hover:not(:has(.service-row__tags:hover)) {
   background: rgba(255, 255, 255, 0.7);
   transform: translateX(4px);
   box-shadow: 0 6px 20px -8px rgba(11, 47, 58, 0.08);
@@ -594,7 +594,7 @@ h3 {
   transition: color 0.2s ease;
 }
 
-.service-row:hover h3 {
+.service-row:hover:not(:has(.service-row__tags:hover)) h3 {
   color: var(--signal-ink);
 }
 
@@ -608,6 +608,7 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
+  cursor: default;
 }
 
 .service-tag {
@@ -617,14 +618,6 @@ h3 {
   background: var(--paper);
   color: var(--slate);
   font-size: 0.76rem;
-  transition: all 0.2s ease;
-}
-
-.service-tag:hover {
-  border-color: var(--signal);
-  color: var(--signal);
-  background: #fff;
-  transform: translateY(-1px);
 }
 
 .service-row__link {
@@ -639,7 +632,11 @@ h3 {
   transition: transform 0.2s ease;
 }
 
-.service-row:hover .service-row__link span {
+.service-row:hover:not(:has(.service-row__tags:hover)) .service-row__link {
+  color: #f05a28;
+}
+
+.service-row:hover:not(:has(.service-row__tags:hover)) .service-row__link span {
   transform: translateX(4px);
 }
 

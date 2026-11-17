@@ -131,9 +131,8 @@ export default function ServicesSection() {
           </div>
           <div className="service-list">
             {services.map((service, index) => (
-              <a
-                className={`service-row group reveal delay-${Math.min(500, (index + 1) * 100)}`}
-                href="#contact"
+              <div
+                className={`service-row reveal delay-${Math.min(500, (index + 1) * 100)}`}
                 key={service.name}
               >
                 <h3>{service.name}</h3>
@@ -147,10 +146,13 @@ export default function ServicesSection() {
                     ))}
                   </div>
                 </div>
-                <span className="service-row__link inline-flex items-center gap-1 group-hover:text-[#f05a28] transition-colors">
-                  Ask about this service <span aria-hidden="true" className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-                </span>
-              </a>
+                <a
+                  className="service-row__link inline-flex items-center gap-1"
+                  href="#contact"
+                >
+                  Ask about this service <span aria-hidden="true">→</span>
+                </a>
+              </div>
             ))}
           </div>
         </div>
