@@ -153,6 +153,9 @@ export default function ContactSection() {
               }
             >
               <option value="">Select a service</option>
+              <option value="india-canada">
+                India → Canada Door-to-Door Courier &amp; Cargo
+              </option>
               <option value="customs">Customs clearance coordination</option>
               <option value="warehousing">Warehousing &amp; fulfillment</option>
               <option value="freight">Freight forwarding &amp; drayage</option>

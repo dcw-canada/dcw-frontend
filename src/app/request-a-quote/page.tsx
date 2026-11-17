@@ -203,6 +203,28 @@ export default function RequestQuotePage() {
             })}
           </div>
 
+          {/* India to Canada Route Callout */}
+          <div className="bg-gradient-to-r from-[#0b2f3a] to-[#14434f] text-white rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 border border-white/10 shadow-lg">
+            <div className="flex items-center gap-3.5">
+              <span className="text-2xl">🇮🇳➔🇨🇦</span>
+              <div>
+                <strong className="block text-white text-base">
+                  Shipping parcels or cargo from India to Canada?
+                </strong>
+                <span className="text-xs text-[#d5dcdb]">
+                  We provide pan-India doorstep pickup, customs clearance coordination, and nationwide UPS delivery.
+                </span>
+              </div>
+            </div>
+            <Link
+              href="/india-to-canada"
+              className="shrink-0 inline-flex items-center gap-1.5 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition"
+            >
+              <span>Explore India Lane &amp; Contact Us</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+
           {/* Quote Form */}
           <div className="bg-white rounded-3xl border border-[#d5dcdb] shadow-xl overflow-hidden">
             <div className="bg-gradient-to-r from-[#0b2f3a] to-[#14434f] px-8 sm:px-12 py-7 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">

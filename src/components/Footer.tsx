@@ -45,7 +45,9 @@ export default function Footer() {
                 <a href="#services">Last-mile delivery</a>
               </li>
               <li>
-                <a href="#services">India → Canada door-to-door</a>
+                <Link href="/india-to-canada" className="text-[#ffd100] font-semibold hover:text-white">
+                  India → Canada door-to-door
+                </Link>
               </li>
             </ul>
           </div>
@@ -68,6 +70,9 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/become-a-shipping-partner">Become a shipping partner</Link>
+              </li>
+              <li>
+                <Link href="/india-to-canada">India to Canada Guide</Link>
               </li>
               <li>
                 <Link href="/blog">Blog &amp; Guides</Link>
