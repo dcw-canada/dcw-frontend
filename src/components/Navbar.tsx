@@ -16,6 +16,7 @@ import {
   Layers,
   ArrowRight,
   BookOpen,
+  Plane,
 } from "lucide-react";
 
 export default function Navbar() {
@@ -111,6 +112,31 @@ export default function Navbar() {
                   onMouseLeave={() => setActiveDropdown(null)}
                   className="dropdown-menu-popover lg:absolute lg:top-full lg:left-0 lg:mt-1 lg:w-72 bg-white rounded-xl shadow-xl lg:border lg:border-gray-100 p-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
                 >
+                  <Link
+                    href="/india-to-canada"
+                    onClick={closeMenu}
+                    className="flex items-start gap-3 p-2.5 rounded-lg bg-[#f05a28]/10 hover:bg-[#f05a28]/15 border border-[#f05a28]/30 transition-colors group/item"
+                  >
+                    <div className="mt-0.5 p-1.5 rounded-md bg-[#f05a28] text-white">
+                      <Plane size={17} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="font-bold text-sm text-[#0b2f3a] group-hover/item:text-[#f05a28]">
+                          India → Canada
+                        </div>
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-[#f05a28] text-white px-1.5 py-0.5 rounded">
+                          Special
+                        </span>
+                      </div>
+                      <div className="text-xs text-[#51626a] leading-tight mt-0.5">
+                        Door-to-door courier &amp; cargo
+                      </div>
+                    </div>
+                  </Link>
+
+                  <div className="my-1 border-t border-gray-100"></div>
+
                   <Link
                     href="/#services"
                     onClick={closeMenu}
@@ -345,6 +371,16 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+
+            {/* Direct India to Canada Lane Link */}
+            <Link
+              href="/india-to-canada"
+              onClick={closeMenu}
+              className="font-bold text-[#0b2f3a] hover:text-[#f05a28] hover:bg-[#eef1f0] transition-all duration-200 px-3.5 py-2 rounded-lg flex items-center gap-1.5"
+            >
+              <Plane size={16} className="text-[#f05a28]" />
+              <span>India ➔ Canada</span>
+            </Link>
 
             {/* Direct Blog Link */}
             <Link

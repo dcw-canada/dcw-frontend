@@ -1,4 +1,5 @@
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck, Plane } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -23,9 +24,18 @@ export default function Hero() {
         {/* Content */}
         <div className="wrap relative z-10">
           <div className="max-w-7xl">
-            <p className="text-[#ffd100] text-xs sm:text-sm font-black tracking-widest uppercase mb-4 reveal">
-              Delivery · Clearance · Warehousing
-            </p>
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <p className="text-[#ffd100] text-xs sm:text-sm font-black tracking-widest uppercase reveal">
+                Delivery · Clearance · Warehousing
+              </p>
+              <Link
+                href="/india-to-canada"
+                className="inline-flex items-center gap-1.5 bg-[#f05a28]/25 hover:bg-[#f05a28]/35 border border-[#f05a28]/50 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm transition-all hover:scale-105"
+              >
+                <span>🇮🇳➔🇨🇦 India to Canada Shipping</span>
+                <span className="text-[#ffd100]">Explore →</span>
+              </Link>
+            </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white leading-[1.15] mb-5 drop-shadow-sm reveal delay-100">
               Your Trusted Canadian <br /> Logistics Partner
@@ -40,15 +50,21 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mt-10 mb-7 reveal delay-300">
-              <a
+              <Link
                 className="group inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0"
+                href="/india-to-canada"
+              >
+                <span>India ➔ Canada Shipping</span>
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+              <a
+                className="group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md"
                 href="#contact"
               >
                 <span>Request a quote</span>
-                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
               <a
-                className="inline-flex items-center bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md"
+                className="inline-flex items-center text-white/80 hover:text-white px-4 py-3.5 text-sm sm:text-base font-semibold hover:underline"
                 href="#services"
               >
                 Explore services
@@ -80,10 +96,12 @@ export default function Hero() {
             <strong>Last-Mile Delivery</strong>
             <span>Canada-wide via UPS</span>
           </div>
-          <div className="capability-strip__item reveal delay-400">
-            <strong>India → Canada</strong>
-            <span>Door-to-door courier (launching)</span>
-          </div>
+          <Link href="/india-to-canada" className="capability-strip__item reveal delay-400 group cursor-pointer hover:bg-black/5 transition rounded-lg">
+            <strong className="group-hover:text-[#f05a28] transition-colors flex items-center gap-1">
+              India → Canada <span className="text-xs">➔</span>
+            </strong>
+            <span>Door-to-door courier &amp; cargo</span>
+          </Link>
         </div>
       </div>
     </>
