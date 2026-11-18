@@ -339,6 +339,7 @@ export default function BookShipmentPage() {
     const shipperLines = [
       shipper.shipperName || "—",
       shipper.shipperPhone || "",
+      shipper.shipperEmail || "",
       [
         shipper.shipperAddress,
         shipper.shipperCity,
@@ -353,6 +354,7 @@ export default function BookShipmentPage() {
     const receiverLines = [
       receiver.receiverName || "—",
       receiver.receiverPhone || "",
+      receiver.receiverEmail || "",
       [
         receiver.receiverAddress,
         receiver.receiverCity,
@@ -364,7 +366,7 @@ export default function BookShipmentPage() {
         .join(", ") || "—",
     ].filter(Boolean);
 
-    const cardH = 34;
+    const cardH = 38;
     infoCard(
       margin,
       cursorY,
@@ -699,6 +701,18 @@ export default function BookShipmentPage() {
                 />
               </div>
               <div className="sm:col-span-2">
+                <label className={lbl}>Email Address</label>
+                <input
+                  type="email"
+                  value={shipper.shipperEmail}
+                  onChange={(e) =>
+                    setShipper({ ...shipper, shipperEmail: e.target.value })
+                  }
+                  className={inp}
+                  placeholder="e.g. rahul@example.com"
+                />
+              </div>
+              <div className="sm:col-span-2">
                 <label className={lbl}>Address *</label>
                 <input
                   type="text"
@@ -814,6 +828,18 @@ export default function BookShipmentPage() {
                   }
                   className={inp}
                   placeholder="e.g. +1 416 555 0199"
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className={lbl}>Email Address</label>
+                <input
+                  type="email"
+                  value={receiver.receiverEmail}
+                  onChange={(e) =>
+                    setReceiver({ ...receiver, receiverEmail: e.target.value })
+                  }
+                  className={inp}
+                  placeholder="e.g. john@example.com"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -1072,6 +1098,7 @@ export default function BookShipmentPage() {
                 </p>
                 <p className="text-sm text-[#51626a] mt-1">
                   {shipper.shipperPhone}
+                  {shipper.shipperEmail && ` · ${shipper.shipperEmail}`}
                 </p>
               </div>
               <div className="bg-[#eef1f0] p-5 rounded-2xl">
@@ -1087,6 +1114,7 @@ export default function BookShipmentPage() {
                 </p>
                 <p className="text-sm text-[#51626a] mt-1">
                   {receiver.receiverPhone}
+                  {receiver.receiverEmail && ` · ${receiver.receiverEmail}`}
                 </p>
               </div>
             </div>
