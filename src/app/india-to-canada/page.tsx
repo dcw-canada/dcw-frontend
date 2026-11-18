@@ -274,15 +274,11 @@ export default function IndiaToCanadaPage() {
 Pickup in India: ${pickupLocation} ${pinCode ? `(PIN: ${pinCode})` : ""}
 Delivery in Canada: ${deliveryCity}, ${province}
 Shipment Type: ${shipmentType}
-Approx Weight: ${weightKg} KG
-Box Dimensions (cm): ${boxL || "-"} L x ${boxW || "-"} W x ${boxH || "-"} H
-Preferred Method: ${shippingMethod}
-Company: ${company || "Not specified"}
-Notes: ${notes || "None"}`;
+Approx Weight: ${weightKg} KG`;
 
       await api.post("/contact", {
         name: name.trim(),
-        company: company.trim() || "Individual",
+        company: "Individual",
         email: email.trim(),
         phone: phone.trim(),
         service: "India to Canada Shipping",
@@ -351,16 +347,12 @@ Notes: ${notes || "None"}`;
                 <Sparkles size={14} className="text-[#ffd100]" />
                 Specialized Trade Corridor: India ➔ Canada
               </span>
-              <div className="inline-flex items-center gap-2 bg-[#f05a28]/25 text-[#ff9c78] border border-[#f05a28]/40 px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-[#f05a28] animate-pulse" />
-                <span>Launching soon</span>
-              </div>
             </div>
 
             {/* Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black text-white leading-[1.12] tracking-tight">
-              Shipping from India to Canada, <br className="hidden sm:inline" />
-              <span className="text-[#ffd100]">door to door</span>
+              Door to Door <br className="hidden sm:inline" />
+              Shipping from <span className="text-[#ffd100]">India to Canada</span>
             </h1>
 
             {/* Lead text */}
@@ -371,54 +363,33 @@ Notes: ${notes || "None"}`;
               contact throughout.
             </p>
 
-            {/* Symmetrical Facts Pills */}
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-white/95 pt-1 max-w-xl">
-              <li className="flex items-center gap-2 border border-white/20 bg-white/5 rounded-xl px-3.5 py-2 backdrop-blur-sm">
-                <CheckCircle2 size={16} className="text-[#ffd100] shrink-0" />
-                <span>Pickup anywhere in India</span>
-              </li>
-              <li className="flex items-center gap-2 border border-white/20 bg-white/5 rounded-xl px-3.5 py-2 backdrop-blur-sm">
-                <CheckCircle2 size={16} className="text-[#ffd100] shrink-0" />
-                <span>Personal &amp; commercial shipments</span>
-              </li>
-              <li className="flex items-center gap-2 border border-white/20 bg-white/5 rounded-xl px-3.5 py-2 backdrop-blur-sm">
-                <CheckCircle2 size={16} className="text-[#ffd100] shrink-0" />
-                <span>Customs clearance coordinated</span>
-              </li>
-              <li className="flex items-center gap-2 border border-white/20 bg-white/5 rounded-xl px-3.5 py-2 backdrop-blur-sm">
-                <CheckCircle2 size={16} className="text-[#ffd100] shrink-0" />
-                <span>Delivery anywhere in Canada</span>
-              </li>
-            </ul>
-
             {/* CTAs */}
-            {/* RULE: For India-to-Canada shipment quotations, use "Contact Us" as the only CTA */}
             <div className="flex flex-wrap items-center gap-3.5 pt-3">
               <button
                 type="button"
                 onClick={() => scrollToForm()}
                 className="inline-flex items-center gap-2 bg-[#f05a28] hover:bg-[#c2410c] text-white px-7 py-3.5 rounded-xl font-black text-sm sm:text-base transition-all duration-200 shadow-xl hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <span>Contact Us for Quote</span>
+                <span>Get a quote</span>
                 <ArrowRight size={18} />
               </button>
-
-              <a
-                href="#quote-estimator"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 px-5 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
-              >
-                <Calculator size={17} className="text-[#ffd100]" />
-                <span>Rate Estimator</span>
-              </a>
 
               <a
                 href={WA_I2C}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white border border-white/20 px-5 py-3.5 rounded-xl font-bold text-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 px-5 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
               >
                 <MessageSquare size={17} className="text-[#25D366]" />
-                <span>WhatsApp Desk</span>
+                <span>Whatsapp Us</span>
+              </a>
+
+              <a
+                href="#quote-estimator"
+                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white border border-white/20 px-5 py-3.5 rounded-xl font-bold text-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
+              >
+                <Calculator size={17} className="text-[#ffd100]" />
+                <span>Rate Estimator</span>
               </a>
             </div>
           </div>
@@ -537,9 +508,9 @@ Notes: ${notes || "None"}`;
               <button
                 type="button"
                 onClick={() => scrollToForm("Personal parcel")}
-                className="w-full mt-6 text-center bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition cursor-pointer"
+                className="w-full mt-6 text-center bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
-                Contact Us for Parcel Quote
+                Get a quote
               </button>
             </div>
 
@@ -580,9 +551,9 @@ Notes: ${notes || "None"}`;
               <button
                 type="button"
                 onClick={() => scrollToForm("Commercial goods")}
-                className="w-full mt-6 text-center bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition cursor-pointer"
+                className="w-full mt-6 text-center bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
-                Contact Us for Business Quote
+                Get a quote
               </button>
             </div>
 
@@ -627,9 +598,9 @@ Notes: ${notes || "None"}`;
               <button
                 type="button"
                 onClick={() => scrollToForm("Larger cargo")}
-                className="w-full mt-6 text-center bg-[#eef1f0] hover:bg-[#d5dcdb] text-[#0b2f3a] font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition cursor-pointer"
+                className="w-full mt-6 text-center bg-[#f05a28] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
-                Contact Us to Discuss Cargo
+                Get a quote
               </button>
             </div>
           </div>
@@ -647,7 +618,7 @@ Notes: ${notes || "None"}`;
               Transparent Pipeline
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
-              How shipping from India to Canada works
+              How it works
             </h2>
             <p className="text-sm sm:text-base text-[#a9c2c6]">
               From your enquiry to the recipient&apos;s door, one DCW team keeps
@@ -818,7 +789,7 @@ Notes: ${notes || "None"}`;
                       <Loader2 size={16} className="animate-spin" /> Calculating...
                     </>
                   ) : (
-                    <>Calculate Indicative Rate</>
+                    <>Get Estimate</>
                   )}
                 </button>
               </form>
@@ -1298,7 +1269,7 @@ Notes: ${notes || "None"}`;
         <div className="wrap space-y-10">
           <div className="text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-black uppercase tracking-widest text-[#f05a28] bg-[#f05a28]/10 px-3.5 py-1.5 rounded-full">
-              Got Questions?
+              Frequently asked questions
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-[#0b2f3a] mt-2">
               India to Canada shipping: frequently asked questions
@@ -1451,9 +1422,9 @@ Notes: ${notes || "None"}`;
                 </div>
               </div>
 
-              {/* Row 3: Shipment Type, Weight & Dimensions */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
-                <div className="sm:col-span-5">
+              {/* Row 3: Shipment Type & Weight */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
                   <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
                     Category <span className="text-[#f05a28]">*</span>
                   </label>
@@ -1479,7 +1450,7 @@ Notes: ${notes || "None"}`;
                   </select>
                 </div>
 
-                <div className="sm:col-span-3">
+                <div>
                   <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
                     Weight (kg) <span className="text-[#f05a28]">*</span>
                   </label>
@@ -1494,66 +1465,9 @@ Notes: ${notes || "None"}`;
                     className="w-full px-3 py-2 rounded-lg border border-[#d5dcdb] text-sm focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
                   />
                 </div>
-
-                <div className="sm:col-span-4">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
-                    Box L × W × H cm
-                  </label>
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <input
-                      type="number"
-                      min="1"
-                      placeholder="L"
-                      value={boxL}
-                      onChange={(e) => setBoxL(e.target.value)}
-                      className="px-1.5 py-2 rounded-lg border border-[#d5dcdb] text-xs text-center focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
-                    />
-                    <input
-                      type="number"
-                      min="1"
-                      placeholder="W"
-                      value={boxW}
-                      onChange={(e) => setBoxW(e.target.value)}
-                      className="px-1.5 py-2 rounded-lg border border-[#d5dcdb] text-xs text-center focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
-                    />
-                    <input
-                      type="number"
-                      min="1"
-                      placeholder="H"
-                      value={boxH}
-                      onChange={(e) => setBoxH(e.target.value)}
-                      className="px-1.5 py-2 rounded-lg border border-[#d5dcdb] text-xs text-center focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
-                    />
-                  </div>
-                </div>
               </div>
 
-              {/* Row 4: Preferred Shipping Method */}
-              <div className="bg-[#eef1f0]/50 p-2.5 rounded-xl border border-[#d5dcdb]">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] shrink-0">
-                    Method:
-                  </span>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 flex-1 max-w-md sm:ml-auto">
-                    {["Air courier", "Air cargo", "Sea freight", "Not sure"].map((m) => (
-                      <button
-                        key={m}
-                        type="button"
-                        onClick={() => setShippingMethod(m)}
-                        className={`py-1 px-2.5 text-xs font-bold rounded-lg border transition-all cursor-pointer text-center ${
-                          shippingMethod === m
-                            ? "bg-[#0b2f3a] text-white border-[#0b2f3a] shadow-xs"
-                            : "bg-white text-[#0b2f3a] border-[#d5dcdb] hover:bg-[#eef1f0]"
-                        }`}
-                      >
-                        {m}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Row 5: Sender Contact Info */}
+              {/* Row 4: Sender Contact Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
@@ -1584,43 +1498,15 @@ Notes: ${notes || "None"}`;
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
-                    Phone / WhatsApp <span className="text-[10px] font-normal lowercase">(opt)</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+1 (604) 555-0123"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-[#d5dcdb] text-sm focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
-                    Company <span className="text-[10px] font-normal lowercase">(opt)</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Optional"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-[#d5dcdb] text-sm focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
-                  />
-                </div>
-              </div>
-
               <div>
                 <label className="text-[11px] font-bold uppercase tracking-wider text-[#51626a] block mb-1">
-                  Special requests or contents <span className="text-[10px] font-normal lowercase">(optional)</span>
+                  Phone / WhatsApp <span className="text-[10px] font-normal lowercase">(opt)</span>
                 </label>
                 <input
-                  type="text"
-                  placeholder="Number of boxes, pickup date preference, deadlines..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
+                  type="tel"
+                  placeholder="+1 (604) 555-0123"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg border border-[#d5dcdb] text-sm focus:outline-none focus:ring-2 focus:ring-[#f05a28]"
                 />
               </div>
@@ -1654,18 +1540,18 @@ Notes: ${notes || "None"}`;
             </form>
 
             {/* RIGHT: PREFER TO TALK PANEL (MATCHING EXACT CONTAINER HEIGHT) */}
-            <div className="lg:col-span-4 bg-white rounded-2xl p-6 sm:p-7 border border-[#d5dcdb] shadow-sm flex flex-col justify-between">
+            <div className="lg:col-span-4 bg-white rounded-2xl p-6 sm:p-8 border border-[#d5dcdb] shadow-sm flex flex-col justify-between">
               {/* Header & WhatsApp */}
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <span className="text-[11px] font-black uppercase tracking-widest text-[#f05a28] block mb-0.5">
+                  <span className="text-xs font-black uppercase tracking-widest text-[#f05a28] block mb-1">
                     Direct Assistance
                   </span>
-                  <h3 className="text-xl font-black text-[#0b2f3a]">
+                  <h3 className="text-2xl font-black text-[#0b2f3a]">
                     Prefer to talk?
                   </h3>
-                  <p className="text-xs text-[#51626a] mt-0.5">
-                    Get answers from our Canada dispatch team.
+                  <p className="text-sm text-[#51626a] mt-1 leading-relaxed">
+                    Get quick answers and advice from our Canada dispatch specialists.
                   </p>
                 </div>
 
@@ -1673,78 +1559,58 @@ Notes: ${notes || "None"}`;
                   href={WA_I2C}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#1f8a5b] hover:bg-[#186f49] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2.5 bg-[#1f8a5b] hover:bg-[#186f49] text-white font-bold text-sm sm:text-base py-3.5 px-5 rounded-xl transition shadow-sm hover:shadow-md"
                 >
-                  <MessageSquare size={16} />
+                  <MessageSquare size={18} />
                   <span>Get assistance on WhatsApp</span>
                 </a>
 
-                <div className="space-y-1.5 text-xs text-[#51626a] pt-1">
-                  <p>
-                    <strong className="text-[#0b2f3a]">Phone:</strong>{" "}
+                <div className="space-y-2 pt-2 text-sm text-[#51626a] bg-[#eef1f0]/50 p-4 rounded-xl border border-[#d5dcdb]/70">
+                  <p className="flex items-center justify-between">
+                    <span className="font-bold text-[#0b2f3a]">Phone:</span>{" "}
                     <a href="tel:+16729683390" className="hover:underline font-semibold text-[#0b2f3a]">
                       (672) 968-3390
                     </a>
                   </p>
-                  <p>
-                    <strong className="text-[#0b2f3a]">Email:</strong>{" "}
+                  <p className="flex items-center justify-between">
+                    <span className="font-bold text-[#0b2f3a]">Email:</span>{" "}
                     <a href="mailto:info@dcwsolution.ca" className="hover:underline font-semibold text-[#0b2f3a]">
                       info@dcwsolution.ca
                     </a>
                   </p>
-                  <p className="text-[11px] text-[#51626a]/80">
-                    Mon–Fri, 9 am – 5 pm PT
+                  <p className="text-xs text-[#51626a] pt-1 border-t border-[#d5dcdb]/60 flex items-center justify-between">
+                    <span>Working hours:</span>
+                    <span className="font-medium">Mon–Fri, 9 am – 5 pm PT</span>
                   </p>
                 </div>
               </div>
 
               {/* What happens next */}
-              <div className="border-t border-[#d5dcdb] pt-3.5 my-3.5 space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-[#0b2f3a]">
+              <div className="border-t border-[#d5dcdb] pt-5 mt-4 space-y-3">
+                <h4 className="font-black text-xs sm:text-sm uppercase tracking-wider text-[#0b2f3a]">
                   What happens next
                 </h4>
-                <ul className="space-y-1.5 text-xs text-[#51626a]">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 size={14} className="text-[#1f8a5b] shrink-0 mt-0.5" />
+                <ul className="space-y-2.5 text-xs sm:text-sm text-[#51626a]">
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 size={17} className="text-[#1f8a5b] shrink-0 mt-0.5" />
                     <span>Review shipment specifications</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 size={14} className="text-[#1f8a5b] shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 size={17} className="text-[#1f8a5b] shrink-0 mt-0.5" />
                     <span>Clear written quote with next steps</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 size={14} className="text-[#1f8a5b] shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 size={17} className="text-[#1f8a5b] shrink-0 mt-0.5" />
                     <span>Confirm India pickup &amp; documents</span>
                   </li>
                 </ul>
-              </div>
-
-              {/* DCW Trade Guarantee */}
-              <div className="border-t border-[#d5dcdb] pt-3.5 space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-[#0b2f3a]">
-                  DCW Trade Guarantee
-                </h4>
-                <p className="text-[11px] text-[#51626a] leading-relaxed">
-                  Doorstep pickup anywhere in India, CBSA customs brokerage partner coordination, and nationwide UPS delivery with live tracking.
-                </p>
-                <div className="flex flex-wrap gap-1 pt-1">
-                  <span className="text-[10px] font-bold bg-[#eef1f0] text-[#0b2f3a] px-2 py-0.5 rounded-md border border-[#d5dcdb]">
-                    Pan-India Pickup
-                  </span>
-                  <span className="text-[10px] font-bold bg-[#eef1f0] text-[#0b2f3a] px-2 py-0.5 rounded-md border border-[#d5dcdb]">
-                    CBSA Clearance
-                  </span>
-                  <span className="text-[10px] font-bold bg-[#eef1f0] text-[#0b2f3a] px-2 py-0.5 rounded-md border border-[#d5dcdb]">
-                    Canada-Wide UPS
-                  </span>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 10: Related Services - Full Bleed Symmetrical 3-Card Band */}
+      {/* SECTION 10: Other Services - Full Bleed Symmetrical 3-Card Band */}
       <section className="bg-white py-16 sm:py-20 border-t border-[#d5dcdb]">
         <div className="wrap space-y-8">
           <div className="max-w-2xl space-y-1">
@@ -1752,7 +1618,7 @@ Notes: ${notes || "None"}`;
               Cross-Functional Capabilities
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-[#0b2f3a]">
-              Related services
+              Other services
             </h2>
           </div>
 
@@ -1768,7 +1634,7 @@ Notes: ${notes || "None"}`;
                 Customs Clearance
               </strong>
               <span className="text-xs text-[#51626a] block mt-1.5 leading-relaxed">
-                Courier, cargo and e-commerce clearance, coordinated through our licensed partner brokerage.
+                Courier, cargo and e-commerce clearance, coordinated across Canadian ports of entry.
               </span>
             </Link>
 
