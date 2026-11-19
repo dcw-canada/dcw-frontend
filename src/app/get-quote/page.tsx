@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   ArrowUpRight,
   Loader2,
@@ -10,7 +13,9 @@ import {
   AlertCircle,
   MapPin,
   Weight,
-  Info,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import api from "@/lib/api";
 
@@ -69,18 +74,36 @@ export default function GetQuotePage() {
 
   return (
     <div className="min-h-screen bg-[#eef1f0] text-[#0b2f3a] font-[Archivo] flex flex-col antialiased">
-      <section className="relative bg-[#0b2f3a] overflow-hidden min-h-[200px] flex items-center py-12 px-6">
+      <Navbar />
+
+      <section className="relative bg-[#0b2f3a] overflow-hidden min-h-[220px] flex items-center py-12 px-6">
         <div className="max-w-7xl w-full mx-auto flex flex-col relative z-10 gap-3">
           <div className="flex items-center gap-2 text-[12px] font-semibold text-white/50">
-            <a href="/" className="hover:text-white transition-colors duration-200">
+            <Link href="/" className="hover:text-white transition-colors duration-200">
               Home
-            </a>
+            </Link>
             <span className="text-white/30">/</span>
             <span className="text-white">Get a Quote</span>
           </div>
-          <h1 className="text-[36px] md:text-[44px] font-black text-white leading-tight">
-            India to Canada Shipping Rates
-          </h1>
+
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#ffd100] bg-white/10 px-3 py-1 rounded-full mb-2">
+                <Sparkles size={13} /> India ➔ Canada Lane
+              </span>
+              <h1 className="text-[32px] md:text-[44px] font-black text-white leading-tight">
+                India to Canada Shipping Rates
+              </h1>
+            </div>
+
+            <Link
+              href="/india-to-canada"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white bg-white/15 hover:bg-white/25 border border-white/20 px-4 py-2.5 rounded-xl transition"
+            >
+              <span>View Dedicated India Service Page</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -94,6 +117,10 @@ export default function GetQuotePage() {
               <h2 className="text-3xl font-black text-[#0b2f3a]">
                 Calculate your shipment
               </h2>
+              <p className="text-xs text-[#51626a] mt-1.5">
+                Calculate indicative door-to-door courier charges from India to
+                destinations across Canada.
+              </p>
             </div>
 
             <form onSubmit={handleCalculate} className="flex flex-col gap-5">
@@ -252,12 +279,23 @@ export default function GetQuotePage() {
                         For {result.weight} KG shipping to Canada
                       </p>
                     </div>
-                    <a
-                      href="/book-shipment"
+
+                    {/* ONLY CTA for India-to-Canada shipment quotations is "Contact Us" */}
+                    <Link
+                      href="/india-to-canada#contact"
                       className="group shrink-0 bg-[#f05a28] hover:bg-[#c2410c] text-white font-black text-sm py-3.5 px-8 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 shadow-md hover:shadow-orange-500/25 w-full md:w-auto justify-center"
                     >
-                      Book Shipment <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                    </a>
+                      Contact Us <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                    </Link>
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-2 text-xs text-[#51626a]">
+                    <ShieldCheck size={16} className="text-[#1f8a5b] shrink-0" />
+                    <span>
+                      For India-to-Canada shipment quotations, our team verifies
+                      packaging, commodity clearance, and schedules pickup via
+                      Contact Us.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -265,6 +303,8 @@ export default function GetQuotePage() {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

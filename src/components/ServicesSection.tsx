@@ -41,8 +41,10 @@ const services = [
   {
     name: "India → Canada Door-to-Door",
     description:
-      "Door-to-door courier with pickup anywhere in India and delivery anywhere in Canada, subject to service availability and terms. Launching soon.",
-    tags: ["Pickup in India", "Delivery in Canada", "Competitive rates"],
+      "Complete door-to-door courier and air cargo with pickup anywhere in India, customs clearance coordination, and nationwide delivery across Canada via UPS.",
+    tags: ["Pickup anywhere in India", "CBSA customs cleared", "Canada-wide via UPS"],
+    href: "/india-to-canada",
+    ctaText: "Explore India service & Contact Us",
   },
 ];
 
@@ -146,12 +148,13 @@ export default function ServicesSection() {
                     ))}
                   </div>
                 </div>
-                <a
-                  className="service-row__link inline-flex items-center gap-1"
-                  href="#contact"
+                <Link
+                  className="service-row__link inline-flex items-center gap-1 font-bold text-[#f05a28] hover:text-[#c2410c]"
+                  href={service.href || "#contact"}
                 >
-                  Ask about this service <span aria-hidden="true">→</span>
-                </a>
+                  {service.ctaText || "Ask about this service"}{" "}
+                  <span aria-hidden="true">→</span>
+                </Link>
               </div>
             ))}
           </div>

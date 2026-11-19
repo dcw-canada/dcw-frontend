@@ -157,8 +157,24 @@ export default function AboutUsPage() {
             <p className="text-[#14434f] text-base leading-relaxed">
               We bring shipment handling, customs brokerage coordination, warehousing, and final delivery together under one roof. Our deep experience with time-sensitive courier imports, close working relationship with a licensed customs brokerage partner, and direct agreements with major delivery carriers such as UPS help keep consignments moving smoothly through arrival, sorting, and delivery.
             </p>
-            <div className="p-4 rounded-2xl bg-[#eef1f0] border border-[#d5dcdb] text-sm text-[#0b2f3a]">
-              <strong className="text-[#f05a28]">Upcoming Service Launch:</strong> We are also launching door-to-door courier services with pickup anywhere in India and delivery across Canada, subject to service availability and applicable terms and conditions.
+            <div className="p-5 rounded-2xl bg-[#0b2f3a] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+              <div>
+                <span className="text-xs font-black uppercase tracking-wider text-[#ffd100] block mb-0.5">
+                  🇮🇳➔🇨🇦 Active Service Lane
+                </span>
+                <strong className="text-white text-base">
+                  Door-to-Door Courier &amp; Cargo from India to Canada
+                </strong>
+                <p className="text-xs text-[#d5dcdb] mt-1">
+                  We provide doorstep pickup across all Indian states, CBSA customs clearance coordination, and coast-to-coast delivery via UPS.
+                </p>
+              </div>
+              <Link
+                href="/india-to-canada"
+                className="shrink-0 bg-[#f05a28] hover:bg-[#c2410c] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition"
+              >
+                Learn More &amp; Contact Us →
+              </Link>
             </div>
           </div>
 

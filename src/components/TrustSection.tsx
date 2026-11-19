@@ -154,7 +154,7 @@ export default function TrustSection() {
               <li>
                 <i aria-hidden="true" />
                 <span>
-                  <strong>Delivery</strong> · Canada-wide via UPS
+                  <strong>Delivery</strong> · Canada-wide via UPS and other Canadian delivery partners
                 </span>
               </li>
               <li>
