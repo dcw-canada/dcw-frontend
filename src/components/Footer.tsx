@@ -104,6 +104,12 @@ export default function Footer() {
             <h3>Contact</h3>
             <ul className="footer-links">
               <li>
+                <address className="not-italic text-sm text-[#d5dcdb] leading-snug">
+                  115-6086 Russ Baker Way,<br />
+                  Richmond BC V7B1B4
+                </address>
+              </li>
+              <li>
                 <a href="tel:+16729683390">(672) 968-3390</a>
               </li>
               <li>
