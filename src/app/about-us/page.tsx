@@ -98,16 +98,16 @@ export default function AboutUsPage() {
                   Proven Track Record
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black mt-2 text-white">
-                  27,000+ Shipments Processed in Year One
+                  100k+ Shipments Successfully Processed to Date
                 </h2>
                 <p className="text-[#d5dcdb] text-sm mt-3 leading-relaxed">
                   Through dependable service and responsive operational support, DCW has rapidly scaled from handling initial courier consolidations to offering dedicated warehousing facilities in Vancouver and Toronto with nationwide Canadian delivery.
                 </p>
               </div>
               <div className="bg-white/10 p-6 rounded-2xl border border-white/10 text-center">
-                <div className="text-4xl sm:text-5xl font-black text-[#ffd100]">27k+</div>
+                <div className="text-4xl sm:text-5xl font-black text-[#ffd100]">100k+</div>
                 <div className="text-xs font-bold uppercase tracking-wider text-white mt-2">
-                  Shipments Coordinated
+                  Shipments Processed
                 </div>
                 <div className="text-[11px] text-[#d5dcdb] mt-1">Coast-to-Coast across Canada</div>
               </div>

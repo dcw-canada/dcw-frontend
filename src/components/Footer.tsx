@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
@@ -7,6 +10,113 @@ import {
   LinkedInIcon,
   WhatsAppIcon,
 } from "@/components/icons/SocialIcons";
+
+/* ---------- Small inline icons (no extra dependency) ---------- */
+const iconProps = {
+  width: 16,
+  height: 16,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  className: "shrink-0 text-[#ffd100]",
+  "aria-hidden": true,
+};
+
+const MailIcon = () => (
+  <svg {...iconProps}>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-10 6L2 7" />
+  </svg>
+);
+const PhoneIcon = () => (
+  <svg {...iconProps}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+const PinIcon = () => (
+  <svg {...iconProps}>
+    <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+const ChatIcon = () => (
+  <svg {...iconProps}>
+    <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l2-5.2a8.4 8.4 0 1 1 16-4.3z" />
+  </svg>
+);
+const ChevronDown = ({ open }: { open: boolean }) => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    aria-hidden
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+/* ---------- Link data ---------- */
+type FooterLink = { label: string; href: string; highlight?: boolean };
+type Section = { key: string; title: string; links: FooterLink[] };
+
+const sections: Section[] = [
+  {
+    key: "services",
+    title: "Services",
+    links: [
+      { label: "Courier import handling", href: "/#services" },
+      { label: "Cargo import handling", href: "/#services" },
+      { label: "Customs clearance coordination", href: "/#services" },
+      { label: "Warehousing", href: "/#services" },
+      { label: "Last-mile delivery", href: "/#services" },
+      {
+        label: "India → Canada door-to-door",
+        href: "/india-to-canada",
+        highlight: true,
+      },
+    ],
+  },
+  {
+    key: "resources",
+    title: "Resources",
+    links: [
+      { label: "Cost estimator", href: "/#estimate" },
+      { label: "How it works", href: "/#process" },
+      { label: "Request a quote", href: "/request-a-quote" },
+      { label: "Track a shipment", href: "/track-shipment" },
+      {
+        label: "Become a shipping partner",
+        href: "/become-a-shipping-partner",
+      },
+      { label: "India to Canada Guide", href: "/india-to-canada" },
+      { label: "Blog & Guides", href: "/blog" },
+    ],
+  },
+  {
+    key: "info",
+    title: "Information",
+    links: [
+      { label: "About Us", href: "/about-us" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-and-conditions" },
+    ],
+  },
+];
+
+const linkClass =
+  "text-[#d5dcdb] hover:text-[#ffd100] transition-colors py-0.5";
+const highlightClass =
+  "text-[#ffd100] font-semibold hover:text-white transition-colors py-0.5";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

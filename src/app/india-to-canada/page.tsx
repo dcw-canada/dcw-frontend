@@ -103,10 +103,10 @@ const POPULAR_DELIVERY_CITIES = [
 
 // 11 Exact FAQs from dcw-website-india-canada.html
 const I2C_FAQS = [
-  {
-    q: "Is DCW's India-to-Canada service available now?",
-    a: "We're launching door-to-door shipping from India to Canada. Send an enquiry now and we'll contact you with a quote and booking details for your route.",
-  },
+  // {
+  //   q: "Is DCW's India-to-Canada service available now?",
+  //   a: "We're launching door-to-door shipping from India to Canada. Send an enquiry now and we'll contact you with a quote and booking details for your route.",
+  // },
   {
     q: "Where in India can you pick up from?",
     a: "Anywhere in India, subject to service availability. Add your city and PIN code to the enquiry form and we'll confirm the pickup.",
@@ -125,7 +125,7 @@ const I2C_FAQS = [
   },
   {
     q: "Will duties and taxes be charged in Canada?",
-    a: "They may be. The Canada Border Services Agency (CBSA) assesses duties and taxes on imported goods. Gifts worth CAD 60 or less, sent by a friend or relative abroad with a gift card or note, may be imported through the courier program without duty or taxes; other shipments may be charged. Duties and taxes are only included in your price if your quote says so.",
+    a: "They may be. The Canada Border Services Agency (CBSA) assesses duties and taxes on imported goods. Duties and taxes are only included in your price if your quote says so.",
   },
   {
     q: "What can't I send from India to Canada?",
@@ -979,7 +979,7 @@ Approx Weight: ${weightKg} KG`;
                 Experience with courier imports
               </h3>
               <p className="text-xs sm:text-sm text-[#51626a] leading-relaxed">
-                We processed more than 27,000 shipments in our first year,
+                We processed more than 100k+ shipments processed till date,
                 handling time-sensitive courier and cargo imports.
               </p>
             </div>
@@ -993,7 +993,7 @@ Approx Weight: ${weightKg} KG`;
               </h3>
               <p className="text-xs sm:text-sm text-[#51626a] leading-relaxed">
                 Pricing tailored to your shipment, with volume-based rates for
-                regular shippers and no vague estimates.
+                regular shippers and importers.
               </p>
             </div>
           </div>
@@ -1027,9 +1027,7 @@ Approx Weight: ${weightKg} KG`;
                 <li>Sender and recipient names, full addresses and phone numbers</li>
                 <li>A list of contents with an honest description and value for each item</li>
                 <li>
-                  For commercial shipments, a commercial invoice. A Canada
-                  Customs Invoice may also be needed for higher-value or dutiable
-                  goods.
+                  A commercial invoice is required. A Canada Customs Invoice may also be required for high-value or dutiable shipments.
                 </li>
                 <li>
                   Permits or certificates for regulated goods, such as food,
@@ -1062,11 +1060,6 @@ Approx Weight: ${weightKg} KG`;
               </div>
               <ul className="space-y-2 text-xs sm:text-sm text-[#51626a] list-disc pl-5 pt-1">
                 <li>The CBSA decides on duties, taxes and inspections for every shipment</li>
-                <li>
-                  Gifts worth CAD 60 or less, sent by a friend or relative with
-                  a gift card or note, may enter through the courier program
-                  without duty or taxes
-                </li>
                 <li>Declare true values: under-declaring can cause delays or penalties</li>
                 <li>Clearance is coordinated through our partner customs brokerage</li>
               </ul>
@@ -1091,7 +1084,7 @@ Approx Weight: ${weightKg} KG`;
                   Restricted items may need permits from agencies such as the
                   CFIA or Health Canada, or may be refused
                 </li>
-                <li>DCW&apos;s full prohibited items list (to be confirmed)</li>
+                <li>DCW&apos;s full prohibited items list.</li>
               </ul>
             </div>
           </div>
