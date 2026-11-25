@@ -3,6 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  WhatsAppIcon,
+} from "@/components/icons/SocialIcons";
 
 /* ---------- Small inline icons (no extra dependency) ---------- */
 const iconProps = {
@@ -112,172 +119,362 @@ const highlightClass =
   "text-[#ffd100] font-semibold hover:text-white transition-colors py-0.5";
 
 export default function Footer() {
-  // Accordion state for mobile view
-  const [open, setOpen] = useState<Record<string, boolean>>({
-    services: true,
-    resources: false,
-    info: false,
-  });
-  const toggle = (key: string) =>
-    setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
+    <footer className="bg-[#0b2f3a] text-[#d5dcdb] pt-14 pb-8 border-t border-white/10 font-[Archivo] text-sm">
       <div className="wrap">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14">
-          {/* Column 1: Brand */}
-          <div className="md:col-span-12 lg:col-span-3 flex flex-col gap-4">
-            <div className="inline-block self-start bg-white px-4 py-2.5 rounded-xl border border-[#d5dcdb]/60 shadow-sm">
-              <Image
-                src="/images/dcw-logo-transparent.png"
-                alt="DCW Solutions Inc."
-                width={220}
-                height={75}
-                className="h-12 w-auto object-contain"
-              />
+        {/* Main 3-Column Layout: Left (Brand & Socials) | Middle (Quick Links 3 Sub-cols) | Right (Office Info & Map) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 pb-12">
+          
+          {/* ============================================================== */}
+          {/* COLUMN 1: Brand Info & Social Network (Span 3 on desktop)     */}
+          {/* ============================================================== */}
+          <div className="lg:col-span-3 space-y-4">
+            {/* Logo */}
+            <div>
+              <Link
+                href="/"
+                className="inline-block bg-white/95 hover:bg-white px-4 py-2.5 rounded-xl border border-white/20 shadow-sm transition-all"
+              >
+                <Image
+                  src="/images/dcw-logo-transparent.png"
+                  alt="DCW Solutions Inc."
+                  width={200}
+                  height={68}
+                  className="h-12 w-auto object-contain"
+                />
+              </Link>
             </div>
-            <p className="text-white text-[14px] font-medium leading-relaxed max-w-sm">
-              Your trusted logistics partner.
+
+            {/* Tagline */}
+            <p className="text-xs sm:text-sm font-semibold text-[#ffd100] italic leading-snug">
+              Connecting the world to Canada.
             </p>
-            <p className="text-[#d5dcdb] text-[13px] leading-relaxed max-w-sm">
-              Connecting the world to Canada, from courier and cargo imports to
-              customs clearance, warehousing and last-mile delivery.
+
+            {/* Trust / Company Overview */}
+            <p className="text-xs sm:text-sm text-[#a9c2c6] leading-relaxed">
+              Your trusted Canadian freight and logistics partner for
+              international courier imports, customs clearance coordination,
+              secure warehousing in Vancouver &amp; Toronto, and seamless delivery
+              nationwide.
             </p>
-          </div>
 
-          {/* Column 2: Link groups */}
-          <div className="md:col-span-7 lg:col-span-6 flex flex-col gap-4">
-            {/* Desktop grid */}
-            <div className="hidden md:grid grid-cols-3 gap-x-6 gap-y-3">
-              {sections.map((s) => (
-                <div key={s.key} className="flex flex-col gap-2.5">
-                  <h3 className="text-[15px] font-extrabold text-white pb-2 border-b border-[#d5dcdb]/25">
-                    {s.title}
-                  </h3>
-                  <ul className="flex flex-col gap-1.5 text-[14px]">
-                    {s.links.map((l) => (
-                      <li key={s.key + l.label}>
-                        <Link
-                          href={l.href}
-                          className={l.highlight ? highlightClass : linkClass}
-                        >
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile accordion (< md) */}
-            <div className="flex md:hidden flex-col gap-3">
-              {sections.map((s) => (
-                <div
-                  key={s.key}
-                  className="border border-[#d5dcdb]/25 rounded-xl bg-white/5 overflow-hidden"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggle(s.key)}
-                    aria-expanded={!!open[s.key]}
-                    className="w-full px-4 py-3 flex items-center justify-between font-extrabold text-[15px] text-white text-left focus:outline-none"
-                  >
-                    <span>{s.title}</span>
-                    <ChevronDown open={!!open[s.key]} />
-                  </button>
-                  {open[s.key] && (
-                    <ul className="px-4 pb-4 pt-2 border-t border-[#d5dcdb]/15 flex flex-col gap-1 text-[13.5px]">
-                      {s.links.map((l) => (
-                        <li key={s.key + l.label}>
-                          <Link
-                            href={l.href}
-                            className={`block py-1.5 ${
-                              l.highlight
-                                ? "text-[#ffd100] font-semibold"
-                                : "text-[#d5dcdb] hover:text-[#ffd100] transition-colors"
-                            }`}
-                          >
-                            {l.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 3: Contact */}
-          <div className="md:col-span-5 lg:col-span-3 flex flex-col gap-4">
-            <h3 className="text-[15px] font-extrabold text-white pb-2 border-b border-[#d5dcdb]/25">
-              Contact
-            </h3>
-            <div className="flex flex-col gap-3 text-[14px]">
-              <div className="flex items-start gap-3">
-                <span className="mt-0.5">
-                  <PinIcon />
-                </span>
-                <address className="not-italic text-[13.5px] text-[#d5dcdb] leading-relaxed">
-                  115-6086 Russ Baker Way,
-                  <br />
-                  Richmond BC V7B 1B4
-                </address>
-              </div>
-              <div className="flex items-center gap-3">
-                <PhoneIcon />
-                <a href="tel:+16729683390" className={linkClass}>
-                  (672) 968-3390
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <MailIcon />
+            {/* Social Network */}
+            <div className="pt-2">
+              <span className="block text-[11px] font-bold uppercase tracking-widest text-white/80 mb-3">
+                Social Network
+              </span>
+              <div className="flex items-center gap-2.5">
+                {/* Facebook */}
                 <a
-                  href="mailto:info@dcwsolution.ca"
-                  className={`${linkClass} break-all sm:break-normal`}
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-sm"
+                  title="Facebook"
                 >
-                  info@dcwsolution.ca
+                  <FacebookIcon size={24} />
                 </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <ChatIcon />
+
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-sm"
+                  title="Instagram"
+                >
+                  <InstagramIcon size={24} />
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-sm"
+                  title="LinkedIn"
+                >
+                  <LinkedInIcon size={24} />
+                </a>
+
+                {/* WhatsApp */}
                 <a
                   href="https://wa.me/16729683390"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={linkClass}
+                  aria-label="WhatsApp"
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-sm"
+                  title="WhatsApp"
                 >
-                  WhatsApp
+                  <WhatsAppIcon size={24} />
                 </a>
               </div>
             </div>
+          </div>
 
-            <Link
-              href="/book-a-call"
-              className="self-start mt-1 inline-flex items-center justify-center rounded-full bg-[#ffd100] px-5 py-2.5 text-[13.5px] font-bold text-[#1a1a1a] hover:bg-white transition-colors"
-            >
-              Book a call
-            </Link>
+          {/* ============================================================== */}
+          {/* COLUMN 2: Quick Links (Span 6 on desktop, 3 sub-columns)       */}
+          {/* ============================================================== */}
+          <div className="lg:col-span-6">
+            <h3 className="text-base sm:text-lg font-black text-white tracking-wide">
+              Quick Links
+            </h3>
+            {/* Divider spanning across all 3 sub-columns */}
+            <div className="h-px bg-white/15 my-3" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-1">
+              {/* Sub-column A: NAVIGATION */}
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#ffd100] mb-3.5">
+                  Navigation
+                </h4>
+                <ul className="space-y-2 text-xs sm:text-sm">
+                  <li>
+                    <Link href="/" className="hover:text-white transition-colors">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/about-us" className="hover:text-white transition-colors">
+                      About us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#services" className="hover:text-white transition-colors">
+                      Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/track-shipment" className="hover:text-white transition-colors">
+                      Track shipment
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/get-quote" className="hover:text-white transition-colors">
+                      Get quote
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/book-a-call" className="hover:text-white transition-colors">
+                      Contact us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faq" className="hover:text-white transition-colors">
+                      FAQ
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Sub-column B: EXPLORE */}
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#ffd100] mb-3.5">
+                  Explore
+                </h4>
+                <ul className="space-y-2 text-xs sm:text-sm">
+                  <li>
+                    <Link
+                      href="/india-to-canada"
+                      className="text-white font-bold hover:text-[#ffd100] transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span>India ➔ Canada</span>
+                      <span className="text-[9px] font-black uppercase bg-[#f05a28] text-white px-1.5 py-0.5 rounded">
+                        Active
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/become-a-shipping-partner"
+                      className="hover:text-white transition-colors"
+                    >
+                      Partner Network
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/india-to-canada#quote-estimator"
+                      className="hover:text-white transition-colors"
+                    >
+                      Rate Estimator
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#services" className="hover:text-white transition-colors">
+                      Courier Import Handling
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#services" className="hover:text-white transition-colors">
+                      Customs Clearance
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#services" className="hover:text-white transition-colors">
+                      Warehousing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog" className="hover:text-white transition-colors">
+                      Blog &amp; Guides
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Sub-column C: LEGAL & POLICIES */}
+              <div>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#ffd100] mb-3.5">
+                  Legal &amp; Policies
+                </h4>
+                <ul className="space-y-2 text-xs sm:text-sm">
+                  <li>
+                    <Link
+                      href="/privacy-policy"
+                      className="hover:text-white transition-colors"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms-and-conditions"
+                      className="hover:text-white transition-colors"
+                    >
+                      Terms &amp; Conditions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms-and-conditions"
+                      className="hover:text-white transition-colors"
+                    >
+                      Refund &amp; Cancellation
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms-and-conditions"
+                      className="hover:text-white transition-colors"
+                    >
+                      Shipping Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms-and-conditions"
+                      className="hover:text-white transition-colors"
+                    >
+                      Mandatory Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/admin"
+                      className="text-white/60 hover:text-white transition-colors"
+                    >
+                      Admin Portal
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================== */}
+          {/* COLUMN 3: Office Info & Google Map (Span 3 on desktop)        */}
+          {/* ============================================================== */}
+          <div className="lg:col-span-3">
+            <h3 className="text-base sm:text-lg font-black text-white tracking-wide">
+              Office Info
+            </h3>
+            {/* Divider matching Quick Links */}
+            <div className="h-px bg-white/15 my-3" />
+
+            <div className="space-y-3.5 pt-1 text-xs sm:text-sm">
+              {/* Phone */}
+              <div className="flex items-start gap-2.5">
+                <Phone size={15} className="text-[#ffd100] shrink-0 mt-0.5" />
+                <a
+                  href="tel:+16729683390"
+                  className="hover:text-white font-medium transition-colors"
+                >
+                  (672) 968-3390
+                </a>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-start gap-2.5">
+                <Mail size={15} className="text-[#ffd100] shrink-0 mt-0.5" />
+                <a
+                  href="mailto:info@dcwsolution.ca"
+                  className="hover:text-white transition-colors break-all"
+                >
+                  info@dcwsolution.ca
+                </a>
+              </div>
+
+              {/* Address */}
+              <div className="flex items-start gap-2.5">
+                <MapPin size={15} className="text-[#ffd100] shrink-0 mt-0.5" />
+                <address className="not-italic text-xs text-[#a9c2c6] leading-relaxed">
+                  115-6086 Russ Baker Way,<br />
+                  Richmond BC V7B 1B4, Canada
+                </address>
+              </div>
+
+              {/* Interactive Google Map Preview Card */}
+              <div className="pt-2">
+                <div className="relative rounded-xl overflow-hidden border border-white/20 shadow-lg h-32 sm:h-36 bg-[#071f26] group">
+                  <iframe
+                    title="DCW Solutions Location Map"
+                    src="https://maps.google.com/maps?q=115-6086%20Russ%20Baker%20Way%2C%20Richmond%2C%20BC%20V7B%201B4&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    className="w-full h-full border-0 filter contrast-[1.05] opacity-90 group-hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <a
+                    href="https://maps.google.com/?q=115-6086+Russ+Baker+Way,+Richmond+BC+V7B+1B4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-2 left-2 bg-white/95 hover:bg-white text-[#0b2f3a] text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center gap-1 transition-all hover:scale-105"
+                    title="Open in Google Maps"
+                  >
+                    <span>Maps</span>
+                    <ExternalLink size={10} />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 border-t border-[#d5dcdb]/25 pt-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-[12.5px] sm:text-[13px] text-[#d5dcdb] text-center">
+        {/* ============================================================== */}
+        {/* BOTTOM STRIP: Copyright & Legal Badges                        */}
+        {/* ============================================================== */}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#a9c2c6]">
           <span>
-            &copy; {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-white">DCW Solutions Inc.</span>{" "}
-            All rights reserved.
+            © {currentYear} DCW Solutions Inc. All rights reserved.
           </span>
-          <span className="hidden sm:inline text-[#d5dcdb]/40">•</span>
-          <span>Delivery. Clearance. Warehousing.</span>
-          <span className="hidden sm:inline text-[#d5dcdb]/40">•</span>
-          <Link
-            href="/admin"
-            className="hover:text-[#ffd100] transition-colors"
-          >
-            Admin
-          </Link>
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
+              Terms &amp; Conditions
+            </Link>
+            <span>·</span>
+            <span className="text-[#ffd100] font-medium">
+              Delivery · Clearance · Warehousing
+            </span>
+          </div>
         </div>
       </div>
     </footer>

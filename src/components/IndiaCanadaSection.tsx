@@ -6,10 +6,10 @@ import {
   ShieldCheck,
   Truck,
   ArrowRight,
-  MessageSquare,
   Sparkles,
   Plane,
 } from "lucide-react";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const WA_I2C =
   "https://wa.me/16729683390?text=" +
@@ -107,7 +107,7 @@ export default function IndiaCanadaSection() {
                 rel="noopener noreferrer"
                 className="font-bold text-[#1f8a5b] hover:underline inline-flex items-center gap-1"
               >
-                <MessageSquare size={14} /> Get shipping assistance on WhatsApp
+                <WhatsAppIcon size={16} /> Get shipping assistance on WhatsApp
               </a>
             </p>
           </div>
