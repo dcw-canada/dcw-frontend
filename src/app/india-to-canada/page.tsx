@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import api from "@/lib/api";
 import { toast } from "react-toastify";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 // Indian States for Rate Estimator & Origin
 const INDIAN_STATES = [
@@ -311,7 +312,7 @@ Approx Weight: ${weightKg} KG`;
 
       {/* HERO SECTION: Branded hero imagery with dark teal linear gradient overlay */}
       <section
-        className="relative py-16 sm:py-24 bg-cover bg-no-repeat overflow-hidden text-white"
+        className="relative pt-6 sm:pt-8 lg:pt-8 pb-12 sm:pb-16 bg-cover bg-no-repeat overflow-hidden text-white"
         style={{
           backgroundImage: "url('/images/hero-banner.webp')",
           backgroundPosition: "center 45%",
@@ -380,15 +381,15 @@ Approx Weight: ${weightKg} KG`;
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 px-5 py-3.5 rounded-xl font-bold text-sm sm:text-base backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
               >
-                <MessageSquare size={17} className="text-[#25D366]" />
-                <span>Whatsapp Us</span>
+                <WhatsAppIcon size={19} />
+                <span>WhatsApp Us</span>
               </a>
 
               <a
                 href="#quote-estimator"
                 className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white border border-white/20 px-5 py-3.5 rounded-xl font-bold text-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
               >
-                <Calculator size={17} className="text-[#ffd100]" />
+                <Calculator size={18} className="text-[#ffd100]" />
                 <span>Rate Estimator</span>
               </a>
             </div>
@@ -1561,7 +1562,7 @@ Approx Weight: ${weightKg} KG`;
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2.5 bg-[#1f8a5b] hover:bg-[#186f49] text-white font-bold text-sm sm:text-base py-3.5 px-5 rounded-xl transition shadow-sm hover:shadow-md"
                 >
-                  <MessageSquare size={18} />
+                  <WhatsAppIcon size={19} />
                   <span>Get assistance on WhatsApp</span>
                 </a>
 
